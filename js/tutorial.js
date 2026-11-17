@@ -76,7 +76,7 @@ const tutorials = [
 
         status: "available",
 
-        url: "./deep_learning_fundamentals/index.html",
+        url: "./html/deep_learning_fundamentals/index.html",
 
         keywords: [
             "人工智能",
@@ -200,7 +200,7 @@ const tutorials = [
 
         status: "available",
 
-        url: "./python_quick_start/index.html",
+        url: "./html/python_quick_start/index.html",
 
         keywords: [
             "Python",
