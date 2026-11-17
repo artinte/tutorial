@@ -719,6 +719,7 @@ button:disabled {
 
 .course-card.is-available {
     border-color: #d8e3f9;
+    cursor: pointer;
 }
 
 .course-card.is-available .course-level {
@@ -738,6 +739,7 @@ button:disabled {
 
 .course-card.is-unavailable {
     background: var(--tutorial-surface-soft);
+    cursor: default;
 }
 
 .course-card.is-unavailable .course-card-icon {
