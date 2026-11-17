@@ -72,106 +72,25 @@ const state = {
    INITIALIZE
 ========================================================= */
 
-function initTopbarAutoHide() {
-
-    const topbar =
-        document.querySelector(
-            ".topbar"
-        );
+function initTopbarVisibility() {
+    const topbar = document.querySelector(".topbar");
 
     if (!topbar) {
         return;
     }
 
-    let lastScrollY =
-        window.scrollY;
+    const updateVisibility = () => {
+        topbar.classList.toggle(
+            "topbar-hidden",
+            window.scrollY > 1
+        );
+    };
 
-    window.addEventListener(
-        "scroll",
-        () => {
+    updateVisibility();
 
-            const currentScrollY =
-                window.scrollY;
-
-
-            /*
-             * 页面顶部始终显示
-             */
-
-            if (currentScrollY <= 20) {
-
-                topbar.classList.remove(
-                    "topbar-hidden"
-                );
-
-                lastScrollY =
-                    currentScrollY;
-
-                return;
-            }
-
-
-            /*
-             * 向下滚动 → 隐藏
-             */
-
-            if (
-                currentScrollY >
-                lastScrollY
-            ) {
-
-                topbar.classList.add(
-                    "topbar-hidden"
-                );
-
-            }
-
-
-            /*
-             * 向上滚动 → 显示
-             */
-
-            else if (
-                currentScrollY <
-                lastScrollY
-            ) {
-
-                topbar.classList.remove(
-                    "topbar-hidden"
-                );
-
-            }
-
-
-            lastScrollY =
-                currentScrollY;
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    /*
-     * 鼠标移动到顶部 → 显示
-     */
-
-    document.addEventListener(
-        "mousemove",
-        event => {
-
-            if (event.clientY <= 12) {
-
-                topbar.classList.remove(
-                    "topbar-hidden"
-                );
-
-            }
-
-        }
-    );
-
+    window.addEventListener("scroll", updateVisibility, {
+        passive: true
+    });
 }
 
 
@@ -261,7 +180,7 @@ function init() {
 
     bindEvents();
 
-    initTopbarAutoHide();
+    initTopbarVisibility();
 
     restoreRoute();
 }

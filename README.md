@@ -3,8 +3,9 @@
 ## 在线访问
 
 - 教程中心：<https://artinte.github.io/tutorial/>
-- Python 快速入门：<https://artinte.github.io/tutorial/html/python_quick_start/>
-- 深度学习基础：<https://artinte.github.io/tutorial/html/deep_learning_fundamentals/>
+- Python 快速入门：<https://makevideowithhtml.top/tutorial/html/python_quick_start/index.html>
+- 深度学习基础：<https://makevideowithhtml.top/tutorial/html/deep_learning_fundamentals/index.html>
+- 在线编辑器：<https://makevideowithhtml.top>
 
 ## 运行
 
