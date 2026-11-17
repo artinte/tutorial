@@ -203,9 +203,15 @@ button {
 }
 
 .python-logo {
-    width: 120px;
-    height: auto;
-    display: block;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--python-blue);
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
 }
 
 

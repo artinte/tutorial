@@ -3,7 +3,7 @@
    Tutorial Center · 教程中心
 
    文件：
-   /js/tutorial/tutorial.js
+   js/tutorial.js
 
    模块职责：
    1. 管理课程数据
@@ -32,7 +32,7 @@
 
 const TUTORIAL_CONFIG = Object.freeze({
 
-    basePath: "/tutorial/",
+    basePath: new URL("./", window.location.href).pathname,
 
     defaultCategory: "all",
 
@@ -76,7 +76,7 @@ const tutorials = [
 
         status: "available",
 
-        url: "/tutorial/deep_learning_fundamentals/index.html",
+        url: "./deep_learning_fundamentals/index.html",
 
         keywords: [
             "人工智能",
@@ -200,7 +200,7 @@ const tutorials = [
 
         status: "available",
 
-        url: "/tutorial/python_quick_start/index.html",
+        url: "./python_quick_start/index.html",
 
         keywords: [
             "Python",
@@ -669,7 +669,6 @@ function createElement(tagName, className = "", text) {
 function isValidTutorialUrl(url) {
     if (
         typeof url !== "string" ||
-        !url.startsWith(TUTORIAL_CONFIG.basePath) ||
         url.startsWith("//") ||
         url.includes("\\")
     ) {
@@ -679,7 +678,7 @@ function isValidTutorialUrl(url) {
     try {
         const parsed = new URL(
             url,
-            window.location.origin
+            window.location.href
         );
 
         return (

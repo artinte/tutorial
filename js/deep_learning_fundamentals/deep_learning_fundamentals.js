@@ -484,9 +484,7 @@ function renderRoadmap() {
                         section.page || section.id;
 
                     const lessonURL =
-                        `/tutorial/${COURSE_ID}/chapters/${encodeURIComponent(
-                            page
-                        )}.html`;
+                        `./chapters/${encodeURIComponent(page)}.html`;
 
 
                     return `
@@ -922,9 +920,7 @@ function bindLessonLinks() {
                 }
 
                 const lessonURL =
-                    `/tutorial/${COURSE_ID}/chapters/${encodeURIComponent(
-                        page
-                    )}.html`;
+                    `./chapters/${encodeURIComponent(page)}.html`;
 
                 window.location.href =
                     lessonURL;

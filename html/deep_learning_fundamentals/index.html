@@ -11,8 +11,8 @@
     <meta name="theme-color" content="#f7f9fc">
 
     <title>深度学习基础 · DEEP LEARNING FUNDAMENTALS</title>
-    <link rel="stylesheet" href="/css/tutorial/deep_learning_fundamentals/neural_training_visual.css">
-    <link rel="stylesheet" href="/css/tutorial/deep_learning_fundamentals/deep_learning_fundamentals.css">
+    <link rel="stylesheet" href="../../css/deep_learning_fundamentals/neural_training_visual.css">
+    <link rel="stylesheet" href="../../css/deep_learning_fundamentals/deep_learning_fundamentals.css">
 
 </head>
 
@@ -33,7 +33,7 @@
 
                     <strong>
 
-                        <a class="brand-parent" href="/tutorial" aria-label="返回教程中心">
+                        <a class="brand-parent" href="../index.html" aria-label="返回教程中心">
                             教程
                         </a>
 
@@ -605,7 +605,7 @@
         try {
 
             const response = await fetch(
-                "/pages/tutorial/deep_learning_fundamentals/neural_training_visual.html"
+                "./neural_training_visual.html"
             );
 
             if (!response.ok) {
@@ -622,11 +622,11 @@
             // 主视觉插入后，再初始化原来的页面逻辑。
 
             await import(
-                "/js/tutorial/deep_learning_fundamentals/neural_training_visual.js"
+                "../../js/deep_learning_fundamentals/neural_training_visual.js"
             );
 
             await import(
-                "/js/tutorial/deep_learning_fundamentals/deep_learning_fundamentals.js"
+                "../../js/deep_learning_fundamentals/deep_learning_fundamentals.js"
             );
 
         } catch (error) {

@@ -11,7 +11,7 @@ import {
 
 import {
     escapeHTML
-} from "/js/utils/html_escape.js"
+} from "../utils/html_escape.js";
 
 
 /* =========================================================
