@@ -1,0 +1,1328 @@
+/* =========================================================
+   Tutorial Studio
+   Tutorial Center · 教程中心
+
+   文件：
+   /css/tutorial/tutorial.css
+
+   设计目标：
+   1. 页面打开直接展示课程
+   2. 桌面端充分利用屏幕宽度
+   3. 分类导航清晰醒目
+   4. 课程卡片统一、整齐、易读
+   5. 已开放和暂未开放课程清晰区分
+   6. 桌面多列、平板双列、手机单列
+   7. 与当前 tutorial.html、tutorial.js 对应
+========================================================= */
+
+
+/* =========================================================
+   01. 全局变量
+========================================================= */
+
+:root {
+    color-scheme: light;
+
+    --tutorial-bg: #f5f7fb;
+    --tutorial-surface: #ffffff;
+    --tutorial-surface-soft: #f9fafc;
+
+    --tutorial-text: #202939;
+    --tutorial-text-secondary: #667085;
+    --tutorial-text-muted: #98a2b3;
+
+    --tutorial-border: #e4e7ec;
+    --tutorial-border-hover: #c6d1e0;
+
+    --tutorial-primary: #356ae6;
+    --tutorial-primary-hover: #2455c7;
+    --tutorial-primary-light: #edf3ff;
+
+    --tutorial-success: #16805d;
+    --tutorial-success-light: #e9f8f1;
+
+    --tutorial-radius: 14px;
+    --tutorial-radius-small: 9px;
+
+    --tutorial-content-width: 1800px;
+    --tutorial-content-gutter: 2%;
+
+    --tutorial-shadow:
+        0 2px 8px rgba(16, 24, 40, 0.035);
+
+    --tutorial-shadow-hover:
+        0 10px 28px rgba(16, 24, 40, 0.075);
+
+    --tutorial-transition:
+        0.18s ease;
+}
+
+
+/* =========================================================
+   02. 基础样式
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+
+    scroll-behavior: smooth;
+
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--tutorial-bg);
+    color: var(--tutorial-text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Microsoft YaHei",
+        "PingFang SC",
+        sans-serif;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(53, 106, 230, 0.24);
+    outline-offset: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+svg {
+    display: block;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   03. 顶部导航
+========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+    height: 64px;
+
+    flex-shrink: 0;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid var(--tutorial-border);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.header-inner {
+    width: calc(100% - var(--tutorial-content-gutter) * 2);
+    max-width: var(--tutorial-content-width);
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 42px;
+}
+
+
+/* =========================================================
+   04. 品牌区域
+========================================================= */
+
+.brand {
+    min-width: 0;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        #5687f7 0%,
+        #356ae6 52%,
+        #2854c8 100%
+    );
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+
+    box-shadow:
+        0 4px 10px rgba(53, 106, 230, 0.20);
+}
+
+.brand-text {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.3;
+}
+
+.brand-text strong {
+    color: var(--tutorial-text);
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: -0.25px;
+
+    white-space: nowrap;
+}
+
+.brand-text small {
+    margin-top: 3px;
+
+    color: var(--tutorial-text-muted);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   05. 主导航
+========================================================= */
+
+.main-nav {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.main-nav a {
+    min-width: 60px;
+    height: 37px;
+
+    padding: 0 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    color: var(--tutorial-text-secondary);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        color var(--tutorial-transition),
+        background var(--tutorial-transition),
+        border-color var(--tutorial-transition);
+}
+
+.main-nav a:hover {
+    background: #f5f7fb;
+
+    color: var(--tutorial-primary);
+}
+
+.main-nav a.active {
+    border-color: #dce6ff;
+
+    background: var(--tutorial-primary-light);
+
+    color: var(--tutorial-primary);
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   06. 教程主体
+========================================================= */
+
+.tutorial-main {
+    width: calc(100% - var(--tutorial-content-gutter) * 2);
+    max-width: var(--tutorial-content-width);
+
+    min-width: 0;
+
+    margin: 0 auto;
+
+    padding: 28px 0 44px;
+
+    flex: 1;
+}
+
+
+/* =========================================================
+   07. 课程分类导航
+
+   对应：
+   #categoryTabs
+   .category-tab
+========================================================= */
+
+.category-tabs {
+    width: 100%;
+    min-width: 0;
+
+    margin: 0 0 24px;
+    padding: 0 0 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    border-bottom: 1px solid var(--tutorial-border);
+
+    scrollbar-width: thin;
+    scrollbar-color: #cfd7e4 transparent;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.category-tabs::-webkit-scrollbar {
+    height: 5px;
+}
+
+.category-tabs::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.category-tabs::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+
+    background: #cfd7e4;
+}
+
+.category-tab {
+    position: relative;
+
+    min-height: 39px;
+
+    padding: 0 17px;
+
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--tutorial-text-secondary);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        color var(--tutorial-transition),
+        background var(--tutorial-transition),
+        border-color var(--tutorial-transition),
+        box-shadow var(--tutorial-transition);
+}
+
+.category-tab:hover {
+    border-color: var(--tutorial-border);
+
+    background: #ffffff;
+
+    color: var(--tutorial-text);
+}
+
+.category-tab.active {
+    border-color: #cbd9ff;
+
+    background: var(--tutorial-primary-light);
+
+    color: var(--tutorial-primary);
+
+    font-weight: 750;
+
+    box-shadow:
+        0 1px 2px rgba(53, 106, 230, 0.04);
+}
+
+.category-tab.active::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--tutorial-primary);
+}
+
+
+/* =========================================================
+   08. 课程网格
+========================================================= */
+
+.course-grid {
+    width: 100%;
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    align-items: stretch;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   09. 课程卡片
+========================================================= */
+
+.course-card {
+    position: relative;
+
+    min-width: 0;
+    min-height: 228px;
+
+    padding: 21px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--tutorial-border);
+    border-radius: var(--tutorial-radius);
+
+    background: var(--tutorial-surface);
+
+    box-shadow: var(--tutorial-shadow);
+
+    transition:
+        border-color var(--tutorial-transition),
+        box-shadow var(--tutorial-transition),
+        transform var(--tutorial-transition),
+        background var(--tutorial-transition);
+}
+
+.course-card:hover {
+    border-color: var(--tutorial-border-hover);
+
+    box-shadow: var(--tutorial-shadow-hover);
+
+    transform: translateY(-3px);
+}
+
+.course-card:focus-visible {
+    outline: 3px solid rgba(53, 106, 230, 0.24);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   10. 卡片顶部
+========================================================= */
+
+.course-top {
+    min-width: 0;
+
+    margin-bottom: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.course-category {
+    min-width: 0;
+
+    color: var(--tutorial-text-muted);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.1px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   11. 课程图标
+========================================================= */
+
+.course-card-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #dce6ff;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        145deg,
+        #f4f7ff,
+        #eaf0ff
+    );
+
+    color: var(--tutorial-primary);
+
+    font-size: 13px;
+    font-weight: 850;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================================================
+   12. 课程标题
+========================================================= */
+
+.course-card h3 {
+    margin: 0 0 10px;
+
+    color: var(--tutorial-text);
+
+    font-size: 17px;
+    font-weight: 800;
+
+    line-height: 1.5;
+
+    letter-spacing: -0.25px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   13. 课程简介
+========================================================= */
+
+.course-card-description {
+    margin: 0 0 17px;
+
+    color: var(--tutorial-text-secondary);
+
+    font-size: 12px;
+    line-height: 1.9;
+
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+    overflow: hidden;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   14. 课程信息
+========================================================= */
+
+.course-meta {
+    margin-top: auto;
+    padding-top: 12px;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 8px 15px;
+
+    border-top: 1px solid #edf0f4;
+
+    color: var(--tutorial-text-secondary);
+
+    font-size: 11px;
+}
+
+.course-meta span {
+    min-width: 0;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   15. 卡片底部
+========================================================= */
+
+.course-footer {
+    margin-top: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.course-level {
+    min-height: 25px;
+
+    padding: 3px 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #f2f4f7;
+
+    color: #475467;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.course-arrow {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    color: var(--tutorial-primary);
+
+    font-size: 21px;
+    line-height: 1;
+
+    transition:
+        color var(--tutorial-transition),
+        background var(--tutorial-transition),
+        transform var(--tutorial-transition);
+}
+
+.course-card:hover .course-arrow {
+    background: var(--tutorial-primary-light);
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   16. 已开放课程
+========================================================= */
+
+.course-card.is-available {
+    border-color: #d8e3f9;
+}
+
+.course-card.is-available .course-level {
+    background: var(--tutorial-success-light);
+
+    color: var(--tutorial-success);
+}
+
+.course-card.is-available:hover {
+    border-color: #b8ccf8;
+}
+
+
+/* =========================================================
+   17. 暂未开放课程
+========================================================= */
+
+.course-card.is-unavailable {
+    background: var(--tutorial-surface-soft);
+}
+
+.course-card.is-unavailable .course-card-icon {
+    border-color: #e4e7ec;
+
+    background: #f1f3f6;
+
+    color: #667085;
+}
+
+.course-card.is-unavailable .course-arrow {
+    color: #98a2b3;
+}
+
+.course-card.is-unavailable:hover {
+    border-color: var(--tutorial-border);
+
+    box-shadow: var(--tutorial-shadow);
+
+    transform: none;
+}
+
+
+/* =========================================================
+   18. 空状态
+========================================================= */
+
+.empty-state {
+    width: 100%;
+
+    padding: 58px 20px;
+
+    border: 1px dashed #cfd7e3;
+    border-radius: var(--tutorial-radius);
+
+    background: #ffffff;
+
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 16px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 16px;
+
+    background: #f0f4fb;
+
+    color: #8693a7;
+}
+
+.empty-state-icon svg {
+    width: 33px;
+    height: 33px;
+}
+
+.empty-state h2 {
+    margin: 0 0 9px;
+
+    color: var(--tutorial-text);
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.empty-state p {
+    margin: 0 0 22px;
+
+    color: var(--tutorial-text-secondary);
+
+    font-size: 13px;
+}
+
+.empty-state button {
+    min-height: 39px;
+
+    padding: 0 17px;
+
+    border: 1px solid #cbd9ff;
+    border-radius: 9px;
+
+    background: var(--tutorial-primary-light);
+
+    color: var(--tutorial-primary);
+
+    font-size: 12px;
+    font-weight: 750;
+
+    transition:
+        background var(--tutorial-transition),
+        border-color var(--tutorial-transition),
+        transform var(--tutorial-transition);
+}
+
+.empty-state button:hover {
+    border-color: #b4c8ff;
+
+    background: #e2eaff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   19. 页脚
+========================================================= */
+
+.site-footer {
+    width: 100%;
+
+    margin-top: auto;
+
+    border-top: 1px solid var(--tutorial-border);
+
+    background: #ffffff;
+}
+
+.footer-inner {
+    width: calc(100% - var(--tutorial-content-gutter) * 2);
+    max-width: var(--tutorial-content-width);
+
+    min-height: 62px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    color: var(--tutorial-text-muted);
+
+    font-size: 11px;
+}
+
+.footer-brand {
+    flex-shrink: 0;
+
+    color: #667085;
+
+    font-weight: 800;
+}
+
+.footer-description,
+.footer-copyright {
+    min-width: 0;
+}
+
+.footer-copyright {
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   20. 超宽屏
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    .tutorial-main {
+        padding-top: 32px;
+        padding-bottom: 52px;
+    }
+
+    .category-tabs {
+        margin-bottom: 28px;
+        gap: 10px;
+    }
+
+    .category-tab {
+        min-height: 41px;
+        padding: 0 19px;
+
+        font-size: 13px;
+    }
+
+    .course-grid {
+        grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+
+        gap: 20px;
+    }
+
+    .course-card {
+        min-height: 238px;
+        padding: 23px;
+    }
+
+    .course-card-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .course-card h3 {
+        font-size: 18px;
+    }
+
+    .course-card-description {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   21. 普通桌面与笔记本
+========================================================= */
+
+@media (max-width: 1350px) {
+
+    .header-inner {
+        gap: 30px;
+    }
+
+    .course-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 15px;
+    }
+
+    .course-card {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   22. 平板
+========================================================= */
+
+@media (max-width: 960px) {
+
+    .site-header {
+        height: 60px;
+    }
+
+    .header-inner {
+        gap: 22px;
+    }
+
+    .main-nav {
+        gap: 3px;
+    }
+
+    .main-nav a {
+        min-width: 52px;
+
+        padding: 0 12px;
+    }
+
+    .tutorial-main {
+        padding-top: 23px;
+        padding-bottom: 34px;
+    }
+
+    .category-tabs {
+        margin-bottom: 19px;
+
+        gap: 6px;
+    }
+
+    .category-tab {
+        min-height: 36px;
+
+        padding: 0 13px;
+
+        font-size: 12px;
+    }
+
+    .course-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 13px;
+    }
+
+    .course-card {
+        min-height: 218px;
+        padding: 17px;
+    }
+
+    .course-card h3 {
+        font-size: 16px;
+    }
+
+    .footer-inner {
+        gap: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   23. 手机
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* 顶部导航 */
+
+    .site-header {
+        position: relative;
+
+        height: auto;
+        min-height: 56px;
+    }
+
+    .header-inner {
+        width: calc(100% - 24px);
+
+        min-height: 56px;
+        height: auto;
+
+        margin: 0 auto;
+        padding: 10px 0;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        gap: 9px 14px;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-mark {
+        width: 33px;
+        height: 33px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+    }
+
+    .brand-text strong {
+        font-size: 13px;
+    }
+
+    .brand-text small {
+        font-size: 10px;
+    }
+
+    .main-nav {
+        width: 100%;
+        height: auto;
+
+        margin-top: 2px;
+        padding-bottom: 2px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 5px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-nav a {
+        height: 33px;
+        min-width: 52px;
+
+        padding: 0 12px;
+
+        font-size: 12px;
+    }
+
+
+    /* 主内容 */
+
+    .tutorial-main {
+        width: calc(100% - 24px);
+
+        padding-top: 19px;
+        padding-bottom: 28px;
+    }
+
+
+    /* 分类导航 */
+
+    .category-tabs {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+
+        gap: 6px;
+    }
+
+    .category-tab {
+        min-height: 34px;
+
+        padding: 0 12px;
+
+        border-radius: 8px;
+
+        font-size: 12px;
+    }
+
+    .category-tab.active::before {
+        width: 4px;
+        height: 4px;
+
+        margin-right: 6px;
+    }
+
+
+    /* 单列课程 */
+
+    .course-grid {
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 11px;
+    }
+
+    .course-card {
+        min-height: 0;
+
+        padding: 16px;
+
+        border-radius: 11px;
+    }
+
+    .course-top {
+        margin-bottom: 11px;
+    }
+
+    .course-card-icon {
+        width: 37px;
+        height: 37px;
+
+        border-radius: 9px;
+    }
+
+    .course-card h3 {
+        margin-bottom: 8px;
+
+        font-size: 16px;
+    }
+
+    .course-card-description {
+        margin-bottom: 13px;
+
+        font-size: 12px;
+        line-height: 1.8;
+
+        -webkit-line-clamp: 3;
+    }
+
+    .course-meta {
+        gap: 8px 12px;
+    }
+
+    .course-footer {
+        margin-top: 11px;
+    }
+
+
+    /* 空状态 */
+
+    .empty-state {
+        padding: 38px 16px;
+
+        border-radius: 12px;
+    }
+
+    .empty-state-icon {
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 13px;
+    }
+
+    .empty-state h2 {
+        font-size: 17px;
+    }
+
+    .empty-state p {
+        font-size: 12px;
+    }
+
+
+    /* 页脚 */
+
+    .footer-inner {
+        width: calc(100% - 24px);
+
+        min-height: auto;
+
+        padding: 15px 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 4px;
+
+        font-size: 11px;
+    }
+
+    .footer-copyright {
+        text-align: left;
+        white-space: normal;
+    }
+
+}
+
+
+/* =========================================================
+   24. 超窄屏
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .tutorial-main {
+        width: calc(100% - 20px);
+    }
+
+    .header-inner {
+        width: calc(100% - 20px);
+    }
+
+    .brand-mark {
+        width: 30px;
+        height: 30px;
+    }
+
+    .brand-text strong {
+        font-size: 12px;
+    }
+
+    .main-nav a {
+        padding: 0 10px;
+    }
+
+    .course-card {
+        padding: 13px;
+    }
+
+    .course-card h3 {
+        font-size: 15px;
+    }
+
+    .course-card-description {
+        font-size: 12px;
+    }
+
+    .course-meta {
+        gap: 7px 10px;
+    }
+
+}
+
+
+/* =========================================================
+   25. 减少动态效果
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}

@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="深度学习基础 · 1-1 什么是机器学习">
+
+    <title>
+        1-1 什么是机器学习 · 深度学习基础
+    </title>
+
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 92px;
+        }
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            background: #ffffff;
+
+            color: #344054;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "PingFang SC",
+                "Hiragino Sans GB",
+                "Microsoft YaHei",
+                sans-serif;
+
+            font-size: 16px;
+            line-height: 1.85;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            height: 64px;
+
+            border-bottom:
+                1px solid #e9edf2;
+
+            background:
+                rgba(255, 255, 255, 0.94);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .topbar-inner {
+            width:
+                min(1240px, calc(100% - 48px));
+
+            height: 100%;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .back-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #667085;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            transition:
+                color .2s ease,
+                transform .2s ease;
+        }
+
+        .back-link:hover {
+            color: #111827;
+
+            transform:
+                translateX(-2px);
+        }
+
+        .back-icon {
+            width: 28px;
+            height: 28px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid #e3e8ef;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            color: #475467;
+
+            font-size: 15px;
+        }
+
+
+        .course-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .course-mark {
+            width: 31px;
+            height: 31px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 8px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+        .course-name strong {
+            display: block;
+
+            color: #1f2937;
+
+            font-size: 13px;
+
+            line-height: 1.2;
+        }
+
+        .course-name span {
+            display: block;
+
+            margin-top: 2px;
+
+            color: #98a2b3;
+
+            font-size: 9px;
+
+            line-height: 1.2;
+
+            letter-spacing: .08em;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           PAGE LAYOUT
+        ========================================================= */
+
+        .page {
+            width:
+                min(1240px, calc(100% - 48px));
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 820px) 220px;
+
+            gap: 88px;
+
+            align-items: start;
+        }
+
+
+        /* =========================================================
+           ARTICLE
+        ========================================================= */
+
+        .article {
+            min-width: 0;
+
+            padding:
+                72px 0 100px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .article-header {
+            margin-bottom: 62px;
+        }
+
+        .breadcrumb {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+
+            color: #98a2b3;
+
+            font-size: 12px;
+
+            font-weight: 650;
+        }
+
+        .breadcrumb strong {
+            color: #667085;
+        }
+
+        .eyebrow {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 17px;
+
+            color: #667085;
+
+            font-size: 12px;
+
+            font-weight: 750;
+
+            letter-spacing: .04em;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #475569;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #101828;
+
+            font-size:
+                clamp(38px, 5vw, 54px);
+
+            line-height: 1.18;
+
+            letter-spacing: -.045em;
+
+            font-weight: 760;
+        }
+
+        .article-intro {
+            max-width: 720px;
+
+            margin:
+                23px 0 0;
+
+            color: #667085;
+
+            font-size: 18px;
+
+            line-height: 1.85;
+        }
+
+        .meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-top: 25px;
+        }
+
+        .meta-item {
+            padding:
+                5px 10px;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 999px;
+
+            color: #667085;
+
+            background: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 650;
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
+
+        .content-section {
+            margin-top: 64px;
+        }
+
+        .content-section:first-child {
+            margin-top: 0;
+        }
+
+        .section-number {
+            margin-bottom: 7px;
+
+            color: #98a2b3;
+
+            font-size: 11px;
+
+            font-weight: 750;
+
+            letter-spacing: .08em;
+        }
+
+        h2 {
+            margin:
+                0 0 20px;
+
+            color: #101828;
+
+            font-size: 29px;
+
+            line-height: 1.4;
+
+            letter-spacing: -.025em;
+
+            font-weight: 730;
+        }
+
+        h3 {
+            margin:
+                36px 0 12px;
+
+            color: #1f2937;
+
+            font-size: 20px;
+
+            line-height: 1.5;
+
+            font-weight: 700;
+        }
+
+        p {
+            margin:
+                0 0 18px;
+        }
+
+        strong {
+            color: #172033;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           LIST
+        ========================================================= */
+
+        ul,
+        ol {
+            margin:
+                18px 0 24px;
+
+            padding-left: 27px;
+        }
+
+        li {
+            margin:
+                7px 0;
+
+            padding-left: 4px;
+        }
+
+
+        /* =========================================================
+           CALLOUT
+        ========================================================= */
+
+        .callout {
+            margin:
+                28px 0;
+
+            padding:
+                21px 23px;
+
+            border:
+                1px solid #e4e8ee;
+
+            border-left:
+                3px solid #475569;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(135deg,
+                    #f8fafc,
+                    #ffffff);
+        }
+
+        .callout-title {
+            margin-bottom: 6px;
+
+            color: #1f2937;
+
+            font-size: 14px;
+
+            font-weight: 750;
+        }
+
+        .callout p {
+            margin: 0;
+
+            color: #667085;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           CONCEPT CARDS
+        ========================================================= */
+
+        .concept-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-top: 25px;
+        }
+
+        .concept-card {
+            padding:
+                20px;
+
+            border:
+                1px solid #e7ebf0;
+
+            border-radius: 13px;
+
+            background: #ffffff;
+        }
+
+        .concept-index {
+            margin-bottom: 9px;
+
+            color: #98a2b3;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+        }
+
+        .concept-card h3 {
+            margin:
+                0 0 8px;
+
+            font-size: 16px;
+        }
+
+        .concept-card p {
+            margin: 0;
+
+            color: #667085;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           FORMULA
+        ========================================================= */
+
+        .formula {
+            margin:
+                26px 0;
+
+            padding:
+                22px;
+
+            overflow-x: auto;
+
+            border:
+                1px solid #e6e9ee;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            color: #172033;
+
+            font-family:
+                "Times New Roman",
+                "Cambria",
+                serif;
+
+            font-size: 22px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           TABLE
+        ========================================================= */
+
+        .table-wrap {
+            margin:
+                25px 0;
+
+            overflow-x: auto;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 12px;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 580px;
+        }
+
+        th,
+        td {
+            padding:
+                13px 15px;
+
+            border-bottom:
+                1px solid #e8ebef;
+
+            text-align: left;
+
+            vertical-align: top;
+        }
+
+        th {
+            color: #475467;
+
+            background: #f8fafc;
+
+            font-size: 12px;
+
+            font-weight: 750;
+        }
+
+        td {
+            color: #667085;
+
+            font-size: 13px;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+
+        /* =========================================================
+           CODE
+        ========================================================= */
+
+        .code-block {
+            margin:
+                26px 0;
+
+            overflow: hidden;
+
+            border:
+                1px solid #e4e8ed;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+        }
+
+        .code-title {
+            padding:
+                10px 15px;
+
+            border-bottom:
+                1px solid #e4e8ed;
+
+            color: #667085;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        pre {
+            margin: 0;
+
+            padding:
+                20px;
+
+            overflow-x: auto;
+
+            color: #344054;
+
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                monospace;
+
+            font-size: 13px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =========================================================
+           SUMMARY
+        ========================================================= */
+
+        .summary {
+            margin-top: 64px;
+
+            padding:
+                27px 28px;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(135deg,
+                    #f8fafc,
+                    #ffffff);
+        }
+
+        .summary h2 {
+            margin-bottom: 13px;
+        }
+
+        .summary ul {
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================================
+           RIGHT TOC
+        ========================================================= */
+
+        .toc-wrap {
+            position: sticky;
+
+            top: 96px;
+
+            padding-top: 72px;
+
+            align-self: start;
+        }
+
+        .toc {
+            border-left:
+                1px solid #e6e9ee;
+
+            padding-left: 18px;
+        }
+
+        .toc-title {
+            margin-bottom: 15px;
+
+            color: #98a2b3;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .09em;
+
+            text-transform: uppercase;
+        }
+
+        .toc a {
+            position: relative;
+
+            display: block;
+
+            padding:
+                6px 0;
+
+            color: #98a2b3;
+
+            font-size: 12px;
+
+            line-height: 1.45;
+
+            transition:
+                color .2s ease;
+        }
+
+        .toc a:hover {
+            color: #344054;
+        }
+
+        .toc a.active {
+            color: #111827;
+
+            font-weight: 700;
+        }
+
+        .toc a.active::before {
+            content: "";
+
+            position: absolute;
+
+            left: -19px;
+
+            top: 7px;
+
+            width: 2px;
+
+            height: 17px;
+
+            border-radius: 2px;
+
+            background: #111827;
+        }
+
+        .toc-main {
+            margin-top: 17px;
+
+            padding-top: 17px;
+
+            border-top:
+                1px solid #edf0f3;
+
+            color: #667085 !important;
+
+            font-weight: 650;
+        }
+
+
+        /* =========================================================
+           BOTTOM NAVIGATION
+        ========================================================= */
+
+        .lesson-navigation {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr) minmax(0, 1fr);
+
+            gap: 14px;
+
+            margin-top: 76px;
+
+            padding-top: 28px;
+
+            border-top:
+                1px solid #e8ebef;
+        }
+
+        .lesson-nav {
+            display: block;
+
+            min-width: 0;
+
+            padding:
+                19px 20px;
+
+            border:
+                1px solid #e4e8ee;
+
+            border-radius: 14px;
+
+            background: #ffffff;
+
+            transition:
+                border-color .2s ease,
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .lesson-nav:hover {
+            border-color: #cbd5e1;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 9px 28px rgba(15, 23, 42, .06);
+        }
+
+        .lesson-nav.next {
+            text-align: right;
+        }
+
+        .nav-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #98a2b3;
+
+            font-size: 10px;
+
+            font-weight: 750;
+
+            letter-spacing: .06em;
+        }
+
+        .nav-title {
+            display: block;
+
+            color: #1f2937;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+        .nav-description {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        /* =========================================================
+           COURSE RETURN
+        ========================================================= */
+
+        .course-return {
+            margin-top: 18px;
+
+            text-align: center;
+        }
+
+        .course-return a {
+            color: #667085;
+
+            font-size: 13px;
+
+            font-weight: 650;
+
+            transition:
+                color .2s ease;
+        }
+
+        .course-return a:hover {
+            color: #111827;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            width:
+                min(820px, calc(100% - 48px));
+
+            margin:
+                0 auto;
+
+            padding:
+                0 0 45px;
+
+            color: #a0a8b5;
+
+            font-size: 11px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .page {
+                grid-template-columns:
+                    minmax(0, 820px);
+            }
+
+            .toc-wrap {
+                display: none;
+            }
+
+            .article {
+                margin: 0 auto;
+
+                width: 100%;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .topbar-inner {
+                width:
+                    calc(100% - 28px);
+            }
+
+            .course-info {
+                display: none;
+            }
+
+            .page {
+                width:
+                    calc(100% - 32px);
+            }
+
+            .article {
+                padding:
+                    46px 0 72px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .article-intro {
+                font-size: 16px;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-navigation {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-nav.next {
+                text-align: left;
+            }
+
+            footer {
+                width:
+                    calc(100% - 32px);
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+
+            <a class="back-link" href="/tutorial/deep_learning_fundamentals/index.html">
+
+                <span class="back-icon">
+                    ←
+                </span>
+
+                <span>
+                    返回课程
+                </span>
+
+            </a>
+
+
+            <div class="course-info">
+
+                <div class="course-mark">
+                    DL
+                </div>
+
+                <div class="course-name">
+
+                    <strong>
+                        深度学习基础
+                    </strong>
+
+                    <span>
+                        DEEP LEARNING FUNDAMENTALS
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+     PAGE
+========================================================= -->
+
+    <div class="page">
+
+
+        <!-- =====================================================
+         ARTICLE
+    ===================================================== -->
+
+        <main class="article">
+
+
+            <!-- =================================================
+             HEADER
+        ================================================= -->
+
+            <header class="article-header">
+
+
+                <div class="breadcrumb">
+
+                    <span>
+                        深度学习基础
+                    </span>
+
+                    <span>
+                        /
+                    </span>
+
+                    <strong>
+                        第一章 · 基础概念
+                    </strong>
+
+                </div>
+
+
+                <div class="eyebrow">
+
+                    <span class="eyebrow-dot"></span>
+
+                    1-1 · 基础概念
+
+                </div>
+
+
+                <h1>
+                    什么是机器学习
+                </h1>
+
+
+                <p class="article-intro">
+
+                    机器学习是人工智能的重要组成部分。
+                    它让计算机能够从数据中发现规律，
+                    并利用已经学习到的规律，
+                    对新的数据进行预测、分类或决策。
+
+                </p>
+
+
+                <div class="meta">
+
+                    <span class="meta-item">
+                        1-1
+                    </span>
+
+                    <span class="meta-item">
+                        基础概念
+                    </span>
+
+                    <span class="meta-item">
+                        约 10 分钟
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+             1.1.1
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-1">
+
+                <div class="section-number">
+                    1.1.1
+                </div>
+
+                <h2>
+                    机器学习到底在做什么？
+                </h2>
+
+
+                <p>
+                    如果我们直接告诉计算机一条条明确的规则，
+                    这属于传统的程序设计。
+                    例如，我们可以写出这样的规则：
+                </p>
+
+
+                <div class="callout">
+
+                    <div class="callout-title">
+                        传统程序设计
+                    </div>
+
+                    <p>
+                        如果一个人的年龄大于等于 18 岁，
+                        就判断为成年人；否则判断为未成年人。
+                    </p>
+
+                </div>
+
+
+                <p>
+                    这种方式的特点是：
+                    <strong>
+                        人先定义规则，计算机按照规则执行。
+                    </strong>
+                </p>
+
+
+                <p>
+                    但是现实世界中存在大量非常复杂的问题。
+                    比如判断一张图片中是不是一只猫、
+                    判断一封邮件是不是垃圾邮件，
+                    或者根据历史数据预测未来结果。
+                </p>
+
+
+                <p>
+                    对这些问题，我们很难提前写出一套完整而准确的规则。
+                    这时就可以让计算机从大量数据中自己寻找规律。
+                </p>
+
+
+                <div class="callout">
+
+                    <div class="callout-title">
+                        机器学习
+                    </div>
+
+                    <p>
+                        不再要求程序员把所有判断规则全部写出来，
+                        而是给模型提供数据和对应的信息，
+                        让模型通过学习得到一个能够处理新数据的规律。
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.2
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-2">
+
+                <div class="section-number">
+                    1.1.2
+                </div>
+
+                <h2>
+                    从“写规则”到“学习规则”
+                </h2>
+
+
+                <p>
+                    可以通过一个简单的例子理解两种方式的区别。
+                </p>
+
+
+                <h3>
+                    传统程序
+                </h3>
+
+
+                <p>
+                    假设我们希望判断一封邮件是不是垃圾邮件。
+                    传统方法可能会人为定义很多规则：
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        如果邮件包含大量促销词汇，增加垃圾邮件评分。
+                    </li>
+
+                    <li>
+                        如果邮件包含大量链接，增加垃圾邮件评分。
+                    </li>
+
+                    <li>
+                        如果发件人地址可疑，增加垃圾邮件评分。
+                    </li>
+
+                    <li>
+                        如果评分超过某个阈值，就判断为垃圾邮件。
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    问题在于，垃圾邮件发送者也会不断改变策略。
+                    固定规则很容易逐渐失效。
+                </p>
+
+
+                <h3>
+                    机器学习
+                </h3>
+
+
+                <p>
+                    如果我们拥有大量已经标记好的邮件，
+                    就可以把这些数据交给机器学习算法。
+                </p>
+
+
+                <p>
+                    模型会从这些数据中寻找：
+                    哪些词语、结构、发送行为和其他特征，
+                    与“垃圾邮件”这个结果存在较强关系。
+                </p>
+
+
+                <p>
+                    学习完成之后，
+                    当一封新的邮件出现时，
+                    模型就可以根据已经学习到的规律进行判断。
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.3
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-3">
+
+                <div class="section-number">
+                    1.1.3
+                </div>
+
+                <h2>
+                    机器学习的基本组成
+                </h2>
+
+
+                <p>
+                    一个典型的机器学习问题通常可以拆成几个重要组成部分。
+                </p>
+
+
+                <div class="concept-grid">
+
+
+                    <div class="concept-card">
+
+                        <div class="concept-index">
+                            01 · DATA
+                        </div>
+
+                        <h3>
+                            数据
+                        </h3>
+
+                        <p>
+                            用于描述现实世界中的对象、
+                            行为和现象，是模型学习的基础。
+                        </p>
+
+                    </div>
+
+
+                    <div class="concept-card">
+
+                        <div class="concept-index">
+                            02 · MODEL
+                        </div>
+
+                        <h3>
+                            模型
+                        </h3>
+
+                        <p>
+                            用于表示数据之间规律的数学结构，
+                            是机器学习系统的核心。
+                        </p>
+
+                    </div>
+
+
+                    <div class="concept-card">
+
+                        <div class="concept-index">
+                            03 · LEARNING
+                        </div>
+
+                        <h3>
+                            学习
+                        </h3>
+
+                        <p>
+                            通过算法不断调整模型，
+                            让模型逐渐能够更好地解释数据。
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.4
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-4">
+
+                <div class="section-number">
+                    1.1.4
+                </div>
+
+                <h2>
+                    什么是特征？
+                </h2>
+
+
+                <p>
+                    在很多传统机器学习任务中，
+                    我们需要先从原始数据中提取能够描述对象的特征。
+                </p>
+
+
+                <p>
+                    例如，我们希望根据房屋信息预测房价。
+                    一套房子可能拥有以下特征：
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        房屋面积
+                    </li>
+
+                    <li>
+                        房间数量
+                    </li>
+
+                    <li>
+                        建造年份
+                    </li>
+
+                    <li>
+                        距离地铁的距离
+                    </li>
+
+                    <li>
+                        所在区域
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    这些能够被模型使用的信息，
+                    就可以称为
+                    <strong>特征（Feature）</strong>。
+                </p>
+
+
+                <p>
+                    模型通过分析这些特征与目标结果之间的关系，
+                    学习如何进行预测。
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.5
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-5">
+
+                <div class="section-number">
+                    1.1.5
+                </div>
+
+                <h2>
+                    什么是标签？
+                </h2>
+
+
+                <p>
+                    在监督学习中，
+                    数据通常不仅包含输入特征，
+                    还包含一个我们希望模型预测的目标结果。
+                </p>
+
+
+                <p>
+                    这个目标结果通常称为
+                    <strong>标签（Label）</strong>。
+                </p>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    房屋面积
+                                </th>
+
+                                <th>
+                                    房间数量
+                                </th>
+
+                                <th>
+                                    房龄
+                                </th>
+
+                                <th>
+                                    房价
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    90㎡
+                                </td>
+
+                                <td>
+                                    3
+                                </td>
+
+                                <td>
+                                    8 年
+                                </td>
+
+                                <td>
+                                    420 万
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    120㎡
+                                </td>
+
+                                <td>
+                                    4
+                                </td>
+
+                                <td>
+                                    5 年
+                                </td>
+
+                                <td>
+                                    580 万
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    75㎡
+                                </td>
+
+                                <td>
+                                    2
+                                </td>
+
+                                <td>
+                                    12 年
+                                </td>
+
+                                <td>
+                                    330 万
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <p>
+                    在这个例子中，
+                    房屋面积、房间数量和房龄可以作为输入特征，
+                    而房价就是模型需要学习预测的标签。
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.6
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-6">
+
+                <div class="section-number">
+                    1.1.6
+                </div>
+
+                <h2>
+                    模型是如何学习的？
+                </h2>
+
+
+                <p>
+                    机器学习并不是简单地把数据“记住”。
+                    模型真正需要学习的是：
+                    <strong>
+                        输入与目标之间的关系。
+                    </strong>
+                </p>
+
+
+                <p>
+                    例如，我们可以把房屋特征表示为：
+                </p>
+
+
+                <div class="formula">
+                    x = [面积，房间数量，房龄]
+                </div>
+
+
+                <p>
+                    模型接收到这些输入后，
+                    输出一个预测值：
+                </p>
+
+
+                <div class="formula">
+                    ŷ = f(x)
+                </div>
+
+
+                <p>
+                    其中，
+                    <strong>x</strong> 表示输入特征，
+                    <strong>f</strong> 表示模型，
+                    <strong>ŷ</strong> 表示模型预测得到的结果。
+                </p>
+
+
+                <p>
+                    如果预测结果与真实结果存在差距，
+                    我们就需要通过某种方式衡量这个差距，
+                    并根据差距调整模型。
+                </p>
+
+
+                <p>
+                    这就引出了后面非常重要的概念：
+                    <strong>
+                        损失函数（Loss Function）
+                    </strong>。
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.7
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-7">
+
+                <div class="section-number">
+                    1.1.7
+                </div>
+
+                <h2>
+                    一个最简单的机器学习模型
+                </h2>
+
+
+                <p>
+                    在线性回归中，
+                    我们可以使用一个非常简单的数学模型：
+                </p>
+
+
+                <div class="formula">
+                    ŷ = wx + b
+                </div>
+
+
+                <p>
+                    其中：
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>x</strong>：输入特征
+                    </li>
+
+                    <li>
+                        <strong>w</strong>：模型参数，也可以理解为权重
+                    </li>
+
+                    <li>
+                        <strong>b</strong>：偏置
+                    </li>
+
+                    <li>
+                        <strong>ŷ</strong>：模型预测结果
+                    </li>
+
+                </ul>
+
+
+                <p>
+                    机器学习的一个核心过程，
+                    就是寻找合适的
+                    <strong>w</strong> 和
+                    <strong>b</strong>，
+                    使模型的预测结果尽可能接近真实数据。
+                </p>
+
+
+                <div class="code-block">
+
+                    <div class="code-title">
+                        Python · 一个最简单的模型表达
+                    </div>
+
+                    <pre><code>def predict(x, w, b):
+    return w * x + b</code></pre>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.8
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-8">
+
+                <div class="section-number">
+                    1.1.8
+                </div>
+
+                <h2>
+                    训练数据与测试数据
+                </h2>
+
+
+                <p>
+                    如果模型只在已经见过的数据上表现很好，
+                    并不能说明它真的学会了规律。
+                </p>
+
+
+                <p>
+                    一个机器学习系统通常需要把数据划分成不同部分。
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        <strong>
+                            训练集（Training Set）
+                        </strong>
+                        ：用于训练模型。
+                    </li>
+
+                    <li>
+                        <strong>
+                            验证集（Validation Set）
+                        </strong>
+                        ：用于调整模型和超参数。
+                    </li>
+
+                    <li>
+                        <strong>
+                            测试集（Test Set）
+                        </strong>
+                        ：用于最终评估模型在新数据上的表现。
+                    </li>
+
+                </ul>
+
+
+                <div class="callout">
+
+                    <div class="callout-title">
+                        为什么不能只看训练数据？
+                    </div>
+
+                    <p>
+                        因为模型可能只是把训练数据记得非常好，
+                        却没有真正学习到能够推广到新数据的规律。
+                        这种问题称为过拟合（Overfitting）。
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.9
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-9">
+
+                <div class="section-number">
+                    1.1.9
+                </div>
+
+                <h2>
+                    机器学习的三种主要类型
+                </h2>
+
+
+                <p>
+                    根据学习数据和任务形式，
+                    机器学习通常可以分为几类。
+                </p>
+
+
+                <h3>
+                    监督学习
+                </h3>
+
+                <p>
+                    数据中存在明确的输入和目标结果，
+                    模型通过这些带标签的数据学习。
+                    分类和回归是监督学习中非常常见的任务。
+                </p>
+
+
+                <h3>
+                    无监督学习
+                </h3>
+
+                <p>
+                    数据没有明确的标签，
+                    模型需要自己发现数据内部的结构。
+                    聚类就是一个典型例子。
+                </p>
+
+
+                <h3>
+                    强化学习
+                </h3>
+
+                <p>
+                    模型通过与环境交互，
+                    根据行动得到的奖励或惩罚，
+                    逐渐学习更好的决策策略。
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+             1.1.10
+        ================================================= -->
+
+            <section class="content-section" id="section-1-1-10">
+
+                <div class="section-number">
+                    1.1.10
+                </div>
+
+                <h2>
+                    机器学习与深度学习的关系
+                </h2>
+
+
+                <p>
+                    深度学习并不是与机器学习完全不同的另一套技术。
+                </p>
+
+
+                <p>
+                    更准确地说，
+                    <strong>
+                        深度学习是机器学习中的一个重要分支。
+                    </strong>
+                </p>
+
+
+                <div class="callout">
+
+                    <div class="callout-title">
+                        一个简单的关系
+                    </div>
+
+                    <p>
+                        人工智能 → 机器学习 → 深度学习
+                    </p>
+
+                </div>
+
+
+                <p>
+                    传统机器学习经常依赖人工设计的特征。
+                    深度学习则可以利用多层神经网络，
+                    从原始数据中自动学习越来越复杂的表示。
+                </p>
+
+
+                <p>
+                    例如，在图像任务中，
+                    传统机器学习可能需要人工设计边缘、
+                    纹理等特征。
+                    深度神经网络则可以通过训练，
+                    从像素数据中逐层学习这些表示。
+                </p>
+
+
+                <p>
+                    下一节我们将进一步理解：
+                    <strong>
+                        为什么深度学习需要“深”的网络结构。
+                    </strong>
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+             SUMMARY
+        ================================================= -->
+
+            <section class="summary" id="summary">
+
+                <div class="section-number">
+                    本节总结
+                </div>
+
+                <h2>
+                    这一节需要掌握什么？
+                </h2>
+
+
+                <ul>
+
+                    <li>
+                        机器学习的核心是让计算机从数据中学习规律。
+                    </li>
+
+                    <li>
+                        特征描述输入数据，标签描述希望预测的目标。
+                    </li>
+
+                    <li>
+                        模型通过学习参数建立输入与输出之间的关系。
+                    </li>
+
+                    <li>
+                        训练数据用于学习，测试数据用于评价泛化能力。
+                    </li>
+
+                    <li>
+                        监督学习、无监督学习和强化学习是常见的学习范式。
+                    </li>
+
+                    <li>
+                        深度学习是机器学习的重要分支。
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+
+            <!-- =================================================
+             BOTTOM NAVIGATION
+        ================================================= -->
+
+            <nav class="lesson-navigation" aria-label="课程小节导航">
+
+
+                <!-- PREVIOUS -->
+
+                <a class="lesson-nav" href="/tutorial/deep_learning_fundamentals/index.html">
+
+                    <span class="nav-label">
+                        ← 返回课程
+                    </span>
+
+                    <span class="nav-title">
+                        深度学习基础
+                    </span>
+
+                    <span class="nav-description">
+                        课程首页
+                    </span>
+
+                </a>
+
+
+                <!-- NEXT -->
+
+                <a class="lesson-nav next"
+                    href="/tutorial/deep_learning_fundamentals/chapters/what-is-deep-learning.html">
+
+                    <span class="nav-label">
+                        下一小节 →
+                    </span>
+
+                    <span class="nav-title">
+                        什么是深度学习
+                    </span>
+
+                    <span class="nav-description">
+                        1-2 · 为什么多层结构有价值
+                    </span>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- COURSE RETURN -->
+
+            <div class="course-return">
+
+                <a href="/tutorial/deep_learning_fundamentals/index.html">
+                    ← 返回《深度学习基础》课程
+                </a>
+
+            </div>
+
+
+        </main>
+
+
+
+        <!-- =====================================================
+         RIGHT SIDEBAR
+    ===================================================== -->
+
+        <aside class="toc-wrap">
+
+            <nav class="toc" aria-label="本节内容">
+
+                <div class="toc-title">
+                    本节目录
+                </div>
+
+
+                <a href="#section-1-1-1">
+                    1.1.1 机器学习到底在做什么？
+                </a>
+
+
+                <a href="#section-1-1-2">
+                    1.1.2 从“写规则”到“学习规则”
+                </a>
+
+
+                <a href="#section-1-1-3">
+                    1.1.3 机器学习的基本组成
+                </a>
+
+
+                <a href="#section-1-1-4">
+                    1.1.4 什么是特征？
+                </a>
+
+
+                <a href="#section-1-1-5">
+                    1.1.5 什么是标签？
+                </a>
+
+
+                <a href="#section-1-1-6">
+                    1.1.6 模型是如何学习的？
+                </a>
+
+
+                <a href="#section-1-1-7">
+                    1.1.7 一个最简单的机器学习模型
+                </a>
+
+
+                <a href="#section-1-1-8">
+                    1.1.8 训练数据与测试数据
+                </a>
+
+
+                <a href="#section-1-1-9">
+                    1.1.9 机器学习的三种主要类型
+                </a>
+
+
+                <a href="#section-1-1-10">
+                    1.1.10 机器学习与深度学习的关系
+                </a>
+
+
+                <a class="toc-main" href="#summary">
+                    本节总结
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+    </div>
+
+
+
+    <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+    <footer>
+
+        深度学习基础 · Deep Learning Fundamentals
+
+    </footer>
+
+
+</body>
+
+</html>

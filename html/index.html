@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Tutorial Studio 教程中心，提供编程开发、人工智能、软件教程和实用技能等学习内容。">
+
+    <meta name="theme-color" content="#f6f8fb">
+
+    <title>Tutorial Studio · 教程中心</title>
+
+    <link rel="stylesheet" href="/css/tutorial/tutorial.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         顶部导航
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <!-- 品牌 -->
+            <a class="brand" href="/" aria-label="Tutorial Studio 首页">
+
+                <span class="brand-mark">TS</span>
+
+                <span class="brand-text">
+                    <strong>Tutorial Studio</strong>
+                    <small>教程中心</small>
+                </span>
+
+            </a>
+
+            <!-- 主导航 -->
+            <nav class="main-nav" aria-label="主导航">
+
+                <a href="/">首页</a>
+
+                <a href="/templates/">模板</a>
+
+                <a class="active" href="/tutorial/" aria-current="page">
+                    教程
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         教程中心主体
+    ====================================================== -->
+
+    <main class="tutorial-main">
+        <!-- =================================================
+             课程分类
+        ================================================== -->
+
+        <nav class="category-tabs" id="categoryTabs" aria-label="课程分类">
+
+            <button class="category-tab active" data-category="all" type="button" aria-pressed="true">
+                全部课程
+            </button>
+
+            <button class="category-tab" data-category="programming" type="button" aria-pressed="false">
+                编程开发
+            </button>
+
+            <button class="category-tab" data-category="ai" type="button" aria-pressed="false">
+                AI 与人工智能
+            </button>
+
+            <button class="category-tab" data-category="primary" type="button" aria-pressed="false">
+                小学课程
+            </button>
+
+            <button class="category-tab" data-category="middle" type="button" aria-pressed="false">
+                中学课程
+            </button>
+
+            <button class="category-tab" data-category="software" type="button" aria-pressed="false">
+                软件教程
+            </button>
+
+            <button class="category-tab" data-category="skills" type="button" aria-pressed="false">
+                实用技能
+            </button>
+
+        </nav>
+
+
+        <!-- =================================================
+             课程列表
+             由 tutorial.js 动态渲染
+        ================================================== -->
+
+        <section class="course-grid" id="courseGrid" aria-label="课程列表" aria-live="polite">
+            <!-- JavaScript 动态插入课程卡片 -->
+        </section>
+
+
+        <!-- =================================================
+             空状态
+        ================================================== -->
+
+        <section class="empty-state" id="emptyState" aria-live="polite" hidden>
+
+            <div class="empty-state-icon" aria-hidden="true">
+
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="21" cy="21" r="13" stroke="currentColor" stroke-width="2.5" />
+
+                    <path d="M30.5 30.5L40 40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+
+                    <path d="M16 21H26" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+
+            </div>
+
+            <h2>没有找到相关课程</h2>
+
+            <p>试试其他关键词，或者切换课程分类。</p>
+
+            <button id="resetSearch" type="button">
+                查看全部课程
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         页脚
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <span class="footer-brand">
+                Tutorial Studio
+            </span>
+
+            <span class="footer-description">
+                让知识变得清晰、直观、可理解。
+            </span>
+
+            <span class="footer-copyright">
+                © 2026 Tutorial Studio
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         教程中心脚本
+    ====================================================== -->
+
+    <script type="module" src="/js/tutorial/tutorial.js"></script>
+
+</body>
+
+</html>

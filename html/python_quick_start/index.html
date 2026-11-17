@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Python 快速入门——通过大量练习、在线运行 Python 和 AI 助手快速掌握 Python。">
+
+    <title>Python 快速入门</title>
+
+    <link rel="stylesheet" href="/css/tutorial/python_quick_start/python_quick_start.css">
+    <link rel="stylesheet" href="/css/tutorial/python_quick_start/inline_python_model.css">
+    <link rel="stylesheet" href="/css/tutorial/python_quick_start/code_editor_model.css">
+    <link rel="stylesheet" href="/css/tutorial/python_quick_start/content_block.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+    <header class="topbar">
+
+        <div class="topbar-left">
+
+            <a href="/tutorial/" class="brand">
+                <img src="/assets/image/tutorials/python_logo.png" alt="Python" class="python-logo">
+            </a>
+        </div>
+
+        <div class="topbar-right">
+
+            <button id="backOverviewButton" class="top-button">
+                课程大纲
+            </button>
+
+            <button id="codeEditorButton" class="top-button code-editor-button">
+                代码编辑器
+            </button>
+
+            <button id="aiTopButton" class="top-button ai-button">
+                AI 学习助手
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+     APP
+========================================================= -->
+
+    <div class="app">
+
+        <!-- =====================================================
+         LEFT SIDEBAR
+    ====================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="sidebar-eyebrow">
+                    PYTHON QUICK START
+                </div>
+
+                <h2>
+                    学习路线
+                </h2>
+
+                <p>
+                    从零开始，边学边写，边运行边练习。
+                </p>
+
+            </div>
+
+
+            <nav id="chapterNavigation" class="chapter-navigation"></nav>
+
+
+            <div class="sidebar-footer">
+
+                <div class="sidebar-progress-title">
+                    当前课程
+                </div>
+
+                <div id="sidebarProgressText" class="sidebar-progress">
+                    0 / 0
+                </div>
+
+                <div class="sidebar-progress-track">
+
+                    <div id="sidebarProgressBar" class="sidebar-progress-value"></div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+        <main class="main">
+
+            <!-- =================================================
+             OVERVIEW
+        ================================================== -->
+
+            <section id="overviewView" class="overview-view">
+
+                <!-- =============================================
+                 HERO
+            ============================================== -->
+
+                <section class="hero">
+
+                    <div class="hero-content">
+
+                        <div class="hero-kicker">
+                            PYTHON · FROM ZERO TO PRACTICE
+                        </div>
+
+                        <h1>
+                            Python
+                            <span>快速入门</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            不背一堆枯燥语法，而是直接开始写代码。
+                            从变量、条件、循环、数据结构，到函数、文件、
+                            JSON、模块、面向对象，再进入数据处理和综合项目。
+                        </p>
+
+
+                        <div class="hero-actions">
+
+                            <button id="startButton" class="button button-primary">
+                                开始学习
+                            </button>
+
+                            <button id="continueButton" class="button button-secondary">
+                                继续学习
+                            </button>
+
+                        </div>
+
+
+                        <div class="hero-stats">
+
+                            <div class="hero-stat">
+
+                                <strong id="lessonCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    知识点
+                                </span>
+
+                            </div>
+
+
+                            <div class="hero-stat">
+
+                                <strong id="practiceCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    练习
+                                </span>
+
+                            </div>
+
+
+                            <div class="hero-stat">
+
+                                <strong>
+                                    Python
+                                </strong>
+
+                                <span>
+                                    在线运行
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                     HERO RIGHT
+                     Python Runner
+                ========================================== -->
+
+                    <div class="hero-runner">
+
+                        <div class="runner-window">
+
+                            <div class="runner-header">
+
+                                <div class="runner-title">
+
+                                    <span class="runner-icon">
+                                        ▶
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Python 在线实验室
+                                        </strong>
+
+                                        <span>
+                                            在网页里直接写 Python
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <span class="runner-status">
+                                    SERVER PYTHON
+                                </span>
+
+                            </div>
+
+
+                            <div class="runner-editor">
+
+                                <div class="code-gutter">
+                                    <span>1</span>
+                                    <span>2</span>
+                                    <span>3</span>
+                                    <span>4</span>
+                                    <span>5</span>
+                                    <span>6</span>
+                                    <span>7</span>
+                                </div>
+
+                                <textarea id="pythonEditor" spellcheck="false" aria-label="Python 代码编辑器">name = "Python"
+print(f"Hello, {name}!")
+
+numbers = [1, 2, 3, 4, 5]
+total = sum(numbers)
+print("总和 =", total)</textarea>
+
+                            </div>
+
+
+                            <div class="runner-toolbar">
+
+                                <button id="runPythonButton" class="run-button">
+                                    <span>▶</span>
+                                    运行代码
+                                </button>
+
+                                <button id="clearOutputButton" class="runner-small-button">
+                                    清空输出
+                                </button>
+
+                                <span id="runnerStatus" class="runner-message">
+                                    准备就绪
+                                </span>
+
+                            </div>
+
+
+                            <div class="runner-output">
+
+                                <div class="output-header">
+
+                                    <span>
+                                        输出
+                                    </span>
+
+                                    <span class="output-server">
+                                        Python Server
+                                    </span>
+
+                                </div>
+
+                                <pre id="pythonOutput">点击「运行代码」，服务器将执行你的 Python。</pre>
+
+                            </div>
+
+                        </div>
+
+                        <div class="runner-note">
+                            <span class="note-dot"></span>
+                            <span>代码运行在服务器 Python 环境中。</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                 LEARNING METHOD
+            ============================================== -->
+
+                <section class="method-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <div class="section-kicker">
+                                HOW YOU LEARN
+                            </div>
+
+                            <h2>
+                                不只是看教程，而是真正把代码写出来
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            对编程初学者来说，看懂代码和自己写出来完全是两回事。
+                            所以这套课程把“练习”放在核心位置。
+                        </p>
+
+                    </div>
+
+
+                    <div class="method-grid">
+
+                        <article class="method-card">
+
+                            <div class="method-number">
+                                01
+                            </div>
+
+                            <h3>
+                                先理解
+                            </h3>
+
+                            <p>
+                                用尽量简单的语言解释一个概念，
+                                不默认你已经学过编程。
+                            </p>
+
+                        </article>
+
+
+                        <article class="method-card">
+
+                            <div class="method-number">
+                                02
+                            </div>
+
+                            <h3>
+                                再运行
+                            </h3>
+
+                            <p>
+                                每个重要概念都配有可运行代码，
+                                看到结果以后再理解语法。
+                            </p>
+
+                        </article>
+
+
+                        <article class="method-card">
+
+                            <div class="method-number">
+                                03
+                            </div>
+
+                            <h3>
+                                大量练习
+                            </h3>
+
+                            <p>
+                                一个知识点不会只给一道题，
+                                而是逐步增加难度。
+                            </p>
+
+                        </article>
+
+
+                        <article class="method-card">
+
+                            <div class="method-number">
+                                04
+                            </div>
+
+                            <h3>
+                                AI 辅助
+                            </h3>
+
+                            <p>
+                                卡住时可以直接向 AI 提问，
+                                让 AI 帮你理解错误，而不是直接替你完成。
+                            </p>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                 CHAPTER LIST
+            ============================================== -->
+
+                <section class="chapters-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <div class="section-kicker">
+                                COURSE ROADMAP
+                            </div>
+
+                            <h2>
+                                完整学习路线
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            从最基础的 print() 开始，
+                            最终完成多个可以独立运行的小项目。
+                        </p>
+
+                    </div>
+
+
+                    <div id="chapterGrid" class="chapter-grid"></div>
+
+                </section>
+
+
+                <!-- =============================================
+                 FINAL CTA
+            ============================================== -->
+
+                <section class="final-cta">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            START NOW
+                        </div>
+
+                        <h2>
+                            不要等“准备好了”再写代码
+                        </h2>
+
+                        <p>
+                            直接从第一章开始。
+                            写出第一行代码之后，Python 才真正开始属于你。
+                        </p>
+
+                    </div>
+
+                    <button id="finalStartButton" class="button button-primary">
+                        开始第一课
+                    </button>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+             LESSON VIEW
+        ================================================== -->
+
+            <section id="lessonView" class="lesson-view hidden">
+
+                <div class="lesson-layout">
+
+                    <article class="lesson-main">
+
+                        <button id="lessonBackButton" class="back-link">
+                            ← 返回课程大纲
+                        </button>
+
+
+                        <div id="lessonContent" class="lesson-content"></div>
+
+
+                        <div id="lessonActions" class="lesson-actions"></div>
+
+                    </article>
+
+
+                    <aside class="lesson-aside">
+
+                        <div class="aside-card">
+
+                            <div class="aside-label">
+                                CURRENT STAGE
+                            </div>
+
+                            <h3 id="asideChapterTitle">
+                                当前阶段
+                            </h3>
+
+                            <div id="sectionNavigation" class="section-navigation"></div>
+
+                        </div>
+
+
+                        <div class="aside-card ai-mini-card">
+
+                            <div class="ai-mini-icon">
+                                AI
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    学不会的时候怎么办？
+                                </strong>
+
+                                <p>
+                                    不要马上看答案。
+                                    先告诉 AI 你哪里不理解。
+                                </p>
+
+                            </div>
+
+                            <button id="lessonAiButton" class="ai-mini-button">
+                                问 AI
+                            </button>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================================
+     AI ASSISTANT
+========================================================= -->
+
+    <div id="aiPanel" class="ai-panel">
+
+        <div class="ai-panel-header">
+
+            <div class="ai-title">
+
+                <div class="ai-avatar">
+                    AI
+                </div>
+
+                <div>
+
+                    <strong>
+                        Python 学习助手
+                    </strong>
+
+                    <span>
+                        帮你理解，而不是直接替你做
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button id="closeAiButton" class="close-button">
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="aiMessages" class="ai-messages">
+
+            <div class="ai-message assistant">
+
+                <div class="message-avatar">
+                    AI
+                </div>
+
+                <div class="message-bubble">
+
+                    你好！我是你的 Python 学习助手。
+
+                    <br><br>
+
+                    你可以问我：
+
+                    <br>
+                    · 这段代码为什么报错？
+                    <br>
+                    · list 和 tuple 有什么区别？
+                    <br>
+                    · 这个练习应该怎么思考？
+                    <br>
+                    · 我完全不会，该从哪里开始？
+
+                    <br><br>
+
+                    如果是练习题，我会优先给你思路，
+                    而不是直接把完整答案塞给你。
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ai-input-area">
+
+            <textarea id="aiInput" placeholder="例如：我不理解 for 循环，你能用非常简单的例子解释吗？" rows="3"></textarea>
+
+            <div class="ai-input-footer">
+
+                <span>
+                    Enter 发送 · Shift + Enter 换行
+                </span>
+
+                <button id="sendAiButton" class="ai-send-button">
+                    发送
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+     CODE EDITOR MODAL
+========================================================= -->
+
+    <div id="codeEditorModal" class="code-editor-modal" aria-hidden="true">
+
+        <div class="code-editor-dialog">
+
+            <!-- 头部 -->
+            <div class="code-editor-dialog-header">
+
+                <div class="code-editor-dialog-title">
+                    Python 代码编辑器
+                </div>
+
+                <button id="closeCodeEditorButton" class="code-editor-close" type="button" aria-label="关闭">
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- 主体 -->
+            <div class="code-editor-dialog-body">
+
+                <!-- Python 代码 -->
+                <textarea id="modalPythonEditor" spellcheck="false" autocomplete="off" autocorrect="off"
+                    autocapitalize="off"></textarea>
+
+
+                <!-- 运行按钮 -->
+                <div class="code-editor-run-area">
+
+                    <button id="modalRunPythonButton" class="code-editor-run" type="button">
+                        ▶ 运行代码
+                    </button>
+
+                </div>
+
+
+                <!-- 输出结果 -->
+                <div class="code-editor-output">
+
+                    <div class="code-editor-output-title">
+                        输出结果
+                    </div>
+
+                    <pre id="modalPythonOutput"></pre>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="toast" class="toast"></div>
+
+
+    <script type="module" src="/js/tutorial/python_quick_start/python_quick_start.js"></script>
+
+</body>
+
+</html>

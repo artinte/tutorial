@@ -1,0 +1,211 @@
+<div class="hero-visual" aria-hidden="true">
+
+    <div class="deep-learning-card">
+
+        <!-- =====================================================
+             TOP
+        ====================================================== -->
+
+        <div class="dl-header">
+
+            <div class="dl-title">
+                <span class="dl-dot"></span>
+                <span>NEURAL NETWORK</span>
+            </div>
+
+            <div class="dl-training-status">
+                <span class="status-pulse"></span>
+                TRAINING
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             MAIN VISUAL
+        ====================================================== -->
+
+        <div class="dl-main">
+
+            <!-- =================================================
+                 DATA SPACE
+            ================================================== -->
+
+            <div class="dl-data-panel">
+
+                <div class="panel-label">
+                    <span>DATA</span>
+                    <small>2D CLASSIFICATION</small>
+                </div>
+
+                <div class="classification-chart">
+
+                    <div class="chart-grid"></div>
+
+                    <div class="decision-region"></div>
+
+                    <div class="data-points" id="dataPoints"></div>
+
+                    <div class="decision-line" id="decisionLine"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NETWORK
+            ================================================== -->
+
+            <div class="dl-network-panel">
+
+                <div class="panel-label">
+                    <span>MODEL</span>
+                    <small>FORWARD PROPAGATION</small>
+                </div>
+
+                <div class="network-stage">
+
+                    <svg class="network-svg" viewBox="0 0 520 260" preserveAspectRatio="xMidYMid meet">
+
+                        <!-- =====================================
+                             CONNECTIONS
+                        ====================================== -->
+
+                        <g class="network-connections" id="networkConnections"></g>
+
+
+                        <!-- =====================================
+                             FLOW PARTICLES
+                        ====================================== -->
+
+                        <g class="network-particles" id="networkParticles"></g>
+
+
+                        <!-- =====================================
+                             NEURONS
+                        ====================================== -->
+
+                        <g class="network-neurons" id="networkNeurons"></g>
+
+                    </svg>
+
+
+                    <div class="layer-labels">
+
+                        <span>INPUT</span>
+
+                        <span>HIDDEN</span>
+
+                        <span>HIDDEN</span>
+
+                        <span>OUTPUT</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             TRAINING INFO
+        ====================================================== -->
+
+        <div class="dl-training-panel">
+
+            <div class="training-main">
+
+                <div class="training-title">
+                    <span>TRAINING</span>
+                    <small id="trainingPhase">
+                        FORWARD PASS
+                    </small>
+                </div>
+
+                <div class="training-progress">
+
+                    <div class="training-progress-bar" id="trainingProgressBar"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="training-stats">
+
+                <div class="training-stat">
+
+                    <span class="stat-label">
+                        EPOCH
+                    </span>
+
+                    <strong id="epochValue">
+                        001
+                    </strong>
+
+                </div>
+
+
+                <div class="training-stat">
+
+                    <span class="stat-label">
+                        LOSS
+                    </span>
+
+                    <strong id="lossValue">
+                        1.824
+                    </strong>
+
+                </div>
+
+
+                <div class="training-stat">
+
+                    <span class="stat-label">
+                        ACCURACY
+                    </span>
+
+                    <strong id="accuracyValue">
+                        52%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             EQUATION
+        ====================================================== -->
+
+        <div class="dl-equation">
+
+            <span>z = Wx + b</span>
+
+            <i>→</i>
+
+            <span>a = ReLU(z)</span>
+
+            <i>→</i>
+
+            <span>ŷ = sigmoid(a)</span>
+
+        </div>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <div class="dl-footer">
+            <span>通过前向传播与反向传播，神经网络不断调整权重，学习数据中的分类规律。</span>
+        </div>
+
+    </div>
+
+</div>

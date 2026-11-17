@@ -1,0 +1,2592 @@
+/* =========================================================
+   PYTHON QUICK START
+   Dedicated Course UI
+========================================================= */
+
+:root {
+
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --surface-soft: #f8fafc;
+
+    --border: #e7ebf0;
+    --border-strong: #d9e0e8;
+
+    --text: #17202b;
+    --text-secondary: #566273;
+    --text-muted: #8a95a3;
+
+    --python-blue: #3776ab;
+    --python-blue-dark: #285f8f;
+    --python-yellow: #ffd343;
+
+    --accent: #3776ab;
+    --accent-soft: #edf5fb;
+
+    --green: #15946b;
+    --green-soft: #eaf8f3;
+
+    --orange: #e88924;
+    --orange-soft: #fff5e8;
+
+    --red: #d95656;
+    --red-soft: #fff0f0;
+
+    --shadow-sm:
+        0 2px 8px rgba(20, 32, 50, 0.04);
+
+    --shadow:
+        0 12px 40px rgba(20, 32, 50, 0.07);
+
+    --shadow-lg:
+        0 24px 70px rgba(20, 32, 50, 0.12);
+
+    --radius-sm: 8px;
+    --radius: 14px;
+    --radius-lg: 20px;
+
+    --sidebar-width: 280px;
+
+    --topbar-height: 66px;
+
+    --transition:
+        180ms ease;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "PingFang SC",
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        Arial,
+        sans-serif;
+
+    line-height: 1.7;
+}
+
+button,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    height: var(--topbar-height);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 26px;
+
+    background: #3776AB;
+
+    border-bottom: 1px solid #2f6694;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.topbar.topbar-hidden {
+
+    transform: translateY(-100%);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.topbar-left,
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+}
+
+.topbar-left {
+    gap: 16px;
+}
+
+.topbar-right {
+    gap: 8px;
+}
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    text-decoration: none;
+
+    color: var(--text);
+
+    font-weight: 700;
+}
+
+.brand-mark {
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(135deg,
+            var(--python-blue),
+            #4c92c8);
+
+    color: white;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+}
+
+.brand-text {
+    font-size: 14px;
+}
+
+.python-logo {
+    width: 120px;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   TOP BUTTON
+========================================================= */
+
+.top-button {
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+
+/* =========================================================
+   普通按钮
+========================================================= */
+
+.top-button:hover {
+
+    border-color: rgba(255, 255, 255, 0.42);
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   代码编辑器
+========================================================= */
+
+.top-button.code-editor-button {
+
+    border-color: rgba(167, 139, 250, 0.55);
+
+    background: rgba(124, 58, 237, 0.78);
+
+    color: #ffffff;
+}
+
+.top-button.code-editor-button:hover {
+
+    border-color: rgba(196, 181, 253, 0.8);
+
+    background: rgba(124, 58, 237, 0.95);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   AI 学习助手
+========================================================= */
+
+.top-button.ai-button {
+
+    border-color: rgba(251, 191, 36, 0.65);
+
+    background: rgba(245, 158, 11, 0.90);
+
+    color: #ffffff;
+}
+
+.top-button.ai-button:hover {
+
+    border-color: rgba(253, 186, 116, 0.9);
+
+    background: #d97706;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+
+    min-height:
+        calc(100vh - var(--topbar-height));
+
+    display: flex;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    position: sticky;
+
+    top: var(--topbar-height);
+
+    width: var(--sidebar-width);
+
+    height:
+        calc(100vh - var(--topbar-height));
+
+    flex: 0 0 var(--sidebar-width);
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: #fff;
+
+    border-right: 1px solid var(--border);
+
+    overflow: hidden;
+}
+
+.sidebar-header {
+
+    padding: 26px 22px 20px;
+}
+
+.sidebar-eyebrow {
+
+    margin-bottom: 7px;
+
+    color: var(--python-blue);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.sidebar-header h2 {
+
+    margin: 0 0 6px;
+
+    font-size: 19px;
+
+    line-height: 1.3;
+}
+
+.sidebar-header p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+.chapter-navigation {
+
+    flex: 1;
+
+    padding: 6px 12px 20px;
+
+    overflow-y: auto;
+}
+
+.chapter-navigation::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chapter-navigation::-webkit-scrollbar-thumb {
+
+    background: #dfe4ea;
+
+    border-radius: 999px;
+}
+
+.chapter-nav-item {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 10px;
+
+    margin-bottom: 3px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    text-align: left;
+
+    transition: var(--transition);
+}
+
+.chapter-nav-item:hover {
+
+    background: #f5f8fb;
+
+    color: var(--text);
+}
+
+.chapter-nav-item.active {
+
+    background: var(--accent-soft);
+
+    color: var(--python-blue);
+}
+
+.chapter-nav-number {
+
+    width: 30px;
+    height: 30px;
+
+    flex: 0 0 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: #f2f4f7;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.chapter-nav-item.active .chapter-nav-number {
+
+    background: var(--python-blue);
+
+    color: white;
+}
+
+.chapter-nav-info {
+
+    min-width: 0;
+}
+
+.chapter-nav-title {
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+
+    font-weight: 650;
+}
+
+.chapter-nav-meta {
+
+    margin-top: 1px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+.chapter-nav-check {
+
+    margin-left: auto;
+
+    color: var(--green);
+
+    font-size: 13px;
+}
+
+.sidebar-footer {
+
+    padding: 18px 20px 22px;
+
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-progress-title {
+
+    margin-bottom: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+.sidebar-progress {
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.sidebar-progress-track {
+
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #edf0f4;
+}
+
+.sidebar-progress-value {
+
+    width: 0;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: var(--python-blue);
+
+    transition: width 300ms ease;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 54px 52px 42px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(420px, 0.95fr) minmax(520px, 1.05fr);
+
+    gap: 54px;
+
+    align-items: center;
+}
+
+.hero-kicker,
+.section-kicker {
+
+    color: var(--python-blue);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.6px;
+}
+
+.hero h1 {
+
+    margin: 13px 0 18px;
+
+    font-size:
+        clamp(42px, 5vw, 66px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+
+    color: var(--python-blue);
+
+    display: block;
+}
+
+.hero-description {
+
+    max-width: 590px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+
+    line-height: 1.9;
+}
+
+.hero-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+.button {
+
+    height: 44px;
+
+    padding: 0 20px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    border: 1px solid transparent;
+
+    transition: var(--transition);
+}
+
+.button-primary {
+
+    background: var(--python-blue);
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(55, 118, 171, 0.18);
+}
+
+.button-primary:hover {
+
+    background: var(--python-blue-dark);
+
+    transform: translateY(-1px);
+}
+
+.button-secondary {
+
+    background: white;
+
+    border-color: var(--border);
+
+    color: var(--text-secondary);
+}
+
+.button-secondary:hover {
+
+    border-color: var(--border-strong);
+
+    color: var(--text);
+}
+
+.hero-stats {
+
+    display: flex;
+
+    gap: 30px;
+
+    margin-top: 34px;
+}
+
+.hero-stat {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.hero-stat strong {
+
+    font-size: 19px;
+
+    line-height: 1.2;
+}
+
+.hero-stat span {
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RUNNER
+========================================================= */
+
+.hero-runner {
+
+    min-width: 0;
+}
+
+.runner-window {
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(30, 55, 80, 0.18);
+
+    border-radius: 16px;
+
+    background: #17212b;
+
+    box-shadow: var(--shadow-lg);
+}
+
+.runner-header {
+
+    min-height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 17px;
+
+    background: #1e2a35;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.runner-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+}
+
+.runner-icon {
+
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: var(--python-blue);
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.runner-title div {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.runner-title strong {
+
+    font-size: 12px;
+}
+
+.runner-title span {
+
+    color: #92a0ad;
+
+    font-size: 10px;
+}
+
+.runner-status {
+
+    padding: 4px 7px;
+
+    border-radius: 5px;
+
+    background:
+        rgba(55, 118, 171, 0.16);
+
+    color: #80b4dc;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: .6px;
+}
+
+.runner-editor {
+
+    display: grid;
+
+    grid-template-columns: 42px 1fr;
+
+    min-height: 230px;
+
+    background: #101820;
+}
+
+.code-gutter {
+
+    padding: 18px 8px 18px 0;
+
+    color: #53616e;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    text-align: right;
+
+    user-select: none;
+}
+
+.code-gutter span {
+    display: block;
+}
+
+#pythonEditor {
+
+    width: 100%;
+
+    min-height: 230px;
+
+    resize: vertical;
+
+    padding: 18px 18px;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #e7edf3;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    tab-size: 4;
+}
+
+.runner-toolbar {
+
+    min-height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 12px;
+
+    background: #1b2732;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+.run-button {
+
+    height: 34px;
+
+    padding: 0 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: #4e9f6f;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.run-button:hover {
+    background: #41865e;
+}
+
+.runner-small-button {
+
+    height: 34px;
+
+    padding: 0 10px;
+
+    border:
+        1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 7px;
+
+    background: #253340;
+
+    color: #aeb9c3;
+
+    font-size: 11px;
+}
+
+.runner-message {
+
+    margin-left: auto;
+
+    color: #84919d;
+
+    font-size: 10px;
+}
+
+.runner-output {
+
+    min-height: 120px;
+
+    background: #0d141a;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+.output-header {
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    color: #8f9ba6;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
+}
+
+.output-server {
+
+    color: #52718b;
+}
+
+#pythonOutput {
+
+    min-height: 84px;
+
+    margin: 0;
+
+    padding: 6px 15px 15px;
+
+    overflow-x: auto;
+
+    color: #cdd7df;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}
+
+.runner-note {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-top: 11px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+.note-dot {
+
+    width: 6px;
+    height: 6px;
+
+    flex: 0 0 6px;
+
+    margin-top: 6px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.method-section,
+.chapters-section {
+
+    max-width: 1340px;
+
+    margin: 0 auto;
+
+    padding: 42px 52px;
+}
+
+.section-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 40px;
+
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+
+    margin: 7px 0 0;
+
+    font-size: 25px;
+
+    letter-spacing: -0.6px;
+}
+
+.section-heading>p {
+
+    max-width: 430px;
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   METHOD CARDS
+========================================================= */
+
+.method-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.method-card {
+
+    padding: 23px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: white;
+
+    transition: var(--transition);
+}
+
+.method-card:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #d5dfe8;
+
+    box-shadow: var(--shadow-sm);
+}
+
+.method-number {
+
+    margin-bottom: 24px;
+
+    color: var(--python-blue);
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.method-card h3 {
+
+    margin: 0 0 7px;
+
+    font-size: 16px;
+}
+
+.method-card p {
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CHAPTER GRID
+========================================================= */
+
+.chapters-section {
+
+    padding-top: 55px;
+
+    padding-bottom: 55px;
+}
+
+.chapter-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.chapter-card {
+
+    position: relative;
+
+    min-height: 190px;
+
+    padding: 25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    background: white;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.chapter-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -40px;
+
+    top: -40px;
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(55, 118, 171, 0.04);
+}
+
+.chapter-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #cbd9e5;
+
+    box-shadow: var(--shadow);
+}
+
+.chapter-card-top {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+}
+
+.chapter-number {
+
+    color: var(--python-blue);
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+}
+
+.chapter-status {
+
+    color: var(--green);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.chapter-card h3 {
+
+    margin: 13px 0 3px;
+
+    font-size: 19px;
+
+    line-height: 1.35;
+}
+
+.chapter-english {
+
+    color: var(--text-muted);
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: .5px;
+}
+
+.chapter-card p {
+
+    max-width: 650px;
+
+    margin: 14px 0 17px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.chapter-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+.chapter-meta span {
+
+    padding-right: 8px;
+
+    border-right: 1px solid var(--border);
+}
+
+.chapter-meta span:last-child {
+    border-right: 0;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.final-cta {
+
+    max-width: 1340px;
+
+    margin: 20px auto 60px;
+
+    padding: 38px 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #eef6fc,
+            #f8fbfd);
+
+    border:
+        1px solid #dce9f2;
+}
+
+.final-cta h2 {
+
+    margin: 6px 0 7px;
+
+    font-size: 25px;
+
+    letter-spacing: -.6px;
+}
+
+.final-cta p {
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LESSON
+========================================================= */
+
+.lesson-view {
+
+    max-width: 1340px;
+
+    margin: 0 auto;
+
+    padding: 45px 52px 80px;
+}
+
+.lesson-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 300px;
+
+    gap: 36px;
+
+    align-items: start;
+}
+
+.lesson-main {
+
+    min-width: 0;
+
+    max-width: 850px;
+}
+
+.back-link {
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--python-blue);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.lesson-content {
+
+    margin-top: 28px;
+}
+
+.lesson-header {
+
+    padding-bottom: 28px;
+
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.lesson-label {
+
+    color: var(--python-blue);
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.lesson-header h1 {
+
+    margin: 8px 0 9px;
+
+    font-size: 36px;
+
+    line-height: 1.25;
+
+    letter-spacing: -.9px;
+}
+
+.lesson-intro {
+
+    max-width: 720px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+.content-block {
+
+    margin: 28px 0;
+}
+
+.content-block p {
+
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 16px;
+
+    line-height: 2;
+}
+
+.content-block h3 {
+
+    margin: 0 0 10px;
+
+    font-size: 19px;
+}
+
+.content-block h4 {
+
+    margin: 0 0 8px;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   CODE BLOCK
+========================================================= */
+
+.lesson-code {
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: #17212b;
+
+    box-shadow:
+        0 8px 30px rgba(20, 32, 45, .08);
+}
+
+.lesson-code-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 10px 14px;
+
+    background: #202d38;
+
+    color: #a6b3bf;
+
+    font-size: 10px;
+}
+
+.lesson-code-title {
+    font-weight: 700;
+}
+
+.lesson-code-language {
+
+    color: #7198b5;
+
+    font-family: monospace;
+}
+
+.lesson-code pre {
+
+    margin: 0;
+
+    padding: 17px;
+
+    overflow-x: auto;
+
+    color: #d9e3ea;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   PRACTICE
+========================================================= */
+
+.practice-block {
+
+    padding: 22px;
+
+    border:
+        1px solid #d9ebe3;
+
+    border-left:
+        4px solid var(--green);
+
+    border-radius: 12px;
+
+    background: var(--green-soft);
+}
+
+.practice-label {
+
+    margin-bottom: 6px;
+
+    color: var(--green);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.practice-block h3 {
+
+    margin: 0 0 7px;
+
+    font-size: 17px;
+}
+
+.practice-block p {
+
+    color: #456154;
+}
+
+.practice-difficulty {
+
+    display: inline-block;
+
+    margin-top: 13px;
+
+    padding: 3px 7px;
+
+    border-radius: 5px;
+
+    background: rgba(21, 148, 107, .1);
+
+    color: var(--green);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   THINKING
+========================================================= */
+
+.thinking-block {
+
+    padding: 21px;
+
+    border:
+        1px solid #f0dfc6;
+
+    border-radius: 12px;
+
+    background: var(--orange-soft);
+}
+
+.thinking-label {
+
+    margin-bottom: 6px;
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.note-block {
+
+    padding: 17px 19px;
+
+    border-radius: 10px;
+
+    background: #f4f7fa;
+
+    border: 1px solid var(--border);
+}
+
+.note-label {
+
+    margin-bottom: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   CALLOUT
+========================================================= */
+
+.callout-block {
+
+    padding: 21px;
+
+    border-radius: 12px;
+
+    background: var(--accent-soft);
+
+    border:
+        1px solid #dbe9f3;
+}
+
+.callout-block h3 {
+
+    color: var(--python-blue);
+}
+
+.callout-link {
+
+    display: inline-block;
+
+    margin-top: 9px;
+
+    color: var(--python-blue);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+.callout-link:hover {
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   CONCEPTS
+========================================================= */
+
+.concepts-block {
+
+    display: grid;
+
+    gap: 9px;
+
+    margin: 4px 0;
+}
+
+
+.concept-item {
+
+    padding: 13px 16px;
+
+    border: 1px solid #dfe7f0;
+
+    border-radius: 9px;
+
+    background: #f8fbff;
+
+    color: #26384a;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+.concept-item span {
+
+    display: block;
+
+    color: #34495e;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+.concept-item:nth-child(2) {
+
+    background: #f9fbf8;
+
+    border-color: #dfe9df;
+}
+
+
+.concept-item:nth-child(3) {
+
+    background: #fffaf4;
+
+    border-color: #eee2d1;
+}
+
+
+.concept-item:nth-child(4) {
+
+    background: #faf8fc;
+
+    border-color: #e7deed;
+}
+
+
+.concept-item:nth-child(5) {
+
+    background: #f7fbfc;
+
+    border-color: #dce9ec;
+}
+
+
+.concept-item:nth-child(6) {
+
+    background: #fbf9f6;
+
+    border-color: #ebe2d7;
+}
+
+
+.concept-item:hover {
+
+    border-color: #cbd6e2;
+}
+
+/* =========================================================
+   CHECKLIST
+========================================================= */
+
+.checklist-block {
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: white;
+}
+
+.checklist-title {
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+
+    font-size: 14px;
+}
+
+.checklist-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin: 8px 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+.checklist-item::before {
+
+    content: "✓";
+
+    color: var(--green);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   LESSON ACTION
+========================================================= */
+
+.lesson-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 45px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--border);
+}
+
+.lesson-action-left {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.lesson-action-button {
+
+    min-height: 40px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.lesson-action-button.primary {
+
+    background: var(--python-blue);
+
+    color: white;
+
+    border-color: var(--python-blue);
+}
+
+
+/* =========================================================
+   LESSON ASIDE
+========================================================= */
+
+.lesson-aside {
+
+    position: sticky;
+
+    top: calc(var(--topbar-height) + 22px);
+}
+
+.aside-card {
+
+    padding: 19px;
+
+    margin-bottom: 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    background: white;
+}
+
+.aside-label {
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.aside-card h3 {
+
+    margin: 5px 0 14px;
+
+    font-size: 16px;
+}
+
+.section-navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.section-nav-item {
+
+    width: 100%;
+
+    padding: 8px 9px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    text-align: left;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.section-nav-item:hover {
+
+    background: #f5f8fb;
+
+    color: var(--text);
+}
+
+.section-nav-item.current {
+
+    background: var(--accent-soft);
+
+    color: var(--python-blue);
+
+    font-weight: 700;
+}
+
+.ai-mini-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.ai-mini-icon {
+
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: #edf5fb;
+
+    color: var(--python-blue);
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.ai-mini-card>div:nth-child(2) {
+
+    flex: 1;
+
+    min-width: 130px;
+}
+
+.ai-mini-card strong {
+
+    font-size: 12px;
+}
+
+.ai-mini-card p {
+
+    margin: 3px 0 0;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+.ai-mini-button {
+
+    width: 100%;
+
+    height: 31px;
+
+    margin-top: 4px;
+
+    border: 1px solid #d8e5ee;
+
+    border-radius: 7px;
+
+    background: #f6fafc;
+
+    color: var(--python-blue);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   AI PANEL
+========================================================= */
+
+.ai-panel {
+
+    position: fixed;
+
+    z-index: 200;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    width: 390px;
+
+    height: 620px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 18px;
+
+    background: white;
+
+    box-shadow: var(--shadow-lg);
+
+    transform:
+        translateY(30px) scale(.98);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.ai-panel.open {
+
+    transform:
+        translateY(0) scale(1);
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.ai-panel-header {
+
+    min-height: 66px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 16px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.ai-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.ai-avatar {
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: var(--python-blue);
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.ai-title div:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.ai-title strong {
+
+    font-size: 13px;
+}
+
+.ai-title span {
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+.close-button {
+
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: var(--text-muted);
+
+    font-size: 20px;
+}
+
+.close-button:hover {
+
+    background: #f4f6f8;
+
+    color: var(--text);
+}
+
+.ai-messages {
+
+    flex: 1;
+
+    padding: 16px;
+
+    overflow-y: auto;
+
+    background: #f8fafc;
+}
+
+.ai-message {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.message-avatar {
+
+    width: 27px;
+    height: 27px;
+
+    flex: 0 0 27px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 7px;
+
+    background: #e9f2f8;
+
+    color: var(--python-blue);
+
+    font-size: 8px;
+
+    font-weight: 800;
+}
+
+.message-bubble {
+
+    max-width: 290px;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    line-height: 1.75;
+}
+
+.ai-message.user {
+
+    justify-content: flex-end;
+}
+
+.ai-message.user .message-avatar {
+    display: none;
+}
+
+.ai-message.user .message-bubble {
+
+    background: var(--python-blue);
+
+    border-color: var(--python-blue);
+
+    color: white;
+}
+
+.ai-input-area {
+
+    padding: 12px;
+
+    border-top: 1px solid var(--border);
+
+    background: white;
+}
+
+#aiInput {
+
+    width: 100%;
+
+    resize: none;
+
+    padding: 10px 11px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    color: var(--text);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+#aiInput:focus {
+
+    border-color: #b8cfdf;
+
+    box-shadow:
+        0 0 0 3px rgba(55, 118, 171, .07);
+}
+
+.ai-input-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+.ai-send-button {
+
+    height: 32px;
+
+    padding: 0 13px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: var(--python-blue);
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+
+    position: fixed;
+
+    z-index: 500;
+
+    left: 50%;
+
+    bottom: 26px;
+
+    transform:
+        translate(-50%, 20px);
+
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    background: #18222c;
+
+    color: white;
+
+    font-size: 11px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.toast.show {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1180px) {
+
+    .hero {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .hero-runner {
+
+        max-width: 760px;
+    }
+
+    .method-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .lesson-layout {
+
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-aside {
+
+        position: static;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    :root {
+        --sidebar-width: 230px;
+    }
+
+    .hero,
+    .method-section,
+    .chapters-section,
+    .lesson-view {
+
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .chapter-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .topbar {
+
+        padding: 0 14px;
+    }
+
+    .brand-text,
+
+    .sidebar {
+
+        display: none;
+    }
+
+    .hero {
+
+        padding-top: 35px;
+    }
+
+    .hero h1 {
+
+        font-size: 43px;
+    }
+
+    .hero-stats {
+
+        gap: 18px;
+    }
+
+    .method-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+
+        display: block;
+    }
+
+    .section-heading>p {
+
+        margin-top: 10px;
+    }
+
+    .final-cta {
+
+        margin-left: 18px;
+        margin-right: 18px;
+
+        display: block;
+    }
+
+    .final-cta .button {
+
+        margin-top: 20px;
+    }
+
+    .ai-panel {
+
+        right: 10px;
+        left: 10px;
+
+        bottom: 10px;
+
+        width: auto;
+
+        height: min(620px, calc(100vh - 20px));
+    }
+}

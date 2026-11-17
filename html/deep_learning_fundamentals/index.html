@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="深度学习基础课程，从数学基础、PyTorch、神经网络到 CNN、RNN、Transformer 和工程实践。">
+
+    <meta name="theme-color" content="#f7f9fc">
+
+    <title>深度学习基础 · DEEP LEARNING FUNDAMENTALS</title>
+    <link rel="stylesheet" href="/css/tutorial/deep_learning_fundamentals/neural_training_visual.css">
+    <link rel="stylesheet" href="/css/tutorial/deep_learning_fundamentals/deep_learning_fundamentals.css">
+
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- 顶部导航 -->
+        <header class="topbar">
+
+            <div class="brand">
+
+                <span class="brand-mark">
+                    DL
+                </span>
+
+                <span class="brand-copy">
+
+                    <strong>
+
+                        <a class="brand-parent" href="/tutorial" aria-label="返回教程中心">
+                            教程
+                        </a>
+
+                        <span class="brand-separator">/</span>
+
+                        <span class="brand-current">
+                            深度学习基础
+                        </span>
+
+                    </strong>
+
+                    <small>
+                        DEEP LEARNING FUNDAMENTALS
+                    </small>
+
+                </span>
+
+            </div>
+
+            <nav class="top-nav">
+
+                <a href="#course-overview">
+                    课程介绍
+                </a>
+
+                <a href="#course-roadmap">
+                    学习路线
+                </a>
+
+                <a href="#course-reader">
+                    开始学习
+                </a>
+
+            </nav>
+
+            <div class="top-actions">
+
+                <button class="icon-button" id="fontDecrease" type="button" title="缩小字号" aria-label="缩小字号">
+                    A−
+                </button>
+
+                <button class="icon-button" id="fontIncrease" type="button" title="放大字号" aria-label="放大字号">
+                    A+
+                </button>
+
+                <button class="primary-button" id="continueLearning" type="button">
+                    继续学习
+                    <span aria-hidden="true">→</span>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- 主视觉区域 -->
+        <section class="hero" id="top">
+
+            <div class="hero-background hero-background-one"></div>
+            <div class="hero-background hero-background-two"></div>
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    DEEP LEARNING FUNDAMENTALS
+                    <span class="eyebrow-divider">/</span>
+                    系统化学习课程
+                </div>
+
+                <h1>
+                    从理解神经网络开始，
+                    <br>
+                    <span>建立真正的深度学习能力。</span>
+                </h1>
+
+                <p class="hero-description">
+                    从数学原理、数据表示和 PyTorch 编程出发，
+                    逐步理解神经网络如何学习、如何训练，以及如何将模型应用于真实问题。
+                    不止学习 API，更要理解模型背后的思想与工程方法。
+                </p>
+
+                <div class="hero-actions">
+
+                    <button class="hero-primary-button" id="startLearning" type="button">
+                        开始系统学习
+                        <span aria-hidden="true">↗</span>
+                    </button>
+
+                    <a class="hero-secondary-button" href="#course-roadmap">
+                        查看完整课程
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+                        <strong id="statChapterCount">13</strong>
+                        <span>系统章节</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong id="statSectionCount">—</strong>
+                        <span>学习小节</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <strong>基础 → 实战</strong>
+                        <span>完整学习路线</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="heroVisualMount"></div>
+
+
+        </section>
+
+
+        <!-- 课程介绍 -->
+        <section class="overview-section section-container" id="course-overview">
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-kicker">
+                        ABOUT THE COURSE
+                    </div>
+
+                    <h2>
+                        不是记住概念，而是建立完整的知识体系
+                    </h2>
+
+                    <p>
+                        把数学、模型、训练过程与工程实践连接起来，
+                        形成可以迁移到不同任务中的深度学习思维。
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+                <article class="overview-card">
+
+                    <div class="overview-icon icon-blue">
+                        ∑
+                    </div>
+
+                    <span class="card-number">
+                        <strong>01</strong>
+                        <span>/ THEORY</span>
+                    </span>
+
+                    <h3>理解底层原理</h3>
+
+                    <p>
+                        从向量、矩阵、导数、梯度和链式法则出发，
+                        理解模型如何表达函数，以及参数为什么能够通过训练不断更新。
+                    </p>
+
+                </article>
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon icon-purple">
+                        ◈
+                    </div>
+
+                    <span class="card-number">
+                        <strong>02</strong>
+                        <span>/ MODEL</span>
+                    </span>
+
+                    <h3>掌握核心模型</h3>
+
+                    <p>
+                        从线性回归和全连接网络开始，
+                        逐步理解卷积神经网络、循环神经网络与 Transformer 的设计动机。
+                    </p>
+
+                </article>
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon icon-green">
+                        { }
+                    </div>
+
+                    <span class="card-number">
+                        <strong>03</strong>
+                        <span>/ PRACTICE</span>
+                    </span>
+
+                    <h3>建立工程能力</h3>
+
+                    <p>
+                        使用 PyTorch 完成数据处理、模型构建、损失计算、反向传播、
+                        训练评估与模型保存，形成可复用的实践流程。
+                    </p>
+
+                </article>
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon icon-orange">
+                        ↗
+                    </div>
+
+                    <span class="card-number">
+                        <strong>04</strong>
+                        <span>/ APPLICATION</span>
+                    </span>
+
+                    <h3>连接真实任务</h3>
+
+                    <p>
+                        将知识应用到图像分类、文本分类、时间序列分析等问题，
+                        为后续学习大语言模型和多模态模型打下基础。
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- 学习路线与章节列表 -->
+        <section class="roadmap-section section-container" id="course-roadmap">
+
+            <div class="section-heading roadmap-heading">
+
+                <div>
+                    <div class="section-kicker">
+                        LEARNING ROADMAP
+                    </div>
+
+                    <h2>你的深度学习学习路线</h2>
+
+                    <p>
+                        按照知识之间的依赖关系组织课程。
+                        你可以顺序学习，也可以搜索自己感兴趣的章节。
+                    </p>
+                </div>
+
+                <div class="roadmap-tools">
+
+                    <label class="search-box">
+
+                        <span aria-hidden="true">⌕</span>
+
+                        <input type="search" id="courseSearch" placeholder="搜索章节、知识点..." autocomplete="off">
+
+                        <kbd>⌘ K</kbd>
+
+                    </label>
+
+                    <button class="text-button" id="clearSearch" type="button">
+                        清除
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="learning-layout">
+
+                <aside class="chapter-sidebar">
+
+                    <div class="sidebar-heading">
+                        <span>课程目录</span>
+                        <span id="sidebarChapterCount">13 章</span>
+                    </div>
+
+                    <div class="chapter-list" id="chapterList">
+                        <div class="loading-placeholder">
+                            正在加载课程目录……
+                        </div>
+                    </div>
+
+                    <div class="sidebar-progress">
+
+                        <div class="progress-label">
+                            <span>整体学习进度</span>
+                            <strong id="sidebarProgressText">0%</strong>
+                        </div>
+
+                        <div class="progress-track">
+                            <span class="progress-fill" id="sidebarProgressFill"></span>
+                        </div>
+
+                        <p id="sidebarProgressHint">
+                            完成第一个小节，开启你的学习旅程。
+                        </p>
+
+                    </div>
+
+                </aside>
+
+
+                <main class="course-main">
+
+                    <div class="course-main-toolbar">
+
+                        <div class="result-summary">
+                            <span class="result-dot"></span>
+                            <span id="resultSummary">
+                                完整课程
+                            </span>
+                        </div>
+
+                        <div class="toolbar-actions">
+
+                            <button class="small-button" id="expandAll" type="button">
+                                展开全部
+                            </button>
+
+                            <button class="small-button" id="collapseAll" type="button">
+                                收起全部
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="roadmap-list" id="roadmapList">
+                        <div class="loading-placeholder">
+                            正在加载章节……
+                        </div>
+                    </div>
+
+                    <div class="empty-state hidden" id="searchEmpty">
+                        <div class="empty-state-icon">⌕</div>
+                        <h3>没有找到相关内容</h3>
+                        <p>试试其他关键词，或者清除搜索条件。</p>
+
+                        <button class="primary-button" id="emptyClearSearch" type="button">
+                            清除搜索
+                        </button>
+                    </div>
+
+                </main>
+
+            </div>
+
+        </section>
+
+
+        <!-- 正文阅读区域 -->
+        <section class="reader-section" id="course-reader">
+
+            <div class="reader-topline section-container">
+
+                <div>
+                    <div class="section-kicker">
+                        COURSE READER
+                    </div>
+
+                    <h2>开始深入学习</h2>
+
+                    <p>
+                        每个小节都围绕核心问题展开，
+                        从直观理解到数学表达，再到实际应用。
+                    </p>
+                </div>
+
+                <div class="reader-progress-card">
+
+                    <div class="reader-progress-top">
+                        <span>你的学习进度</span>
+                        <strong id="readerProgressText">0%</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <span class="progress-fill" id="readerProgressFill"></span>
+                    </div>
+
+                    <span class="reader-progress-caption" id="readerProgressCaption">
+                        尚未完成任何小节
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="reader-layout section-container">
+
+                <article class="reader-content" id="readerContent">
+                    <div class="loading-placeholder">
+                        正在准备学习内容……
+                    </div>
+                </article>
+
+
+                <aside class="reader-toc">
+
+                    <div class="toc-card">
+
+                        <div class="toc-header">
+
+                            <div>
+                                <span class="toc-kicker">
+                                    ON THIS PAGE
+                                </span>
+
+                                <h3>本章目录</h3>
+                            </div>
+
+                            <span class="toc-count" id="tocCount">
+                                0
+                            </span>
+
+                        </div>
+
+                        <div class="toc-list" id="tocList">
+                            <p class="toc-empty">
+                                选择章节后显示目录
+                            </p>
+                        </div>
+
+                        <div class="toc-divider"></div>
+
+                        <button class="toc-complete-button" id="markChapterComplete" type="button">
+                            ✓ 标记本章已完成
+                        </button>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- 课程学习建议 -->
+        <section class="study-method section-container">
+
+            <div class="study-method-copy">
+
+                <div class="section-kicker">
+                    HOW TO LEARN
+                </div>
+
+                <h2>
+                    理解、实现、验证，
+                    <br>
+                    让知识真正变成能力。
+                </h2>
+
+                <p>
+                    深度学习不是只阅读公式，也不是只调用框架接口。
+                    建议将每个重要概念都落实为三个问题：
+                    它解决什么问题？它为什么有效？我能否独立实现并验证它？
+                </p>
+
+            </div>
+
+
+            <div class="study-steps">
+
+                <div class="study-step">
+
+                    <span class="study-step-number">01</span>
+
+                    <div>
+                        <h3>先理解问题</h3>
+                        <p>
+                            阅读概念，明确模型要解决什么问题，
+                            以及输入、输出和目标之间的关系。
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="study-step">
+
+                    <span class="study-step-number">02</span>
+
+                    <div>
+                        <h3>再动手实现</h3>
+                        <p>
+                            使用 NumPy 或 PyTorch 实现关键操作，
+                            观察数据形状、损失变化和参数更新。
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="study-step">
+
+                    <span class="study-step-number">03</span>
+
+                    <div>
+                        <h3>最后验证结果</h3>
+                        <p>
+                            通过实验、对照和错误分析，
+                            判断模型是否真正学到了有用的规律。
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 底部 -->
+        <footer class="footer">
+
+            <div class="footer-inner">
+
+                <a class="brand footer-brand" href="#top">
+
+                    <span class="brand-mark">
+                        DL
+                    </span>
+
+                    <span class="brand-copy">
+                        <strong>Deep Learning</strong>
+                        <small>LEARNING STUDIO</small>
+                    </span>
+
+                </a>
+
+                <p>
+                    从基础原理出发，构建可迁移的机器学习能力。
+                </p>
+
+                <a href="#top" class="back-to-top">
+                    返回顶部 ↑
+                </a>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>DEEP LEARNING FUNDAMENTALS</span>
+                <span>为持续学习而设计</span>
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- 全局提示 -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module">
+
+        const mount = document.getElementById(
+            "heroVisualMount"
+        );
+
+        try {
+
+            const response = await fetch(
+                "/pages/tutorial/deep_learning_fundamentals/neural_training_visual.html"
+            );
+
+            if (!response.ok) {
+                throw new Error(
+                    `主视觉加载失败：HTTP ${response.status}`
+                );
+            }
+
+            const html = await response.text();
+
+            mount.outerHTML = html;
+
+
+            // 主视觉插入后，再初始化原来的页面逻辑。
+
+            await import(
+                "/js/tutorial/deep_learning_fundamentals/neural_training_visual.js"
+            );
+
+            await import(
+                "/js/tutorial/deep_learning_fundamentals/deep_learning_fundamentals.js"
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Deep Learning Hero 初始化失败：",
+                error
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
