@@ -121,11 +121,11 @@ button {
 
     padding: 0 26px;
 
-    background: #3776AB;
+    background: linear-gradient(110deg, #285f8f, #3776ab);
 
-    border-bottom: 1px solid #2f6694;
+    border-bottom: 1px solid rgba(19, 53, 82, 0.3);
 
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 12px rgba(18, 44, 68, 0.16);
 }
 
 .topbar-left,
@@ -141,7 +141,7 @@ button {
 }
 
 .topbar-right {
-    gap: 8px;
+    gap: 10px;
 }
 
 .brand {
@@ -201,30 +201,64 @@ button {
 
 .top-button {
 
-    height: 36px;
+    min-width: 40px;
 
-    padding: 0 14px;
+    height: 38px;
 
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    display: inline-flex;
 
-    border-radius: 8px;
+    align-items: center;
 
-    background: rgba(255, 255, 255, 0.10);
+    justify-content: center;
 
-    color: rgba(255, 255, 255, 0.88);
+    gap: 8px;
+
+    padding: 0 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: rgba(255, 255, 255, 0.94);
 
     font-size: 13px;
 
-    font-weight: 500;
+    font-weight: 600;
 
     line-height: 1;
-
-    cursor: pointer;
 
     transition:
         background 0.18s ease,
         border-color 0.18s ease,
-        color 0.18s ease;
+        color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+.top-button-icon {
+
+    width: 16px;
+
+    height: 16px;
+
+    flex: 0 0 16px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.6;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+.top-button-label {
+
+    white-space: nowrap;
 }
 
 
@@ -234,11 +268,20 @@ button {
 
 .top-button:hover {
 
-    border-color: rgba(255, 255, 255, 0.42);
+    border-color: rgba(255, 255, 255, 0.46);
 
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.16);
 
     color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+.top-button:focus-visible {
+
+    outline: 2px solid #ffffff;
+
+    outline-offset: 2px;
 }
 
 
@@ -248,41 +291,18 @@ button {
 
 .top-button.code-editor-button {
 
-    border-color: rgba(167, 139, 250, 0.55);
+    border-color: rgba(255, 255, 255, 0.34);
 
-    background: rgba(124, 58, 237, 0.78);
+    background: rgba(255, 255, 255, 0.13);
 
     color: #ffffff;
 }
 
 .top-button.code-editor-button:hover {
 
-    border-color: rgba(196, 181, 253, 0.8);
+    border-color: rgba(255, 255, 255, 0.52);
 
-    background: rgba(124, 58, 237, 0.95);
-
-    color: #ffffff;
-}
-
-
-/* =========================================================
-   AI 学习助手
-========================================================= */
-
-.top-button.ai-button {
-
-    border-color: rgba(251, 191, 36, 0.65);
-
-    background: rgba(245, 158, 11, 0.90);
-
-    color: #ffffff;
-}
-
-.top-button.ai-button:hover {
-
-    border-color: rgba(253, 186, 116, 0.9);
-
-    background: #d97706;
+    background: rgba(255, 255, 255, 0.2);
 
     color: #ffffff;
 }
@@ -2584,5 +2604,40 @@ button {
         width: auto;
 
         height: min(620px, calc(100vh - 20px));
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .topbar {
+
+        padding: 0 12px;
+    }
+
+    .python-logo {
+
+        width: 112px;
+    }
+
+    .topbar-right {
+
+        gap: 6px;
+    }
+
+    .top-button {
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 38px;
+
+        padding: 0;
+    }
+
+    .top-button-label {
+
+        display: none;
     }
 }

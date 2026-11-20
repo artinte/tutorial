@@ -33,16 +33,29 @@
 
         <div class="topbar-right">
 
-            <button id="backOverviewButton" class="top-button">
-                课程大纲
+            <button id="backOverviewButton" class="top-button" type="button" aria-label="课程目录">
+                <svg class="top-button-icon" viewBox="0 0 20 20" aria-hidden="true">
+                    <rect x="3" y="3" width="5" height="5" rx="1"></rect>
+                    <rect x="12" y="3" width="5" height="5" rx="1"></rect>
+                    <rect x="3" y="12" width="5" height="5" rx="1"></rect>
+                    <rect x="12" y="12" width="5" height="5" rx="1"></rect>
+                </svg>
+                <span class="top-button-label">课程目录</span>
             </button>
 
-            <button id="codeEditorButton" class="top-button code-editor-button">
-                代码编辑器
+            <button id="codeEditorButton" class="top-button code-editor-button" type="button" aria-label="在线代码编辑器">
+                <svg class="top-button-icon" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="m7 5-5 5 5 5M13 5l5 5-5 5M11 3 9 17"></path>
+                </svg>
+                <span class="top-button-label">在线编辑器</span>
             </button>
 
-            <button id="aiTopButton" class="top-button ai-button">
-                AI 学习助手
+            <button id="aiTopButton" class="top-button" type="button" aria-label="打开 Python 学习助手">
+                <svg class="top-button-icon" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M10 2.5 11.8 8l5.7 2-5.7 1.8-1.8 5.7-1.8-5.7-5.7-1.8 5.7-2L10 2.5Z"></path>
+                    <path d="m16 2 .7 2.1L19 5l-2.3.8L16 8l-.8-2.2L13 5l2.2-.9L16 2Z"></path>
+                </svg>
+                <span class="top-button-label">学习助手</span>
             </button>
 
         </div>

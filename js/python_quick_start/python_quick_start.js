@@ -60,8 +60,6 @@ const state = {
     completedLessons:
         new Set(),
 
-    aiHistory: [],
-
     runningPython: false,
 
     sendingAI: false
@@ -3223,15 +3221,6 @@ async function sendAIMessage() {
     input.value = "";
 
 
-    state.aiHistory.push({
-
-        role: "user",
-
-        content: message
-
-    });
-
-
     state.sendingAI =
         true;
 
@@ -3247,6 +3236,25 @@ async function sendAIMessage() {
 
         const context =
             buildAIContext();
+
+        const lessonContext =
+            [
+                context.chapter?.title,
+                context.lesson?.title
+            ]
+                .filter(Boolean)
+                .join(" / ");
+
+        const prompt =
+            [
+                "请用简体中文简短回答，先给结论，通常不超过100字；需要代码时只给最小示例。",
+                lessonContext
+                    ? `课程：${lessonContext}`
+                    : "",
+                `问题：${message}`
+            ]
+                .filter(Boolean)
+                .join("\n");
 
 
         const response =
@@ -3265,12 +3273,11 @@ async function sendAIMessage() {
                     body:
                         JSON.stringify({
 
-                            message,
+                            message: prompt,
 
-                            history:
-                                state.aiHistory,
+                            mode: "chat",
 
-                            context
+                            stream: false
 
                         })
                 }
@@ -3288,6 +3295,7 @@ async function sendAIMessage() {
 
             throw new Error(
 
+                data.error ||
                 data.detail ||
                 data.message ||
                 `AI 服务错误 (${response.status})`
@@ -3316,15 +3324,6 @@ async function sendAIMessage() {
         );
 
 
-        state.aiHistory.push({
-
-            role: "assistant",
-
-            content: reply
-
-        });
-
-
     } catch (error) {
 
         console.error(
@@ -3337,15 +3336,7 @@ async function sendAIMessage() {
 
             loading,
 
-            `AI 服务当前还没有连接。
-
-你可以先继续学习。
-
-当前前端已经预留接口：
-
-POST ${AI_CHAT_API}
-
-后续接入 DeepSeek、豆包、ChatGPT 或 Claude 都可以。`
+            `AI 暂时无法回答：${error.message || "请稍后重试。"}`
         );
 
 
