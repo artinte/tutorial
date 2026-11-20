@@ -200,15 +200,11 @@ button {
 }
 
 .python-logo {
-    width: 36px;
+    width: 150px;
     height: 36px;
-    display: grid;
-    place-items: center;
-    border-radius: 9px;
-    background: var(--python-blue);
-    color: #ffffff;
-    font-size: 17px;
-    font-weight: 800;
+    display: block;
+    object-fit: contain;
+    object-position: left center;
 }
 
 
