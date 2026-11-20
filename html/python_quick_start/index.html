@@ -686,8 +686,11 @@ print("总和 =", total)</textarea>
             <div class="code-editor-dialog-body">
 
                 <!-- Python 代码 -->
-                <textarea id="modalPythonEditor" spellcheck="false" autocomplete="off" autocorrect="off"
-                    autocapitalize="off"></textarea>
+                <div class="code-editor-input">
+                    <pre id="modalEditorGutter" class="code-editor-gutter" aria-hidden="true">1</pre>
+                    <textarea id="modalPythonEditor" spellcheck="false" autocomplete="off" autocorrect="off"
+                        autocapitalize="off" wrap="off"></textarea>
+                </div>
 
 
                 <!-- 运行按钮 -->

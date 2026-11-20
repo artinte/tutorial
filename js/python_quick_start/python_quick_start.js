@@ -278,6 +278,8 @@ function bindEvents() {
             runModalPythonCode
         );
 
+    bindModalEditorGutter();
+
 
     window.addEventListener(
         "popstate",
@@ -3523,6 +3525,8 @@ function openCodeEditor() {
             editor.value;
     }
 
+    updateModalEditorGutter();
+
 
     modal.classList.add("open");
 
@@ -3538,6 +3542,69 @@ function openCodeEditor() {
         },
         50
     );
+}
+
+
+function bindModalEditorGutter() {
+
+    const editor =
+        $("#modalPythonEditor");
+
+    if (!editor) {
+        return;
+    }
+
+    editor.addEventListener(
+        "input",
+        updateModalEditorGutter
+    );
+
+    editor.addEventListener(
+        "scroll",
+        syncModalEditorGutter
+    );
+
+    updateModalEditorGutter();
+}
+
+
+function updateModalEditorGutter() {
+
+    const editor =
+        $("#modalPythonEditor");
+
+    const gutter =
+        $("#modalEditorGutter");
+
+    if (!editor || !gutter) {
+        return;
+    }
+
+    gutter.textContent =
+        Array.from(
+            {
+                length:
+                    editor.value.split("\n").length
+            },
+            (_, index) => index + 1
+        ).join("\n");
+
+    syncModalEditorGutter();
+}
+
+
+function syncModalEditorGutter() {
+
+    const editor =
+        $("#modalPythonEditor");
+
+    const gutter =
+        $("#modalEditorGutter");
+
+    if (editor && gutter) {
+        gutter.scrollTop =
+            editor.scrollTop;
+    }
 }
 
 

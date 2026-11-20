@@ -58,14 +58,14 @@
 
     overflow: hidden;
 
-    background: #ffffff;
+    background: #17212b;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid rgba(30, 55, 80, 0.18);
 
-    border-radius: 14px;
+    border-radius: 16px;
 
     box-shadow:
-        0 24px 70px rgba(15, 23, 42, 0.20);
+        0 24px 70px rgba(15, 23, 42, 0.32);
 }
 
 
@@ -75,7 +75,7 @@
 
 .code-editor-dialog-header {
 
-    height: 52px;
+    min-height: 62px;
 
     flex-shrink: 0;
 
@@ -85,11 +85,11 @@
 
     justify-content: space-between;
 
-    padding: 0 16px 0 20px;
+    padding: 0 17px 0 20px;
 
-    border-bottom: 1px solid #eef0f3;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-    background: #ffffff;
+    background: #1e2a35;
 }
 
 
@@ -99,7 +99,7 @@
 
     font-weight: 600;
 
-    color: #1f2937;
+    color: #ffffff;
 }
 
 
@@ -121,7 +121,7 @@
 
     background: transparent;
 
-    color: #6b7280;
+    color: #92a0ad;
 
     font-size: 24px;
 
@@ -133,9 +133,9 @@
 
 .code-editor-close:hover {
 
-    background: #f3f4f6;
+    background: #253340;
 
-    color: #111827;
+    color: #ffffff;
 }
 
 
@@ -155,7 +155,7 @@
 
     padding: 0;
 
-    background: #111827;
+    background: #101820;
 
 }
 
@@ -164,11 +164,60 @@
    Python 编辑器
    ========================================================= */
 
+.code-editor-input {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns: 42px minmax(0, 1fr);
+
+    overflow: hidden;
+
+    background: #101820;
+}
+
+
+.code-editor-gutter {
+
+    min-height: 0;
+
+    margin: 0;
+
+    padding: 20px 8px 20px 0;
+
+    overflow: hidden;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+
+    background: #101820;
+
+    color: #53616e;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    text-align: right;
+
+    user-select: none;
+}
+
+
 #modalPythonEditor {
 
     width: 100%;
 
-    flex: 1;
+    height: 100%;
 
     min-height: 0;
 
@@ -180,13 +229,13 @@
 
     outline: 0;
 
-    padding: 20px;
+    padding: 20px 18px;
 
     box-sizing: border-box;
 
-    background: #111827;
+    background: #101820;
 
-    color: #e5e7eb;
+    color: #e7edf3;
 
     font-family:
         "SFMono-Regular",
@@ -195,11 +244,13 @@
         Menlo,
         monospace;
 
-    font-size: 14px;
+    font-size: 13px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 
     tab-size: 4;
+
+    white-space: pre;
 
 }
 
@@ -218,13 +269,13 @@
 
     align-items: center;
 
-    padding: 10px 20px;
+    min-height: 54px;
 
-    background: #111827;
+    padding: 9px 12px;
 
-    border-top: 1px solid #1f2937;
+    background: #1b2732;
 
-    border-bottom: 1px solid #1f2937;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 
@@ -234,23 +285,37 @@
 
 .code-editor-run {
 
-    min-width: 120px;
+    width: 100px;
 
-    height: 38px;
+    height: 34px;
 
-    padding: 0 18px;
+    padding: 0 10px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 100px;
+
+    gap: 6px;
+
+    box-sizing: border-box;
+
+    white-space: nowrap;
 
     border: 0;
 
     border-radius: 7px;
 
-    background: #2563eb;
+    background: #4e9f6f;
 
     color: #ffffff;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    font-weight: 500;
+    font-weight: 700;
 
     cursor: pointer;
 
@@ -263,14 +328,14 @@
 
 .code-editor-run:hover {
 
-    background: #1d4ed8;
+    background: #41865e;
 
 }
 
 
 .code-editor-run:active {
 
-    background: #1e40af;
+    background: #37734f;
 
 }
 
@@ -300,9 +365,9 @@
 
     overflow: hidden;
 
-    background: #ffffff;
+    background: #0d141a;
 
-    border-top: 1px solid #dfe5ec;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 
 }
 
@@ -313,7 +378,7 @@
 
 .code-editor-output-title {
 
-    flex: 0 0 36px;
+    flex: 0 0 34px;
 
     display: flex;
 
@@ -323,15 +388,17 @@
 
     box-sizing: border-box;
 
-    background: #f5f7f9;
+    background: #0d141a;
 
-    border-bottom: 1px solid #e5e9ee;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 
-    color: #374151;
+    color: #8f9ba6;
 
-    font-size: 13px;
+    font-size: 10px;
 
-    font-weight: 600;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
 
 }
 
@@ -350,15 +417,15 @@
 
     margin: 0;
 
-    padding: 12px 14px;
+    padding: 6px 15px 15px;
 
     overflow: auto;
 
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: #0d141a;
 
-    color: #111827;
+    color: #cdd7df;
 
     font-family:
         "SFMono-Regular",
@@ -367,9 +434,9 @@
         Menlo,
         monospace;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    line-height: 1.6;
+    line-height: 1.7;
 
     white-space: pre-wrap;
 
@@ -382,7 +449,7 @@
 
     content: "运行代码后，输出结果会显示在这里。";
 
-    color: #9ca3af;
+    color: #718096;
 
 }
 
@@ -406,35 +473,9 @@
 
     padding: 0 16px;
 
-    border-top: 1px solid #eef0f3;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 
-    background: #ffffff;
-}
-
-
-.code-editor-run {
-
-    height: 34px;
-
-    padding: 0 14px;
-
-    border: 0;
-
-    border-radius: 7px;
-
-    background: #2563eb;
-
-    color: #ffffff;
-
-    font-size: 13px;
-
-    cursor: pointer;
-}
-
-
-.code-editor-run:hover {
-
-    background: #1d4ed8;
+    background: #1e2a35;
 }
 
 .practice-code-example {
@@ -473,8 +514,6 @@
 
     .code-editor-dialog-header {
 
-        height: 52px;
-
         padding-left: 16px;
     }
 
@@ -483,7 +522,14 @@
 
         padding: 16px;
 
-        font-size: 14px;
+        font-size: 13px;
+    }
+
+    .code-editor-gutter {
+
+        padding: 16px 8px 16px 0;
+
+        font-size: 13px;
     }
 
 
@@ -496,10 +542,4 @@
     }
 
 
-    .code-editor-run {
-
-        width: 100%;
-
-        height: 38px;
-    }
 }
