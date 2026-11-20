@@ -72,28 +72,6 @@ const state = {
    INITIALIZE
 ========================================================= */
 
-function initTopbarVisibility() {
-    const topbar = document.querySelector(".topbar");
-
-    if (!topbar) {
-        return;
-    }
-
-    const updateVisibility = () => {
-        topbar.classList.toggle(
-            "topbar-hidden",
-            window.scrollY > 1
-        );
-    };
-
-    updateVisibility();
-
-    window.addEventListener("scroll", updateVisibility, {
-        passive: true
-    });
-}
-
-
 document.addEventListener(
     "DOMContentLoaded",
     init
@@ -179,8 +157,6 @@ function init() {
     updateProgressUI();
 
     bindEvents();
-
-    initTopbarVisibility();
 
     restoreRoute();
 }

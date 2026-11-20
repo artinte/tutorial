@@ -107,9 +107,7 @@ button {
 
 .topbar {
 
-    position: sticky;
-
-    top: 0;
+    position: relative;
 
     z-index: 100;
 
@@ -128,18 +126,7 @@ button {
     border-bottom: 1px solid #2f6694;
 
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-
-    transition:
-        transform 0.24s cubic-bezier(0.2, 0.7, 0.2, 1),
-        opacity 0.18s ease;
 }
-
-.topbar.topbar-hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-}
-
 
 .topbar-left,
 .topbar-right {
@@ -322,12 +309,12 @@ button {
 
     position: sticky;
 
-    top: var(--topbar-height);
+    top: 0;
 
     width: var(--sidebar-width);
 
     height:
-        calc(100vh - var(--topbar-height));
+        100vh;
 
     flex: 0 0 var(--sidebar-width);
 
