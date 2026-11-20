@@ -32,7 +32,7 @@ function escapeHTML(value = "") {
 }
 
 
-function scrollToElement(element, offset = 95) {
+function scrollToElement(element, offset = 24) {
     if (!element) {
         return;
     }
@@ -446,6 +446,14 @@ function renderRoadmap() {
             const sections =
                 chapter.sections || [];
 
+            const progress =
+                getChapterProgress(chapter);
+
+            const completedCount =
+                sections.filter(section =>
+                    state.completedSections.has(section.id)
+                ).length;
+
             const filteredSections =
                 query
                     ? sections.filter(section =>
@@ -541,6 +549,8 @@ function renderRoadmap() {
                         role="button"
                         tabindex="0"
                         aria-expanded="${expanded}"
+                        aria-controls="chapter-lessons-${escapeHTML(chapter.id)}"
+                        aria-label="${escapeHTML(chapter.title)}，${completedCount}/${chapter.sections.length} 个小节已完成，${expanded ? "收起" : "展开"}章节"
                         data-toggle-chapter="${escapeHTML(chapter.id)}"
                     >
 
@@ -564,9 +574,14 @@ function renderRoadmap() {
 
                         <div class="chapter-card-meta">
 
-                            <span class="chapter-card-count">
-                                ${sections.length} 个小节
-                            </span>
+                            <div class="chapter-card-progress">
+                                <span class="chapter-card-count">
+                                    ${completedCount} / ${sections.length} 小节 · ${progress}%
+                                </span>
+                                <span class="chapter-progress-track" role="progressbar" aria-label="本章学习进度" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">
+                                    <span class="chapter-progress-fill" style="width: ${progress}%"></span>
+                                </span>
+                            </div>
 
                             <span class="chapter-card-arrow">
                                 ⌄
@@ -577,7 +592,7 @@ function renderRoadmap() {
                     </div>
 
 
-                    <div class="chapter-card-body">
+                    <div class="chapter-card-body" id="chapter-lessons-${escapeHTML(chapter.id)}">
 
                         <div class="chapter-card-divider"></div>
 
@@ -977,7 +992,7 @@ function renderTOC(chapter) {
                     `#lesson-${encodeURIComponent(sectionId)}`
                 );
 
-                scrollToElement(target, 105);
+                scrollToElement(target, 24);
             }
         });
     });
@@ -1277,12 +1292,11 @@ function openChapter(chapterId, options = {}) {
     saveProgress();
 
     renderRoadmap();
-    renderReader();
 
     if (options.scroll !== false) {
         scrollToElement(
-            $("#course-reader"),
-            85
+            $(`[data-chapter-card="${CSS.escape(chapter.id)}"]`),
+            24
         );
     }
 }
@@ -1322,17 +1336,12 @@ function openSection(chapterId, sectionId) {
     saveProgress();
 
     renderRoadmap();
-    renderReader();
 
-    requestAnimationFrame(() => {
-        const target = $(
-            `#lesson-${CSS.escape(section.id)}`
-        );
+    const page =
+        section.page || section.id;
 
-        if (target) {
-            scrollToElement(target, 105);
-        }
-    });
+    window.location.href =
+        `./chapters/${encodeURIComponent(page)}.html`;
 }
 
 
@@ -1354,7 +1363,6 @@ function toggleSectionComplete(sectionId) {
     saveProgress();
 
     renderRoadmap();
-    renderReader();
 }
 
 
@@ -1390,7 +1398,6 @@ function markChapterComplete(chapter) {
     saveProgress();
 
     renderRoadmap();
-    renderReader();
 }
 
 
@@ -1400,13 +1407,7 @@ function updateProgressUI() {
     $("#sidebarProgressText").textContent =
         `${progress}%`;
 
-    $("#readerProgressText").textContent =
-        `${progress}%`;
-
     $("#sidebarProgressFill").style.width =
-        `${progress}%`;
-
-    $("#readerProgressFill").style.width =
         `${progress}%`;
 
     $("#sidebarProgressHint").textContent =
@@ -1415,9 +1416,6 @@ function updateProgressUI() {
             : progress === 0
                 ? "完成第一个小节，开启你的学习旅程。"
                 : `已经完成 ${getCompletedCount()} 个小节，继续保持。`;
-
-    $("#readerProgressCaption").textContent =
-        `已完成 ${getCompletedCount()} / ${getSectionCount()} 个小节`;
 
     $("#statChapterCount").textContent =
         String(chapters.length);
@@ -1861,28 +1859,18 @@ function bindNavigationEvents() {
     $("#startLearning")?.addEventListener(
         "click",
         () => {
-            const chapter =
-                getCurrentChapter();
-
-            if (!chapter) {
-                return;
-            }
-
             const firstIncomplete =
-                chapter.sections.find(section =>
+                getAllSections().find(section =>
                     !state.completedSections.has(section.id)
                 );
 
             if (firstIncomplete) {
                 openSection(
-                    chapter.id,
+                    firstIncomplete.chapterId,
                     firstIncomplete.id
                 );
             } else {
-                scrollToElement(
-                    $("#course-reader"),
-                    85
-                );
+                showToast("全部学习内容已完成，恭喜你！");
             }
         }
     );
@@ -1948,13 +1936,6 @@ function init() {
     bindNavigationEvents();
 
     renderRoadmap();
-    renderReader();
-
-    /*
-     * renderReader() 之后才绑定，
-     * 因为 .lesson-title 是这里动态生成的。
-     */
-    bindLessonLinks();
 
     const hash =
         decodeURIComponent(
@@ -1968,7 +1949,7 @@ function init() {
             );
 
             if (target) {
-                scrollToElement(target, 105);
+                scrollToElement(target, 24);
             }
         });
     }
