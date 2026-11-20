@@ -25,7 +25,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 92px;
+            scroll-padding-top: 84px;
         }
 
         body {
@@ -33,9 +33,9 @@
 
             min-height: 100vh;
 
-            background: #ffffff;
+            background: #f6f8fb;
 
-            color: #344054;
+            color: #17202b;
 
             font-family:
                 Inter,
@@ -47,8 +47,8 @@
                 "Microsoft YaHei",
                 sans-serif;
 
-            font-size: 16px;
-            line-height: 1.85;
+            font-size: 15px;
+            line-height: 1.8;
         }
 
         a {
@@ -71,10 +71,13 @@
             height: 64px;
 
             border-bottom:
-                1px solid #e9edf2;
+                1px solid #2f6694;
 
             background:
-                rgba(255, 255, 255, 0.94);
+                #3776ab;
+
+            box-shadow:
+                0 1px 4px rgba(0, 0, 0, 0.08);
 
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
@@ -82,7 +85,7 @@
 
         .topbar-inner {
             width:
-                min(1240px, calc(100% - 48px));
+                min(1340px, calc(100% - 52px));
 
             height: 100%;
 
@@ -102,7 +105,7 @@
 
             gap: 9px;
 
-            color: #667085;
+            color: rgba(255, 255, 255, 0.88);
 
             font-size: 14px;
 
@@ -114,7 +117,7 @@
         }
 
         .back-link:hover {
-            color: #111827;
+            color: #ffffff;
 
             transform:
                 translateX(-2px);
@@ -129,13 +132,13 @@
             place-items: center;
 
             border:
-                1px solid #e3e8ef;
+                1px solid rgba(255, 255, 255, 0.28);
 
             border-radius: 8px;
 
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.10);
 
-            color: #475467;
+            color: #ffffff;
 
             font-size: 15px;
         }
@@ -150,18 +153,18 @@
         }
 
         .course-mark {
-            width: 31px;
-            height: 31px;
+            width: 34px;
+            height: 34px;
 
             display: grid;
 
             place-items: center;
 
-            border-radius: 8px;
+            border-radius: 9px;
 
-            background: #111827;
+            background: #ffffff;
 
-            color: #ffffff;
+            color: #3776ab;
 
             font-size: 11px;
 
@@ -171,7 +174,7 @@
         .course-name strong {
             display: block;
 
-            color: #1f2937;
+            color: #ffffff;
 
             font-size: 13px;
 
@@ -183,7 +186,7 @@
 
             margin-top: 2px;
 
-            color: #98a2b3;
+            color: rgba(255, 255, 255, 0.7);
 
             font-size: 9px;
 
@@ -201,18 +204,193 @@
 
         .page {
             width:
-                min(1240px, calc(100% - 48px));
+                min(1540px, calc(100% - 48px));
 
             margin: 0 auto;
 
             display: grid;
 
             grid-template-columns:
-                minmax(0, 820px) 220px;
+                250px minmax(0, 850px) 250px;
 
-            gap: 88px;
+            gap: 24px;
 
             align-items: start;
+            justify-content: center;
+        }
+
+        .chapter-sidebar {
+            position: sticky;
+            top: 86px;
+
+            display: flex;
+            flex-direction: column;
+            min-height: 360px;
+            max-height: calc(100vh - 106px);
+            overflow: hidden;
+
+            border: 1px solid #e7ebf0;
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(20, 32, 50, 0.04);
+        }
+
+        .chapter-sidebar-header {
+            padding: 20px 17px 15px;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .chapter-sidebar-eyebrow {
+            margin-bottom: 6px;
+            color: #3776ab;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .chapter-sidebar-header h2 {
+            margin: 0 0 5px;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .chapter-sidebar-header p {
+            margin: 0;
+            color: #8a95a3;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+        .chapter-navigation {
+            flex: 1;
+            min-height: 0;
+            padding: 8px 9px 12px;
+            overflow-y: auto;
+        }
+
+        .chapter-navigation::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chapter-navigation::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: #dfe4ea;
+        }
+
+        .chapter-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+            min-width: 0;
+            margin-bottom: 3px;
+            padding: 8px;
+            border-radius: 9px;
+            color: #566273;
+            text-decoration: none;
+            transition: background 180ms ease, color 180ms ease;
+        }
+
+        .chapter-nav-item:hover {
+            background: #f5f8fb;
+            color: #17202b;
+        }
+
+        .chapter-nav-item.active {
+            background: #edf5fb;
+            color: #3776ab;
+        }
+
+        .chapter-nav-item:focus-visible {
+            outline: 3px solid rgba(55, 118, 171, 0.25);
+            outline-offset: -2px;
+        }
+
+        .chapter-nav-number {
+            display: grid;
+            flex: 0 0 29px;
+            place-items: center;
+            width: 29px;
+            height: 29px;
+            border-radius: 8px;
+            background: #f2f4f7;
+            color: #8a95a3;
+            font-size: 10px;
+            font-weight: 750;
+        }
+
+        .chapter-nav-item.active .chapter-nav-number {
+            background: #3776ab;
+            color: #ffffff;
+        }
+
+        .chapter-nav-info {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .chapter-nav-title {
+            overflow: hidden;
+            font-size: 11px;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .chapter-nav-meta {
+            margin-top: 1px;
+            color: #8a95a3;
+            font-size: 9px;
+        }
+
+        .chapter-nav-check {
+            margin-left: auto;
+            color: #15946b;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .chapter-sidebar-footer {
+            padding: 15px 17px 17px;
+            border-top: 1px solid #edf0f4;
+        }
+
+        .chapter-sidebar-progress-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: #8a95a3;
+            font-size: 10px;
+        }
+
+        .chapter-sidebar-progress-heading strong {
+            color: #344454;
+            font-size: 11px;
+        }
+
+        .chapter-sidebar-progress-track {
+            height: 5px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #edf0f4;
+        }
+
+        .chapter-sidebar-progress-track span {
+            display: block;
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            background: #3776ab;
+            transition: width 300ms ease;
+        }
+
+        .chapter-navigation-loading {
+            padding: 12px 8px;
+            color: #8a95a3;
+            font-size: 11px;
         }
 
 
@@ -224,7 +402,7 @@
             min-width: 0;
 
             padding:
-                72px 0 100px;
+                45px 0 80px;
         }
 
 
@@ -233,7 +411,12 @@
         ========================================================= */
 
         .article-header {
-            margin-bottom: 62px;
+            margin-bottom: 26px;
+            padding: 30px 32px;
+            border: 1px solid #e7ebf0;
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(20, 32, 50, 0.04);
         }
 
         .breadcrumb {
@@ -243,7 +426,7 @@
 
             gap: 8px;
 
-            margin-bottom: 20px;
+            margin-bottom: 17px;
 
             color: #98a2b3;
 
@@ -253,7 +436,7 @@
         }
 
         .breadcrumb strong {
-            color: #667085;
+            color: #566273;
         }
 
         .eyebrow {
@@ -263,11 +446,17 @@
 
             gap: 8px;
 
-            margin-bottom: 17px;
+            width: fit-content;
+            margin-bottom: 12px;
+            padding: 5px 10px;
+            border: 1px solid #d5e7f5;
+            border-radius: 999px;
 
-            color: #667085;
+            color: #3776ab;
 
-            font-size: 12px;
+            background: #edf5fb;
+
+            font-size: 11px;
 
             font-weight: 750;
 
@@ -280,20 +469,20 @@
 
             border-radius: 50%;
 
-            background: #475569;
+            background: #3776ab;
         }
 
         h1 {
             margin: 0;
 
-            color: #101828;
+            color: #17202b;
 
             font-size:
-                clamp(38px, 5vw, 54px);
+                clamp(32px, 4vw, 38px);
 
-            line-height: 1.18;
+            line-height: 1.25;
 
-            letter-spacing: -.045em;
+            letter-spacing: -.035em;
 
             font-weight: 760;
         }
@@ -302,13 +491,13 @@
             max-width: 720px;
 
             margin:
-                23px 0 0;
+                13px 0 0;
 
-            color: #667085;
+            color: #566273;
 
-            font-size: 18px;
+            font-size: 15px;
 
-            line-height: 1.85;
+            line-height: 1.9;
         }
 
         .meta {
@@ -318,7 +507,7 @@
 
             gap: 9px;
 
-            margin-top: 25px;
+            margin-top:             19px;
         }
 
         .meta-item {
@@ -326,13 +515,13 @@
                 5px 10px;
 
             border:
-                1px solid #e5e9ef;
+                1px solid #dce8f1;
 
             border-radius: 999px;
 
-            color: #667085;
+            color: #3776ab;
 
-            background: #ffffff;
+            background: #f5f9fc;
 
             font-size: 11px;
 
@@ -345,17 +534,29 @@
         ========================================================= */
 
         .content-section {
-            margin-top: 64px;
+            margin: 24px 0 0;
+            padding: 24px;
+            border: 1px solid #e7ebf0;
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(20, 32, 50, 0.035);
         }
 
-        .content-section:first-child {
+        .article-header + .content-section {
             margin-top: 0;
         }
 
         .section-number {
-            margin-bottom: 7px;
+            display: inline-flex;
+            align-items: center;
+            min-height: 25px;
+            margin-bottom: 9px;
+            padding: 2px 9px;
 
-            color: #98a2b3;
+            border: 1px solid #d5e7f5;
+            border-radius: 6px;
+            background: #edf5fb;
+            color: #3776ab;
 
             font-size: 11px;
 
@@ -366,11 +567,11 @@
 
         h2 {
             margin:
-                0 0 20px;
+                0 0 14px;
 
-            color: #101828;
+            color: #17202b;
 
-            font-size: 29px;
+            font-size: 23px;
 
             line-height: 1.4;
 
@@ -381,11 +582,11 @@
 
         h3 {
             margin:
-                36px 0 12px;
+                25px 0 9px;
 
-            color: #1f2937;
+            color: #263544;
 
-            font-size: 20px;
+            font-size: 18px;
 
             line-height: 1.5;
 
@@ -394,7 +595,7 @@
 
         p {
             margin:
-                0 0 18px;
+                0 0 15px;
         }
 
         strong {
@@ -430,29 +631,29 @@
 
         .callout {
             margin:
-                28px 0;
+                22px 0;
 
             padding:
-                21px 23px;
+                19px 21px;
 
             border:
-                1px solid #e4e8ee;
+                1px solid #d9e8f3;
 
             border-left:
-                3px solid #475569;
+                4px solid #3776ab;
 
             border-radius: 12px;
 
             background:
                 linear-gradient(135deg,
-                    #f8fafc,
+                    #f2f8fc,
                     #ffffff);
         }
 
         .callout-title {
             margin-bottom: 6px;
 
-            color: #1f2937;
+            color: #285f8f;
 
             font-size: 14px;
 
@@ -462,7 +663,7 @@
         .callout p {
             margin: 0;
 
-            color: #667085;
+            color: #566273;
 
             font-size: 14px;
 
@@ -487,20 +688,20 @@
 
         .concept-card {
             padding:
-                20px;
+                17px;
 
             border:
-                1px solid #e7ebf0;
+                1px solid #e0e7ef;
 
             border-radius: 13px;
 
-            background: #ffffff;
+            background: #f8fafc;
         }
 
         .concept-index {
             margin-bottom: 9px;
 
-            color: #98a2b3;
+            color: #718096;
 
             font-size: 10px;
 
@@ -519,7 +720,7 @@
         .concept-card p {
             margin: 0;
 
-            color: #667085;
+            color: #566273;
 
             font-size: 13px;
 
@@ -533,28 +734,28 @@
 
         .formula {
             margin:
-                26px 0;
+                22px 0;
 
             padding:
-                22px;
+                18px;
 
             overflow-x: auto;
 
             border:
-                1px solid #e6e9ee;
+                1px solid #dce8f1;
 
             border-radius: 12px;
 
-            background: #f8fafc;
+            background: #edf5fb;
 
-            color: #172033;
+            color: #285f8f;
 
             font-family:
                 "Times New Roman",
                 "Cambria",
                 serif;
 
-            font-size: 22px;
+            font-size: 20px;
 
             text-align: center;
         }
@@ -566,12 +767,12 @@
 
         .table-wrap {
             margin:
-                25px 0;
+                22px 0;
 
             overflow-x: auto;
 
             border:
-                1px solid #e5e9ef;
+                1px solid #e1e7ed;
 
             border-radius: 12px;
         }
@@ -587,7 +788,7 @@
         th,
         td {
             padding:
-                13px 15px;
+                11px 14px;
 
             border-bottom:
                 1px solid #e8ebef;
@@ -598,9 +799,9 @@
         }
 
         th {
-            color: #475467;
+            color: #344454;
 
-            background: #f8fafc;
+            background: #f1f5f9;
 
             font-size: 12px;
 
@@ -608,7 +809,7 @@
         }
 
         td {
-            color: #667085;
+            color: #566273;
 
             font-size: 13px;
         }
@@ -624,16 +825,16 @@
 
         .code-block {
             margin:
-                26px 0;
+                22px 0;
 
             overflow: hidden;
 
             border:
-                1px solid #e4e8ed;
+                1px solid #1e303f;
 
-            border-radius: 13px;
+            border-radius: 12px;
 
-            background: #f8fafc;
+            background: #17212b;
         }
 
         .code-title {
@@ -641,24 +842,25 @@
                 10px 15px;
 
             border-bottom:
-                1px solid #e4e8ed;
+                1px solid #304252;
 
-            color: #667085;
+            color: #a6b3bf;
 
             font-size: 11px;
 
             font-weight: 700;
+            background: #202d38;
         }
 
         pre {
             margin: 0;
 
             padding:
-                20px;
+                18px;
 
             overflow-x: auto;
 
-            color: #344054;
+            color: #d9e3ea;
 
             font-family:
                 "SFMono-Regular",
@@ -666,7 +868,7 @@
                 "Liberation Mono",
                 monospace;
 
-            font-size: 13px;
+            font-size: 12px;
 
             line-height: 1.75;
         }
@@ -677,20 +879,22 @@
         ========================================================= */
 
         .summary {
-            margin-top: 64px;
+            margin-top: 28px;
 
             padding:
-                27px 28px;
+                24px 25px;
 
             border:
-                1px solid #e2e8f0;
+                1px solid #d8e6f0;
 
             border-radius: 15px;
 
             background:
                 linear-gradient(135deg,
-                    #f8fafc,
+                    #edf5fb,
                     #ffffff);
+
+            border-left: 4px solid #3776ab;
         }
 
         .summary h2 {
@@ -709,24 +913,25 @@
         .toc-wrap {
             position: sticky;
 
-            top: 96px;
+            top: 86px;
 
-            padding-top: 72px;
+            padding-top: 22px;
 
             align-self: start;
         }
 
         .toc {
-            border-left:
-                1px solid #e6e9ee;
-
-            padding-left: 18px;
+            padding: 19px;
+            border: 1px solid #e7ebf0;
+            border-radius: 13px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(20, 32, 50, 0.04);
         }
 
         .toc-title {
             margin-bottom: 15px;
 
-            color: #98a2b3;
+            color: #8a95a3;
 
             font-size: 10px;
 
@@ -745,7 +950,7 @@
             padding:
                 6px 0;
 
-            color: #98a2b3;
+            color: #566273;
 
             font-size: 12px;
 
@@ -756,11 +961,11 @@
         }
 
         .toc a:hover {
-            color: #344054;
+            color: #285f8f;
         }
 
         .toc a.active {
-            color: #111827;
+            color: #285f8f;
 
             font-weight: 700;
         }
@@ -770,17 +975,12 @@
 
             position: absolute;
 
-            left: -19px;
-
+            left: -10px;
             top: 7px;
-
             width: 2px;
-
             height: 17px;
-
             border-radius: 2px;
-
-            background: #111827;
+            background: #3776ab;
         }
 
         .toc-main {
@@ -791,7 +991,7 @@
             border-top:
                 1px solid #edf0f3;
 
-            color: #667085 !important;
+            color: #285f8f !important;
 
             font-weight: 650;
         }
@@ -951,11 +1151,13 @@
            RESPONSIVE
         ========================================================= */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1180px) {
 
             .page {
+                width: min(980px, calc(100% - 32px));
                 grid-template-columns:
-                    minmax(0, 820px);
+                    230px minmax(0, 1fr);
+                gap: 22px;
             }
 
             .toc-wrap {
@@ -963,9 +1165,32 @@
             }
 
             .article {
-                margin: 0 auto;
-
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .page {
+                width: calc(100% - 32px);
+                grid-template-columns: minmax(0, 1fr);
+                gap: 0;
+            }
+
+            .chapter-sidebar {
+                position: static;
+                min-height: 0;
+                max-height: none;
+                margin-top: 20px;
+            }
+
+            .chapter-navigation {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                max-height: 240px;
+            }
+
+            .article {
+                padding: 24px 0 56px;
             }
         }
 
@@ -986,17 +1211,58 @@
                     calc(100% - 32px);
             }
 
+            .chapter-sidebar-header {
+                padding: 16px 15px 12px;
+            }
+
+            .chapter-sidebar-footer {
+                padding: 12px 15px 14px;
+            }
+
+            .chapter-navigation {
+                padding: 7px;
+            }
+
+            .chapter-nav-item {
+                gap: 7px;
+                padding: 7px 6px;
+            }
+
+            .chapter-nav-number {
+                flex-basis: 27px;
+                width: 27px;
+                height: 27px;
+            }
+
+            .chapter-nav-title {
+                font-size: 10px;
+            }
+
             .article {
                 padding:
-                    46px 0 72px;
+                    32px 0 56px;
+            }
+
+            .article-header {
+                padding: 22px 20px;
+                margin-bottom: 20px;
+            }
+
+            .content-section {
+                margin-top: 18px;
+                padding: 19px;
             }
 
             h1 {
-                font-size: 38px;
+                font-size: 32px;
             }
 
             .article-intro {
-                font-size: 16px;
+                font-size: 15px;
+            }
+
+            h2 {
+                font-size: 21px;
             }
 
             .concept-grid {
@@ -1021,7 +1287,7 @@
 </head>
 
 
-<body>
+<body data-current-chapter="chapter-01">
 
 
     <!-- =========================================================
@@ -1033,7 +1299,7 @@
         <div class="topbar-inner">
 
 
-            <a class="back-link" href="../../../index.html">
+            <a class="back-link" href="../index.html">
 
                 <span class="back-icon">
                     ←
@@ -1078,6 +1344,38 @@
 
     <div class="page">
 
+        <aside class="chapter-sidebar">
+
+            <div class="chapter-sidebar-header">
+                <div class="chapter-sidebar-eyebrow">
+                    DEEP LEARNING FUNDAMENTALS
+                </div>
+                <h2>学习路线</h2>
+                <p>从基础概念到综合实践，按章节推进。</p>
+            </div>
+
+            <nav id="chapterNavigation" class="chapter-navigation" aria-label="课程章节">
+                <div class="chapter-navigation-loading">正在加载课程目录……</div>
+            </nav>
+
+            <div class="chapter-sidebar-footer">
+                <div class="chapter-sidebar-progress-heading">
+                    <span>当前课程</span>
+                    <strong id="sidebarProgressText">0 / 88</strong>
+                </div>
+                <div
+                    class="chapter-sidebar-progress-track"
+                    id="sidebarProgressBar"
+                    role="progressbar"
+                    aria-label="课程学习进度"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                >
+                    <span></span>
+                </div>
+            </div>
+        </aside>
 
         <!-- =====================================================
          ARTICLE
@@ -1090,7 +1388,7 @@
              HEADER
         ================================================= -->
 
-            <header class="article-header">
+            <header class="article-header" id="chapter-top">
 
 
                 <div class="breadcrumb">
@@ -2003,7 +2301,7 @@
 
                 <!-- PREVIOUS -->
 
-                <a class="lesson-nav" href="../../../index.html">
+                <a class="lesson-nav" href="../index.html">
 
                     <span class="nav-label">
                         ← 返回课程
@@ -2023,7 +2321,7 @@
                 <!-- NEXT -->
 
                 <a class="lesson-nav next"
-                    href="../../../index.html#course-roadmap">
+                    href="../index.html#course-roadmap">
 
                     <span class="nav-label">
                         查看学习路线 →
@@ -2047,7 +2345,7 @@
 
             <div class="course-return">
 
-                <a href="../../../index.html">
+                <a href="../index.html">
                     ← 返回《深度学习基础》课程
                 </a>
 
@@ -2143,6 +2441,86 @@
         深度学习基础 · Deep Learning Fundamentals
 
     </footer>
+
+    <script type="module">
+        import {
+            COURSE_ID,
+            chapters
+        } from "../../../js/deep_learning_fundamentals/chapters.js";
+
+        const navigation = document.getElementById("chapterNavigation");
+        const currentChapterId = document.body.dataset.currentChapter;
+        const storageKey = `${COURSE_ID}:learning-progress`;
+        let completedSections = new Set();
+
+        try {
+            const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+            if (Array.isArray(saved.completedSections)) {
+                completedSections = new Set(saved.completedSections);
+            }
+        } catch (error) {
+            console.warn("读取学习进度失败：", error);
+        }
+
+        navigation.replaceChildren();
+
+        chapters.forEach(chapter => {
+            const completedCount = chapter.sections.filter(section =>
+                completedSections.has(section.id)
+            ).length;
+            const active = chapter.id === currentChapterId;
+            const link = document.createElement("a");
+            const number = document.createElement("span");
+            const info = document.createElement("span");
+            const title = document.createElement("span");
+            const meta = document.createElement("span");
+
+            link.className = `chapter-nav-item${active ? " active" : ""}`;
+            link.href = active
+                ? "#chapter-top"
+                : `../index.html?chapter=${encodeURIComponent(chapter.id)}#course-roadmap`;
+
+            if (active) {
+                link.setAttribute("aria-current", "page");
+            }
+
+            number.className = "chapter-nav-number";
+            number.textContent = chapter.number;
+            info.className = "chapter-nav-info";
+            title.className = "chapter-nav-title";
+            title.textContent = chapter.title;
+            meta.className = "chapter-nav-meta";
+            meta.textContent = `${completedCount} / ${chapter.sections.length}`;
+
+            info.append(title, meta);
+            link.append(number, info);
+
+            if (chapter.sections.length > 0 && completedCount === chapter.sections.length) {
+                const check = document.createElement("span");
+                check.className = "chapter-nav-check";
+                check.setAttribute("aria-label", "已完成");
+                check.textContent = "✓";
+                link.append(check);
+            }
+
+            navigation.append(link);
+        });
+
+        const totalSections = chapters.reduce(
+            (total, chapter) => total + chapter.sections.length,
+            0
+        );
+        const completedCount = Math.min(completedSections.size, totalSections);
+        const progress = totalSections
+            ? Math.round(completedCount / totalSections * 100)
+            : 0;
+        const progressBar = document.getElementById("sidebarProgressBar");
+
+        document.getElementById("sidebarProgressText").textContent =
+            `${completedCount} / ${totalSections}`;
+        progressBar.setAttribute("aria-valuenow", String(progress));
+        progressBar.firstElementChild.style.width = `${progress}%`;
+    </script>
 
 
 </body>
