@@ -906,15 +906,25 @@ button {
 
 .run-button {
 
+    width: 100px;
+
     height: 34px;
 
-    padding: 0 13px;
+    padding: 0 10px;
 
     display: flex;
 
     align-items: center;
 
+    justify-content: center;
+
+    flex: 0 0 100px;
+
     gap: 6px;
+
+    box-sizing: border-box;
+
+    white-space: nowrap;
 
     border: 0;
 

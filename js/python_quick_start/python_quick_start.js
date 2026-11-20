@@ -2613,10 +2613,6 @@ async function runPythonCode(
     }
 
 
-    output.textContent =
-        "正在执行 Python...\n";
-
-
     try {
 
         const response =
