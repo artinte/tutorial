@@ -442,6 +442,27 @@ function markLessonComplete(
     renderChapterGrid();
 }
 
+function toggleLessonComplete(
+    lessonId
+) {
+    if (!isLessonComplete(lessonId)) {
+        markLessonComplete(lessonId);
+        return true;
+    }
+
+    state.completedLessons.delete(lessonId);
+
+    saveProgress();
+
+    updateProgressUI();
+
+    renderChapterNavigation();
+
+    renderChapterGrid();
+
+    return false;
+}
+
 
 function getProgressPercent() {
 
@@ -2081,20 +2102,19 @@ function renderLessonActions(
 
         <div>
 
-            ${!complete
-            ? `
-                        <button
-                            class="
-                                lesson-action-button
-                                primary
-                            "
-                            data-action="complete"
-                        >
-                            ✓ 标记完成
-                        </button>
-                      `
-            : ""
+            <button
+                class="
+                    lesson-action-button
+                    ${complete ? "completed" : "primary"}
+                "
+                data-action="complete"
+                aria-pressed="${complete}"
+            >
+                ${complete
+            ? "✓ 已完成 · 取消标记"
+            : "✓ 标记完成"
         }
+            </button>
 
 
             ${next
@@ -2135,7 +2155,7 @@ function renderLessonActions(
             "click",
             () => {
 
-                markLessonComplete(
+                const completed = toggleLessonComplete(
                     lesson.id
                 );
 
@@ -2145,7 +2165,9 @@ function renderLessonActions(
                 );
 
                 showToast(
-                    "已记录学习进度"
+                    completed
+                        ? "已记录学习进度"
+                        : "已取消完成标记"
                 );
             }
         );

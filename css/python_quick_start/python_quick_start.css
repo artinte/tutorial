@@ -1971,6 +1971,15 @@ button {
     border-color: var(--python-blue);
 }
 
+.lesson-action-button.completed {
+
+    background: var(--green-soft);
+
+    color: var(--green);
+
+    border-color: #d6efe3;
+}
+
 
 /* =========================================================
    LESSON ASIDE
