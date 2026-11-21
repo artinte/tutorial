@@ -1403,6 +1403,7 @@ function renderBlock(block) {
                     type="button"
                     class="lesson-code-run"
                     data-code-id="${codeId}"
+                    ${block.runnable === false ? 'style="display: none;"' : ""}
                 >
                     ▶ 运行代码
                 </button>
@@ -1412,7 +1413,7 @@ function renderBlock(block) {
                         lesson-code-status
                     "
                 >
-                    就绪
+                    ${block.runnable === false ? "命令示例" : "就绪"}
                 </span>
 
             </div>
