@@ -1,0 +1,1008 @@
+/* =========================================================
+   SHARED · 教程内容样式
+   content_kit.css
+   ---------------------------------------------------------
+   两门课共用的一套正文样式。
+
+   主题：
+   所有颜色都通过 --ck-* 变量取值，
+   并回退到各课程已有的设计变量：
+
+       Python 课程：--accent / --python-blue
+       深度学习课程：--blue / --purple
+
+   因此样式统一，但颜色仍然是每本书自己的风格。
+
+   类名统一使用 ck- 前缀，避免和课程自己的样式冲突。
+========================================================= */
+
+
+/* =========================================================
+   主题变量
+========================================================= */
+
+.ck-article,
+.ck-content,
+.ck-toc,
+.ck-progress,
+.ck-pagenav {
+
+    --ck-accent: var(--accent, var(--blue, #3776ab));
+    --ck-accent-dark: var(--accent-dark, var(--blue-dark, #285f8f));
+    --ck-accent-soft: var(--accent-soft, var(--blue-soft, #edf5fb));
+
+    --ck-surface: var(--surface, #ffffff);
+    --ck-surface-soft: var(--surface-soft, #f8fafc);
+
+    --ck-border: var(--border, #e7ebf0);
+    --ck-border-strong: var(--border-strong, #d9e0e8);
+
+    --ck-text: var(--text, #17202b);
+    --ck-text-soft: var(--text-secondary, #566273);
+    --ck-muted: var(--text-muted, #8a95a3);
+
+    --ck-green: var(--green, #15946b);
+    --ck-green-soft: var(--green-soft, #eaf8f3);
+
+    --ck-orange: var(--orange, #e88924);
+    --ck-orange-soft: var(--orange-soft, #fff5e8);
+
+    --ck-radius: var(--radius-sm, 10px);
+    --ck-radius-lg: var(--radius, 14px);
+
+    --ck-shadow: var(--shadow-sm, 0 2px 8px rgba(20, 32, 50, 0.05));
+
+    --ck-mono:
+        ui-monospace,
+        SFMono-Regular,
+        "SF Mono",
+        Menlo,
+        Consolas,
+        "Liberation Mono",
+        monospace;
+}
+
+
+/* =========================================================
+   文章头
+========================================================= */
+
+.ck-article {
+    color: var(--ck-text);
+}
+
+.ck-article-head {
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--ck-border);
+}
+
+.ck-article-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    color: var(--ck-accent);
+
+    font-family: var(--ck-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.ck-article-kicker span {
+    color: var(--ck-muted);
+}
+
+.ck-article-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    margin: 0;
+
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+.ck-article-number {
+    flex: none;
+
+    color: var(--ck-accent);
+
+    font-family: var(--ck-mono);
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
+
+    padding: 5px 12px;
+
+    border-radius: 8px;
+    background: var(--ck-accent-soft);
+}
+
+.ck-article-intro {
+    margin: 14px 0 0;
+
+    color: var(--ck-text-soft);
+
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   学习目标
+========================================================= */
+
+.ck-objectives {
+    margin-top: 20px;
+    padding: 16px 18px;
+
+    border: 1px solid var(--ck-border);
+    border-left: 3px solid var(--ck-accent);
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-surface-soft);
+}
+
+
+/* =========================================================
+   正文基础
+========================================================= */
+
+.ck-content {
+    color: var(--ck-text);
+    font-size: 15px;
+
+    /* 行距略收，留出纵向空间给段间距，
+       否则段间空隙会比行距还小，看不出分段。 */
+    line-height: 1.8;
+}
+
+/* ---------------------------------------------------------
+   正文纵向节奏
+   ---------------------------------------------------------
+   层次从小到大：
+
+       段内行距          1.8（27px）
+       段落之间          26px   ← 明显大于行距，能看出分段
+       卡片四周          30px
+       小标题上方        42px
+       小标题下方        20px   ← 比段间距小，标题跟着下文
+
+   同理，段落之间必须比行距大，否则整段文字会糊成一片。
+--------------------------------------------------------- */
+
+.ck-content > * + * {
+    margin-top: 26px;
+}
+
+.ck-content > .ck-block {
+    margin-block: 30px;
+}
+
+.ck-content > :first-child {
+    margin-top: 0;
+}
+
+.ck-para {
+    margin: 0;
+    color: var(--ck-text);
+}
+
+
+/* =========================================================
+   小标题（自动编号）
+========================================================= */
+
+.ck-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+
+    /* 上方留出与上一段的距离，下方也要和正文拉开 */
+    margin: 42px 0 20px;
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.45;
+
+    scroll-margin-top: 24px;
+}
+
+.ck-heading-number {
+    flex: none;
+
+    color: var(--ck-accent);
+
+    font-family: var(--ck-mono);
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.ck-heading-text {
+    min-width: 0;
+}
+
+h3.ck-heading {
+    font-size: 17px;
+}
+
+/* 标题与紧随其后的正文之间，显式拉开距离
+   （不依赖相邻外边距折叠，避免被 * + * 的段间距吃掉）。
+   这里要比段间距小，让标题在视觉上属于下面的内容。 */
+
+.ck-content > .ck-heading + * {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   通用小标签
+========================================================= */
+
+.ck-label {
+    margin-bottom: 9px;
+
+    color: var(--ck-muted);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.ck-block-title {
+    margin: 0 0 10px;
+
+    color: var(--ck-text);
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.ck-block-text {
+    margin: 0;
+
+    color: var(--ck-text-soft);
+
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.ck-hint {
+    margin: 10px 0 0;
+
+    color: var(--ck-text-soft);
+
+    font-size: 12px;
+}
+
+.ck-tag {
+    display: inline-block;
+
+    margin-top: 10px;
+    padding: 2px 9px;
+
+    border-radius: 999px;
+
+    background: var(--ck-accent-soft);
+    color: var(--ck-accent);
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.ck-link {
+    display: inline-block;
+    margin-top: 10px;
+
+    color: var(--ck-accent);
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ck-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   列表
+========================================================= */
+
+.ck-list {
+    margin: 0;
+    padding-left: 20px;
+
+    color: var(--ck-text-soft);
+
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.ck-list li + li {
+    margin-top: 6px;
+}
+
+.ck-list strong {
+    margin-right: 6px;
+    color: var(--ck-text);
+}
+
+
+/* =========================================================
+   代码块
+========================================================= */
+
+.ck-code {
+    overflow: hidden;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius-lg);
+
+    background: var(--ck-surface);
+}
+
+.ck-code-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 10px 14px;
+
+    border-bottom: 1px solid var(--ck-border);
+
+    background: var(--ck-surface-soft);
+}
+
+.ck-code-title {
+    overflow: hidden;
+
+    color: var(--ck-text);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ck-code-lang {
+    flex: none;
+
+    color: var(--ck-muted);
+
+    font-family: var(--ck-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ck-code-editor {
+    display: block;
+
+    width: 100%;
+    min-height: 96px;
+
+    padding: 14px 16px;
+
+    border: 0;
+    outline: 0;
+    resize: vertical;
+
+    background: var(--ck-surface);
+    color: var(--ck-text);
+
+    font-family: var(--ck-mono);
+    font-size: 13px;
+    line-height: 1.75;
+
+    tab-size: 4;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.ck-code-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    padding: 10px 14px;
+
+    border-top: 1px solid var(--ck-border);
+
+    background: var(--ck-surface-soft);
+}
+
+.ck-code-status {
+    margin-left: auto;
+
+    color: var(--ck-muted);
+
+    font-size: 11px;
+}
+
+/* ---------------------------------------------------------
+   运行输出
+   ---------------------------------------------------------
+   和代码卡片同一套浅色体系：浅底、等宽、顶部一条分隔线。
+   不再用深色底条，避免出现一条突兀的黑框。
+--------------------------------------------------------- */
+
+.ck-code-output {
+    margin: 0;
+    padding: 12px 16px;
+
+    border-top: 1px solid var(--ck-border);
+
+    background: var(--ck-surface-soft);
+    color: var(--ck-text-soft);
+
+    font-family: var(--ck-mono);
+    font-size: 12.5px;
+    line-height: 1.75;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    min-height: 46px;
+    max-height: 340px;
+    overflow: auto;
+}
+
+.ck-code-output[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   按钮
+========================================================= */
+
+.ck-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-height: 32px;
+    padding: 0 13px;
+
+    border: 1px solid var(--ck-border-strong);
+    border-radius: 7px;
+
+    background: var(--ck-surface);
+    color: var(--ck-text-soft);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.ck-btn:hover {
+    border-color: var(--ck-accent);
+    color: var(--ck-accent);
+}
+
+.ck-btn:disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
+.ck-btn span {
+    color: var(--ck-muted);
+    font-family: var(--ck-mono);
+    font-weight: 600;
+}
+
+.ck-btn-primary {
+    border-color: transparent;
+    background: var(--ck-accent);
+    color: #ffffff;
+}
+
+.ck-btn-primary:hover {
+    border-color: transparent;
+    background: var(--ck-accent-dark, var(--ck-accent));
+    color: #ffffff;
+}
+
+.ck-btn-primary span {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.ck-btn.is-done {
+    border-color: var(--ck-green);
+    background: var(--ck-green-soft);
+    color: var(--ck-green);
+}
+
+
+/* =========================================================
+   练习
+========================================================= */
+
+.ck-practice {
+    padding: 18px 20px;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius-lg);
+
+    background: var(--ck-surface);
+}
+
+.ck-practice .ck-label {
+    color: var(--ck-green);
+}
+
+.ck-practice-code {
+    margin-top: 14px;
+}
+
+.ck-practice-code .ck-code {
+    background: var(--ck-surface-soft);
+}
+
+.ck-practice-code .ck-code-editor {
+    background: var(--ck-surface);
+    min-height: 80px;
+}
+
+
+/* =========================================================
+   思考
+========================================================= */
+
+.ck-thinking {
+    padding: 18px 20px;
+
+    border: 1px dashed var(--ck-border-strong);
+    border-radius: var(--ck-radius-lg);
+
+    background: var(--ck-surface-soft);
+}
+
+.ck-thinking .ck-label {
+    color: var(--ck-accent);
+}
+
+
+/* =========================================================
+   提示 / 注意 / 重点
+========================================================= */
+
+.ck-note,
+.ck-callout,
+.ck-attention {
+    padding: 16px 18px;
+
+    border-radius: var(--ck-radius);
+
+    border: 1px solid var(--ck-border);
+    border-left: 3px solid var(--ck-accent);
+
+    background: var(--ck-accent-soft);
+}
+
+.ck-note .ck-label {
+    color: var(--ck-accent);
+}
+
+.ck-callout {
+    border-left-color: var(--ck-green);
+    background: var(--ck-green-soft);
+}
+
+.ck-callout-orange {
+    border-left-color: var(--ck-orange);
+    background: var(--ck-orange-soft);
+}
+
+.ck-callout-green {
+    border-left-color: var(--ck-green);
+    background: var(--ck-green-soft);
+}
+
+.ck-attention {
+    border-left-color: var(--ck-orange);
+    background: var(--ck-orange-soft);
+}
+
+.ck-attention .ck-label {
+    color: var(--ck-orange);
+}
+
+
+/* =========================================================
+   概念卡片
+========================================================= */
+
+/* 概念清单：一行一个，左侧用颜色线点缀，
+   四条一循环，方便一眼扫读。 */
+
+.ck-concepts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ck-concept {
+    display: block;
+
+    padding: 11px 16px;
+
+    border: 1px solid var(--ck-border);
+    border-left: 3px solid var(--ck-accent);
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-surface-soft);
+
+    font-size: 13.5px;
+    line-height: 1.75;
+}
+
+.ck-concept strong {
+    margin-right: 2px;
+
+    color: var(--ck-accent);
+
+    font-size: 13.5px;
+    font-weight: 700;
+}
+
+.ck-concept span {
+    color: var(--ck-text-soft);
+}
+
+
+/* 颜色轮转：强调色 → 绿 → 橙 → 紫 */
+
+.ck-concepts > .ck-concept:nth-child(4n + 2) {
+    border-left-color: var(--ck-green);
+}
+
+.ck-concepts > .ck-concept:nth-child(4n + 2) strong {
+    color: var(--ck-green);
+}
+
+.ck-concepts > .ck-concept:nth-child(4n + 3) {
+    border-left-color: var(--ck-orange);
+}
+
+.ck-concepts > .ck-concept:nth-child(4n + 3) strong {
+    color: var(--ck-orange);
+}
+
+.ck-concepts > .ck-concept:nth-child(4n + 4) {
+    border-left-color: var(--purple, #7958e8);
+}
+
+.ck-concepts > .ck-concept:nth-child(4n + 4) strong {
+    color: var(--purple, #7958e8);
+}
+
+
+/* =========================================================
+   检查清单
+========================================================= */
+
+.ck-checklist {
+    padding: 16px 18px;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-surface-soft);
+}
+
+.ck-checklist-title {
+    margin-bottom: 10px;
+
+    color: var(--ck-text);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ck-checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    color: var(--ck-text-soft);
+
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.ck-checklist-item + .ck-checklist-item {
+    margin-top: 6px;
+}
+
+.ck-checklist-mark {
+    flex: none;
+
+    color: var(--ck-green);
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   公式
+========================================================= */
+
+.ck-formula {
+    padding: 14px 18px;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-surface-soft);
+    color: var(--ck-text);
+
+    font-family: var(--ck-mono);
+    font-size: 13px;
+    line-height: 1.8;
+
+    text-align: center;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   卡片边线
+   ---------------------------------------------------------
+   每类卡片左侧都有一条明显的颜色线，用来快速区分内容类型：
+
+       代码块   强调色
+       练习     绿色
+       想一想   强调色
+       注意     强调色
+       重点     绿色 / 橙色
+       检查清单 绿色
+       公式     强调色
+========================================================= */
+
+/* 代码块：比正文略窄并居中，四周加一圈明显的强调色边框 */
+
+.ck-content > .ck-code {
+
+    max-width: 760px;
+
+    margin-inline: auto;
+}
+
+.ck-code {
+
+    /* 老浏览器兜底用实色，支持 color-mix 时用淡一档的同色描边 */
+    border-color: var(--ck-accent);
+    border-color:
+        color-mix(in srgb, var(--ck-accent) 45%, var(--ck-surface));
+
+    border-left: 3px solid var(--ck-accent);
+
+    box-shadow:
+        0 4px 18px rgba(20, 32, 50, 0.06);
+}
+
+.ck-code-head {
+    border-bottom-color:
+        color-mix(in srgb, var(--ck-accent) 22%, var(--ck-border));
+}
+
+
+/* 其它卡片补齐左边线 */
+
+.ck-practice {
+
+    border-left: 3px solid var(--ck-green);
+}
+
+.ck-thinking {
+
+    border: 1px solid var(--ck-border);
+    border-left: 3px solid var(--ck-accent);
+}
+
+.ck-checklist {
+
+    border-left: 3px solid var(--ck-green);
+}
+
+.ck-formula {
+
+    border-left: 3px solid var(--ck-accent);
+}
+
+
+/* =========================================================
+   结构图
+   ---------------------------------------------------------
+   渲染器只负责外框：
+
+       标题 / 留白 / 圆角 / 说明文字
+
+   图形内部（盒子、箭头、树、表格……）由内容自己写
+   HTML + CSS，样式统一放在：
+
+       css/shared/diagram.css
+========================================================= */
+
+.ck-diagram {
+    margin: 0;
+    padding: 18px;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius-lg);
+
+    background: var(--ck-surface);
+}
+
+.ck-diagram-title {
+    margin-bottom: 14px;
+
+    color: var(--ck-text);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ck-diagram-stage {
+    padding: 16px;
+
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-surface-soft);
+
+    overflow-x: auto;
+}
+
+.ck-diagram-desc,
+.ck-diagram-note {
+    margin: 12px 0 0;
+
+    color: var(--ck-text-soft);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.ck-diagram-note {
+    color: var(--ck-muted);
+}
+
+
+/* ---------------------------------------------------------
+   图形画布
+   ---------------------------------------------------------
+   通用底色与排版。具体图形样式见 diagram.css。
+--------------------------------------------------------- */
+
+.ck-diagram-raw {
+    box-sizing: border-box;
+
+    color: var(--ck-text-soft);
+
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.ck-diagram-raw *,
+.ck-diagram-raw *::before,
+.ck-diagram-raw *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   图 / 动画
+========================================================= */
+
+.ck-figure {
+    margin: 0;
+}
+
+.ck-figure-visual {
+    overflow: hidden;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius-lg);
+
+    background: var(--ck-surface);
+}
+
+.ck-figure-caption {
+    margin-top: 8px;
+
+    color: var(--ck-muted);
+
+    font-size: 11.5px;
+    text-align: center;
+}
+
+.ck-animation-head {
+    margin-bottom: 10px;
+}
+
+.ck-animation-head .ck-label {
+    margin-bottom: 4px;
+}
+
+.ck-animation-stage {
+    overflow: hidden;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius-lg);
+
+    background: var(--ck-surface-soft);
+}
+
+.ck-animation-tools {
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   未知类型（便于发现内容问题）
+========================================================= */
+
+.ck-unknown {
+    padding: 10px 14px;
+
+    border: 1px dashed var(--ck-orange);
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-orange-soft);
+    color: var(--ck-orange);
+
+    font-family: var(--ck-mono);
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   响应式
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .ck-article-title {
+        font-size: 23px;
+    }
+
+    .ck-article-number {
+        font-size: 0.6em;
+    }
+
+    .ck-heading {
+        font-size: 17px;
+    }
+
+    .ck-concept {
+        font-size: 12.5px;
+    }
+
+    .ck-code-editor {
+        font-size: 12px;
+    }
+}
