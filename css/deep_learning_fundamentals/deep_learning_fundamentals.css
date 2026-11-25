@@ -2664,3 +2664,114 @@ img {
         bottom: 14px;
     }
 }
+
+
+/* =========================================================
+   阅读界面外框
+   ---------------------------------------------------------
+   目录 / 正文 / 上下节由共享模块渲染，
+   这里只负责深度学习课程自己的版式与配色。
+========================================================= */
+
+.reader-section {
+    padding-top: 26px;
+    padding-bottom: 70px;
+}
+
+.reader-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 28px;
+
+    align-items: start;
+}
+
+.reader-toc-pane {
+
+    position: sticky;
+    top: 20px;
+
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+
+    padding: 18px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.reader-pane-head {
+
+    margin-bottom: 12px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.reader-progress-slot {
+    margin-top: 16px;
+}
+
+.reader-main-pane {
+
+    min-width: 0;
+
+    padding: 28px 34px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+}
+
+.reader-back {
+
+    padding: 0 0 16px;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--blue);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.reader-back:hover {
+    text-decoration: underline;
+}
+
+#readerArticle {
+    margin-top: 4px;
+}
+
+.reader-section.hidden {
+    display: none;
+}
+
+
+@media (max-width: 1080px) {
+
+    .reader-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reader-toc-pane {
+        position: static;
+        max-height: none;
+    }
+
+    .reader-main-pane {
+        padding: 22px 20px;
+    }
+}
