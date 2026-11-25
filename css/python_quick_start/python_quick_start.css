@@ -589,12 +589,24 @@ button {
 
     display: grid;
 
+    /* 两列都允许收缩：原来写死 minmax(420px, …) / minmax(520px, …)，
+       在 1180～1380px 之间会把整页顶宽，导致顶栏错位。 */
+
     grid-template-columns:
-        minmax(420px, 0.95fr) minmax(520px, 1.05fr);
+        minmax(0, 0.95fr) minmax(0, 1.05fr);
 
     gap: 54px;
 
     align-items: center;
+}
+
+/* 栅格子项默认 min-width 是 auto（= min-content），
+   一旦内部有较宽内容就会把栅格撑出容器。
+   这里显式允许收缩，页面就不会再被顶宽。 */
+
+.hero > * {
+
+    min-width: 0;
 }
 
 .hero-kicker,
@@ -844,7 +856,7 @@ button {
 
     display: grid;
 
-    grid-template-columns: 42px 1fr;
+    grid-template-columns: 42px minmax(0, 1fr);
 
     min-height: 230px;
 
@@ -1372,7 +1384,12 @@ button {
 
 .final-cta {
 
-    max-width: 1340px;
+    /* 与上方 hero / chapters-section 的内容宽度对齐：
+       那些区块是 max-width + 左右各 52px 内边距，
+       这里自己是卡片，所以用「左右留 52px 的外边距」表达同样的缩进。
+       1236px = 1340px − 52px × 2 */
+
+    width: min(1236px, calc(100% - 104px));
 
     margin: 20px auto 60px;
 
@@ -1429,23 +1446,25 @@ button {
     padding: 45px 52px 80px;
 }
 
+/* 课时页只保留「左侧目录 + 右侧正文」两栏结构。
+   正文限制在便于阅读的宽度并居中，
+   避免代码块被拉到上千像素那么长。 */
+
 .lesson-layout {
 
-    display: grid;
+    display: block;
 
-    grid-template-columns:
-        minmax(0, 1fr) 300px;
-
-    gap: 36px;
-
-    align-items: start;
+    width: 100%;
 }
 
 .lesson-main {
 
     min-width: 0;
 
-    max-width: 850px;
+    width: 100%;
+    max-width: 880px;
+
+    margin: 0 auto;
 }
 
 .back-link {
@@ -1982,173 +2001,6 @@ button {
 
 
 /* =========================================================
-   LESSON ASIDE
-========================================================= */
-
-.lesson-aside {
-
-    position: sticky;
-
-    top: calc(var(--topbar-height) + 22px);
-}
-
-.aside-card {
-
-    padding: 19px;
-
-    margin-bottom: 13px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 13px;
-
-    background: white;
-}
-
-.aside-label {
-
-    color: var(--text-muted);
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-.aside-card h3 {
-
-    margin: 5px 0 14px;
-
-    font-size: 16px;
-}
-
-.section-navigation {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 2px;
-}
-
-.section-nav-item {
-
-    width: 100%;
-
-    padding: 8px 9px;
-
-    border: 0;
-
-    border-radius: 7px;
-
-    background: transparent;
-
-    color: var(--text-secondary);
-
-    text-align: left;
-
-    font-size: 11px;
-
-    line-height: 1.5;
-}
-
-.section-nav-item:hover {
-
-    background: #f5f8fb;
-
-    color: var(--text);
-}
-
-.section-nav-item.current {
-
-    background: var(--accent-soft);
-
-    color: var(--python-blue);
-
-    font-weight: 700;
-}
-
-.ai-mini-card {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-}
-
-.ai-mini-icon {
-
-    width: 32px;
-    height: 32px;
-
-    flex: 0 0 32px;
-
-    display: grid;
-
-    place-items: center;
-
-    border-radius: 8px;
-
-    background: #edf5fb;
-
-    color: var(--python-blue);
-
-    font-size: 10px;
-
-    font-weight: 800;
-}
-
-.ai-mini-card>div:nth-child(2) {
-
-    flex: 1;
-
-    min-width: 130px;
-}
-
-.ai-mini-card strong {
-
-    font-size: 12px;
-}
-
-.ai-mini-card p {
-
-    margin: 3px 0 0;
-
-    color: var(--text-muted);
-
-    font-size: 10px;
-
-    line-height: 1.6;
-}
-
-.ai-mini-button {
-
-    width: 100%;
-
-    height: 31px;
-
-    margin-top: 4px;
-
-    border: 1px solid #d8e5ee;
-
-    border-radius: 7px;
-
-    background: #f6fafc;
-
-    color: var(--python-blue);
-
-    font-size: 11px;
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
    AI PANEL
 ========================================================= */
 
@@ -2511,16 +2363,6 @@ button {
         grid-template-columns:
             repeat(2, 1fr);
     }
-
-    .lesson-layout {
-
-        grid-template-columns: 1fr;
-    }
-
-    .lesson-aside {
-
-        position: static;
-    }
 }
 
 
@@ -2542,6 +2384,13 @@ button {
     .chapter-grid {
 
         grid-template-columns: 1fr;
+    }
+
+    /* 与上面各区块的 28px 内边距保持一致 */
+
+    .final-cta {
+
+        width: calc(100% - 56px);
     }
 }
 
@@ -2592,8 +2441,9 @@ button {
 
     .final-cta {
 
-        margin-left: 18px;
-        margin-right: 18px;
+        /* 与 hero / chapters-section 在窄屏下的 28px 内边距对齐 */
+
+        width: calc(100% - 56px);
 
         display: block;
     }
