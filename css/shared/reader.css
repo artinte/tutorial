@@ -1,0 +1,310 @@
+/* =========================================================
+   SHARED · 课程目录与阅读导航
+   reader.css
+   ---------------------------------------------------------
+   只负责「目录 / 进度 / 上下节」这三块。
+
+   目录编号：
+
+       1       章节
+       1.1     小节
+
+   正文编号由 content_kit.css 负责（1.1.1、1.1.2）。
+
+   颜色沿用 content_kit.css 定义的 --ck-* 变量，
+   因此两门课只需要提供自己的外框宽度即可。
+========================================================= */
+
+
+/* =========================================================
+   目录
+========================================================= */
+
+.ck-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ck-toc-empty {
+    margin: 8px 0;
+    color: var(--ck-muted);
+    font-size: 12px;
+}
+
+.ck-toc-chapter {
+    border-radius: var(--ck-radius);
+}
+
+.ck-toc-chapter.is-current {
+    background: var(--ck-surface-soft);
+}
+
+.ck-toc-chapter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    padding: 8px 10px;
+
+    border: 0;
+    border-radius: var(--ck-radius);
+
+    background: transparent;
+    color: var(--ck-text);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: background 160ms ease;
+}
+
+.ck-toc-chapter-btn:hover {
+    background: var(--ck-surface-soft);
+}
+
+.ck-toc-num {
+    flex: none;
+
+    min-width: 20px;
+
+    color: var(--ck-accent);
+
+    font-family: var(--ck-mono);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.ck-toc-label {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ck-toc-count {
+    flex: none;
+
+    color: var(--ck-muted);
+
+    font-family: var(--ck-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+}
+
+.ck-toc-sections {
+    display: none;
+
+    padding: 2px 0 6px 10px;
+
+    border-left: 1px solid var(--ck-border);
+
+    margin-left: 18px;
+}
+
+.ck-toc-chapter.is-open .ck-toc-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.ck-toc-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    padding: 6px 9px;
+
+    border: 0;
+    border-radius: 7px;
+
+    background: transparent;
+    color: var(--ck-text-soft);
+
+    font-family: inherit;
+    font-size: 12.5px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.ck-toc-section:hover {
+    background: var(--ck-surface-soft);
+    color: var(--ck-text);
+}
+
+.ck-toc-section.is-active {
+    background: var(--ck-accent-soft);
+    color: var(--ck-accent-dark, var(--ck-accent));
+    font-weight: 600;
+}
+
+.ck-toc-section-num {
+    flex: none;
+
+    min-width: 26px;
+
+    color: var(--ck-muted);
+
+    font-family: var(--ck-mono);
+    font-size: 10.5px;
+}
+
+.ck-toc-section.is-active .ck-toc-section-num {
+    color: var(--ck-accent);
+}
+
+.ck-toc-section-label {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ck-toc-check {
+    flex: none;
+
+    width: 12px;
+
+    color: var(--ck-green);
+
+    font-size: 11px;
+    font-weight: 700;
+    text-align: right;
+}
+
+
+/* =========================================================
+   进度
+========================================================= */
+
+.ck-progress {
+    padding: 12px 14px;
+
+    border: 1px solid var(--ck-border);
+    border-radius: var(--ck-radius);
+
+    background: var(--ck-surface-soft);
+}
+
+.ck-progress-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: var(--ck-text-soft);
+
+    font-size: 11.5px;
+}
+
+.ck-progress-head strong {
+    color: var(--ck-accent);
+
+    font-family: var(--ck-mono);
+    font-size: 12px;
+}
+
+.ck-progress-track {
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: var(--ck-border);
+}
+
+.ck-progress-track span {
+    display: block;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: var(--ck-accent);
+
+    transition: width 240ms ease;
+}
+
+.ck-progress-note {
+    margin: 8px 0 0;
+
+    color: var(--ck-muted);
+
+    font-family: var(--ck-mono);
+    font-size: 10.5px;
+}
+
+
+/* =========================================================
+   上下节导航
+========================================================= */
+
+.ck-pagenav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    margin-top: 34px;
+    padding-top: 20px;
+
+    border-top: 1px solid var(--ck-border);
+}
+
+.ck-pagenav-side {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    display: flex;
+}
+
+.ck-pagenav-side.is-right {
+    justify-content: flex-end;
+}
+
+.ck-article-empty {
+    padding: 40px 0;
+
+    color: var(--ck-muted);
+
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   响应式
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .ck-pagenav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ck-pagenav-side.is-right {
+        justify-content: stretch;
+    }
+
+    .ck-pagenav .ck-btn {
+        width: 100%;
+    }
+}
