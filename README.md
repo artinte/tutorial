@@ -83,9 +83,21 @@ export const chapter16 = {
 - `code(content, title, language)` 的代码正文统一使用 `content` 字段。
 - 只有 `language === "python"` 且课程接入了运行环境时才显示「运行代码」。
 - 正文里的普通内容（段落、练习、提示、概念）只写数据，不写 HTML。
+- 练习是一张卡片，`starterCode` 直接渲染成卡片内部的代码区（不再套一层代码卡片）。
+  传 `answer` 就会出现「显示答案」按钮，答案默认隐藏：
+
+```js
+practice(
+    "练习 1：第一次运行 Python",
+    "修改下面的程序，让它输出你的姓名……",
+    `print("姓名：")`,
+    { answer: `print("姓名：Alice")` }
+)
+```
+
 - **复杂的示意图 / 动画用 HTML + CSS + JS 写**：`diagram(title, html, description)` 的第二个参数就是图形本身，
   渲染器只负责加统一外框（标题、留白、圆角、画布底色）。
-  图形内部的类名与布局完全由内容决定，对应样式写在 `css/shared/diagram.css`：
+  图形内部的类名与布局完全由内容决定，对应样式按章节写在 `css/shared/diagram/` 下：
 
 ```js
 diagram("Python 的三层工具世界", `
@@ -97,16 +109,31 @@ diagram("Python 的三层工具世界", `
 `);
 ```
 
-`css/shared/diagram.css` 里已经有一套通用图元可以直接用：
+`css/shared/diagram/base.css` 里已经有一套通用图元可以直接用：
 `.diagram-row` `.diagram-flow` `.diagram-column` `.diagram-stack` `.diagram-grid`
 `.diagram-box` `.diagram-node` `.diagram-arrow` `.diagram-table` `.diagram-tags` `.highlight`，
 以及主题变量 `--dg-accent` `--dg-surface` `--dg-border` `--dg-text` `--dg-mono` 等。
 
-新增图解样式时补在 `diagram.css` 对应章节的分节里，写完跑一次覆盖检查（见文末自检脚本）。
+图解样式按**图解主题**拆分（不是按章节号），新增时补在对应主题的文件里，
+写完跑一次覆盖检查（见文末自检脚本）：
+
+```
+css/shared/diagram.css                  索引（@import 汇总，页面只引用这一个）
+css/shared/diagram/base.css             设计变量 + 通用图元
+css/shared/diagram/data-structures.css  数据结构：索引、切片、字典、集合、树、对照表
+css/shared/diagram/text-and-strings.css 文本：字符串索引、split/join、词频、两遍扫描
+css/shared/diagram/modules-and-packages.css  模块、包、namespace、虚拟环境、项目结构
+css/shared/diagram/standard-library.css      标准库：分层、地图、文件树、抽象层级
+css/shared/diagram/files-and-data.css        文件与数据：编码、JSON、CSV、MNIST
+css/shared/diagram/errors-and-debugging.css  异常、traceback、调试器、日志、冰山
+```
+
+图解的类名是各图自带的（`.tree-node`、`.stdlib-layer`、`.mnist-pixel-grid`……），
+所以按"图解讲什么"归类，而不是按它出现在哪一章。
 
 动画同理：`animation` block 的 `html` / `css` / `js` 就是动画自己的舞台，不参与页面样式。
 
-`js/python_quick_start/content_helpers.js` 只是转发共享模块，保持旧章节的 import 可用。
+所有章节文件都直接从 `js/shared/content_blocks.js` 导入构造器，没有中间转发层。
 
 
 ## 编号规则
