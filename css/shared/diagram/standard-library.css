@@ -1,0 +1,1212 @@
+/* =========================================================
+   SHARED · 图解样式
+   diagram/standard-library.css
+   ---------------------------------------------------------
+   标准库：分层世界、工具地图、文件系统树、数据格式、抽象层级、组合关系、工作流。
+
+   所有选择器都限定在 .ck-diagram-raw 之内，
+   不会影响页面其他地方。
+========================================================= */
+
+.ck-diagram-raw .stdlib-layer-diagram {
+
+    width: 100%;
+    max-width: 460px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.ck-diagram-raw .stdlib-layer {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .stdlib-layer-title {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .stdlib-layer-desc {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.7;
+}
+
+.ck-diagram-raw .stdlib-highlight {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .stdlib-highlight .stdlib-layer-title {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .stdlib-arrow {
+
+    flex: none;
+
+    color: var(--dg-accent);
+
+    font-size: 14px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .stdlib-tags {
+
+    margin-top: 8px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 5px;
+}
+
+.ck-diagram-raw .stdlib-tags span {
+
+    padding: 1px 8px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: 999px;
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+    line-height: 1.8;
+}
+
+.ck-diagram-raw .stdlib-highlight .stdlib-tags span {
+
+    border-color: var(--dg-accent);
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .stdlib-map {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .stdlib-map-column {
+
+    flex: 1 1 170px;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .stdlib-map-title {
+
+    color: var(--dg-muted);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    text-align: center;
+}
+
+.ck-diagram-raw .stdlib-map-item {
+
+    min-width: 0;
+
+    padding: 4px 8px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface-soft);
+
+    color: var(--dg-text-soft);
+
+    font-size: 12px;
+    line-height: 1.7;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .stdlib-map-item.strong {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-weight: 700;
+}
+
+.ck-diagram-raw .stdlib-map-arrow {
+
+    flex: none;
+
+    align-self: center;
+
+    color: var(--dg-accent);
+
+    font-size: 16px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .stdlib-workflow {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.ck-diagram-raw .stdlib-step {
+
+    flex: 1 1 120px;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .stdlib-step-number {
+
+    width: 22px;
+    height: 22px;
+
+    margin-bottom: 2px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: 50%;
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-size: 11.5px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ck-diagram-raw .stdlib-step strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .stdlib-workflow-arrow {
+
+    flex: none;
+
+    align-self: center;
+
+    color: var(--dg-accent);
+
+    font-size: 16px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .filesystem-diagram {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+}
+
+.ck-diagram-raw .fs-folder {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding-left: 16px;
+}
+
+.ck-diagram-raw .fs-folder::after {
+
+    content: "";
+
+    position: absolute;
+    top: 11px;
+    bottom: 11px;
+    left: 4px;
+
+    width: 1px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .fs-name,
+.ck-diagram-raw .fs-file {
+
+    position: relative;
+
+    align-self: flex-start;
+
+    max-width: 100%;
+    min-height: 22px;
+
+    padding: 0 8px;
+
+    display: inline-flex;
+    align-items: center;
+
+    border-radius: var(--dg-radius-sm);
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .fs-name {
+
+    border: 1px solid var(--dg-border-strong);
+
+    background: var(--dg-surface-soft);
+
+    color: var(--dg-text);
+    font-weight: 700;
+}
+
+.ck-diagram-raw .fs-file {
+
+    border: 1px solid var(--dg-border);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text-soft);
+}
+
+.ck-diagram-raw .fs-folder > .fs-name::before,
+.ck-diagram-raw .fs-folder > .fs-file::before,
+.ck-diagram-raw .fs-folder > .fs-folder::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -12px;
+
+    width: 10px;
+    height: 1px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .fs-folder > .fs-name::before,
+.ck-diagram-raw .fs-folder > .fs-file::before {
+
+    top: 50%;
+}
+
+.ck-diagram-raw .fs-folder > .fs-folder::before {
+
+    top: 11px;
+}
+
+.ck-diagram-raw .filesystem-diagram > .fs-folder > .fs-name::before {
+
+    content: none;
+}
+
+.ck-diagram-raw .data-format-diagram {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .data-format-box {
+
+    flex: 1 1 140px;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .data-format-box strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .data-format-box small {
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+}
+
+.ck-diagram-raw .data-format-box.highlight {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .data-format-box.highlight strong {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .data-format-arrow {
+
+    flex: none;
+
+    color: var(--dg-accent);
+
+    font-size: 15px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .text-tools-diagram {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .text-tool-card {
+
+    flex: 1 1 140px;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 2px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-top: 3px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .text-tool-card strong {
+
+    color: var(--dg-muted);
+
+    font-size: 10.5px;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+}
+
+.ck-diagram-raw .text-tool-card span {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .text-tool-card.highlight {
+
+    border-color: var(--dg-accent);
+    border-top-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .text-tool-card.highlight strong,
+.ck-diagram-raw .text-tool-card.highlight span {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .text-tool-arrow {
+
+    flex: none;
+
+    align-self: center;
+
+    color: var(--dg-accent);
+
+    font-size: 15px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .collections-diagram {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .collections-item {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .collections-item strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+}
+
+.ck-diagram-raw .collections-item span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.7;
+}
+
+.ck-diagram-raw .stdlib-abstraction {
+
+    width: 100%;
+    max-width: 440px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.ck-diagram-raw .abstraction-level {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 9px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .abstraction-level strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .abstraction-level span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.ck-diagram-raw .abstraction-level.highlight {
+
+    border-color: var(--dg-accent);
+    border-left-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .abstraction-level.highlight strong,
+.ck-diagram-raw .abstraction-level.highlight span {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .abstraction-arrow {
+
+    color: var(--dg-accent);
+
+    font-size: 13px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .datetime-diagram {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr));
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .datetime-card {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .datetime-card strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .datetime-card span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .runtime-diagram {
+
+    width: 100%;
+    max-width: 420px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.ck-diagram-raw .runtime-box {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .runtime-box strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .runtime-box span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .runtime-box.highlight {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .runtime-box.highlight strong {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .runtime-arrow {
+
+    color: var(--dg-accent);
+
+    font-size: 14px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .stdlib-composition {
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+        ". top ."
+        "left center right"
+        ". bottom .";
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.ck-diagram-raw .composition-center {
+
+    grid-area: center;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 12px 10px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-accent-soft);
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .composition-center strong {
+
+    color: var(--dg-accent);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .composition-center span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11px;
+}
+
+.ck-diagram-raw .composition-item {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 8px 10px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .composition-item strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .composition-item span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11px;
+}
+
+.ck-diagram-raw .composition-item.top {
+
+    grid-area: top;
+}
+
+.ck-diagram-raw .composition-item.left {
+
+    grid-area: left;
+}
+
+.ck-diagram-raw .composition-item.right {
+
+    grid-area: right;
+}
+
+.ck-diagram-raw .composition-item.bottom {
+
+    grid-area: bottom;
+}
+
+.ck-diagram-raw .stdlib-overview {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .stdlib-overview-group {
+
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .overview-title {
+
+    flex: 1 0 100%;
+
+    margin-bottom: 2px;
+
+    color: var(--dg-text);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .stdlib-overview-group span {
+
+    padding: 1px 8px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: 999px;
+
+    background: var(--dg-surface-soft);
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+    line-height: 1.8;
+}
+
+.ck-diagram-raw .python-ecosystem {
+
+    width: 100%;
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.ck-diagram-raw .ecosystem-layer {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .ecosystem-layer strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .ecosystem-layer span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .ecosystem-connector {
+
+    color: var(--dg-accent);
+
+    font-size: 14px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .ecosystem-columns {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .ecosystem-column {
+
+    flex: 1 1 150px;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface-soft);
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .ecosystem-column strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .ecosystem-column span {
+
+    color: var(--dg-muted);
+
+    font-size: 11px;
+}
+
+.ck-diagram-raw .ecosystem-column small {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+}
+
+.ck-diagram-raw .ecosystem-column.standard {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .ecosystem-column.standard strong {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .ecosystem-column.third {
+
+    border-style: dashed;
+    border-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .ecosystem-column.third strong {
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .project-analyzer {
+
+    width: 100%;
+    max-width: 480px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.ck-diagram-raw .analyzer-input,
+.ck-diagram-raw .analyzer-output {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .analyzer-input strong,
+.ck-diagram-raw .analyzer-output strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .analyzer-input span,
+.ck-diagram-raw .analyzer-output span {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+}
+
+.ck-diagram-raw .analyzer-output {
+
+    border-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+}
+
+.ck-diagram-raw .analyzer-output strong {
+
+    color: var(--dg-green);
+}
+
+.ck-diagram-raw .analyzer-arrow {
+
+    color: var(--dg-accent);
+
+    font-size: 14px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .analyzer-tools {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(110px, 100%), 1fr));
+
+    gap: 6px;
+}
+
+.ck-diagram-raw .analyzer-tools > div {
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    padding: 8px 10px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface-soft);
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .analyzer-tools strong {
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .analyzer-tools span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11px;
+}
+
+@media (max-width: 520px) {
+
+    .ck-diagram-raw .stdlib-map-column {
+
+        flex-basis: 100%;
+    }
+
+    .ck-diagram-raw .stdlib-map-arrow {
+
+        transform: rotate(90deg);
+    }
+
+    .ck-diagram-raw .ecosystem-column {
+
+        flex-basis: 100%;
+    }
+
+    .ck-diagram-raw .stdlib-composition {
+
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "center"
+            "top"
+            "left"
+            "right"
+            "bottom";
+    }
+}
