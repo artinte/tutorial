@@ -1,0 +1,811 @@
+/* =========================================================
+   SHARED · 图解样式
+   diagram/modules-and-packages.css
+   ---------------------------------------------------------
+   模块与包：module 文件、import 对照、namespace、package 树、虚拟环境、项目结构。
+
+   所有选择器都限定在 .ck-diagram-raw 之内，
+   不会影响页面其他地方。
+========================================================= */
+
+.ck-diagram-raw .module-arrow,
+.ck-diagram-raw .flow-arrow,
+.ck-diagram-raw .namespace-arrow,
+.ck-diagram-raw .environment-arrow,
+.ck-diagram-raw .venv-arrow {
+
+    flex: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3px 10px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    white-space: nowrap;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .module-diagram {
+
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.ck-diagram-raw .module-file {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    flex: 1 1 150px;
+    max-width: 220px;
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .module-file::after {
+
+    content: "";
+
+    position: absolute;
+    top: -1px;
+    right: -1px;
+
+    width: 16px;
+    height: 16px;
+
+    border-bottom: 1px solid var(--dg-border);
+    border-left: 1px solid var(--dg-border);
+    border-bottom-left-radius: 5px;
+
+    background: var(--dg-surface-soft);
+}
+
+.ck-diagram-raw .module-file strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .module-file span {
+
+    color: var(--dg-muted);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .module-icon {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .module-code {
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1 1 140px;
+    min-width: 0;
+
+    padding: 2px 0;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+
+    overflow: hidden;
+}
+
+.ck-diagram-raw .module-code > div {
+
+    padding: 5px 12px;
+}
+
+.ck-diagram-raw .module-code > div + div {
+
+    border-top: 1px dashed var(--dg-border);
+}
+
+.ck-diagram-raw .module-card {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    flex: 1 1 130px;
+    max-width: 200px;
+    min-width: 0;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-top: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .module-card strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .module-card span {
+
+    color: var(--dg-muted);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .module-flow-diagram {
+
+    align-items: stretch;
+}
+
+.ck-diagram-raw .import-compare {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--dg-gap);
+
+    width: 100%;
+    min-width: 0;
+
+    align-items: stretch;
+}
+
+.ck-diagram-raw .import-card {
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    min-width: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .import-card strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .import-card span {
+
+    align-self: flex-start;
+
+    padding: 2px 8px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .namespace-diagram {
+
+    align-items: stretch;
+}
+
+.ck-diagram-raw .namespace-card {
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    flex: 1 1 140px;
+    min-width: 0;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .namespace-card strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .namespace-card span {
+
+    align-self: flex-start;
+
+    padding: 2px 8px;
+
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-green-soft);
+    color: var(--dg-green);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .package-tree {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.ck-diagram-raw .package-root {
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    max-width: 100%;
+    padding: 6px 14px;
+
+    border: 1px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .package-root::after {
+
+    content: "";
+
+    position: absolute;
+    top: 100%;
+    left: 14px;
+
+    width: 1px;
+    height: 14px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .package-branches {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--dg-gap);
+
+    align-self: stretch;
+
+    margin-top: 14px;
+    margin-left: 14px;
+    padding-left: 10px;
+
+    border-left: 1px solid var(--dg-border-strong);
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .package-group {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    flex: 1 1 150px;
+    min-width: 0;
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 2px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .package-group::before {
+
+    content: "";
+
+    position: absolute;
+    top: 16px;
+    left: -10px;
+
+    width: 10px;
+    height: 1px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .package-group strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .package-group span {
+
+    position: relative;
+
+    padding-left: 12px;
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .package-group span::before {
+
+    content: "";
+
+    position: absolute;
+    top: 0.9em;
+    left: 0;
+
+    width: 6px;
+    height: 1px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .name-diagram {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--dg-gap);
+
+    width: 100%;
+    min-width: 0;
+
+    align-items: stretch;
+}
+
+.ck-diagram-raw .name-card {
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    min-width: 0;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .name-card strong {
+
+    color: var(--dg-text);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .name-card span {
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .package-ecosystem {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.ck-diagram-raw .ecosystem-center {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 100%;
+    padding: 8px 22px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .ecosystem-items {
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    width: 100%;
+    max-width: 260px;
+    min-width: 0;
+
+    padding-top: 10px;
+
+    border-top: 1px dashed var(--dg-border-strong);
+}
+
+.ck-diagram-raw .ecosystem-items span {
+
+    display: block;
+
+    padding: 5px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+    color: var(--dg-text-soft);
+
+    font-size: 12px;
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .venv-diagram {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--dg-gap);
+
+    width: 100%;
+    min-width: 0;
+}
+
+.ck-diagram-raw .venv-global {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-orange);
+    border-left: 3px solid var(--dg-orange);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .venv-global strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .venv-global span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .venv-projects {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--dg-gap);
+
+    width: 100%;
+    min-width: 0;
+
+    align-items: stretch;
+}
+
+.ck-diagram-raw .venv-projects > div {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-top: 3px solid var(--dg-green);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .venv-projects strong {
+
+    color: var(--dg-text);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .venv-projects span {
+
+    align-self: flex-start;
+
+    padding: 1px 8px;
+
+    border-radius: 999px;
+
+    background: var(--dg-green-soft);
+    color: var(--dg-green);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+}
+
+.ck-diagram-raw .venv-projects small {
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .environment-flow {
+
+    align-items: stretch;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.ck-diagram-raw .environment-step {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    flex: 1 1 130px;
+    max-width: 190px;
+    min-width: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .environment-step strong {
+
+    color: var(--dg-text);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .environment-step span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .project-architecture {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.ck-diagram-raw .project-root {
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    max-width: 100%;
+    padding: 6px 14px;
+
+    border: 1px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .project-root::after {
+
+    content: "";
+
+    position: absolute;
+    top: 100%;
+    left: 14px;
+
+    width: 1px;
+    height: 14px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .project-columns {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--dg-gap);
+
+    align-self: stretch;
+
+    margin-top: 14px;
+    padding-top: 12px;
+
+    border-top: 1px solid var(--dg-border-strong);
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .project-column {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-bottom: 2px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .project-column strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .project-column span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .module-file strong,
+.ck-diagram-raw .module-card strong,
+.ck-diagram-raw .import-card strong,
+.ck-diagram-raw .namespace-card span,
+.ck-diagram-raw .package-root,
+.ck-diagram-raw .project-root,
+.ck-diagram-raw .environment-step span {
+
+    word-break: break-word;
+}
