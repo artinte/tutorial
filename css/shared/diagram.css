@@ -1,0 +1,33 @@
+/* =========================================================
+   SHARED · 图解样式（索引）
+   diagram.css
+   ---------------------------------------------------------
+   复杂示意图用 HTML + CSS 描述。
+
+   渲染器只提供外框（标题 / 留白 / 圆角），
+   见 css/shared/content_kit.css 里的 .ck-diagram。
+
+   本文件只是汇总，具体样式按「图解主题」拆分：
+
+       diagram/base.css                 变量 + 通用图元
+       diagram/data-structures.css       数据结构类图解
+       diagram/text-and-strings.css      文本 / 字符串类图解
+       diagram/modules-and-packages.css  模块 / 包 / 环境
+       diagram/standard-library.css      标准库
+       diagram/files-and-data.css        文件 / 编码 / MNIST
+       diagram/errors-and-debugging.css  异常 / 调试 / 测试
+
+   页面只需要引用本文件。
+
+   新增图解时：内容里写 HTML，
+   样式补在对应主题的文件里，
+   然后运行 node scripts/verify_diagrams.mjs
+========================================================= */
+
+@import url("./diagram/base.css");
+@import url("./diagram/data-structures.css");
+@import url("./diagram/text-and-strings.css");
+@import url("./diagram/modules-and-packages.css");
+@import url("./diagram/standard-library.css");
+@import url("./diagram/files-and-data.css");
+@import url("./diagram/errors-and-debugging.css");
