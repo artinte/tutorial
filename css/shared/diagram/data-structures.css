@@ -1,0 +1,908 @@
+/* =========================================================
+   SHARED · 图解样式
+   diagram/data-structures.css
+   ---------------------------------------------------------
+   数据结构类图解：列表索引、切片、字典、集合、嵌套结构、树、对照表。
+
+   所有选择器都限定在 .ck-diagram-raw 之内，
+   不会影响页面其他地方。
+========================================================= */
+
+.ck-diagram-raw .ds-diagram {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--dg-gap);
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .ds-code-line {
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    line-height: 1.6;
+
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.ck-diagram-raw .list-index-diagram {
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ck-diagram-raw .ds-index-row,
+.ck-diagram-raw .ds-value-row {
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .ds-index-row > span:first-child,
+.ck-diagram-raw .ds-value-row > span:first-child {
+
+    flex: 0 0 3.6em;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .ds-index-row > b,
+.ck-diagram-raw .ds-value-row > strong {
+
+    flex: 1 1 0;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .ds-index-row span,
+.ck-diagram-raw .ds-value-row span {
+
+    color: var(--dg-muted);
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .ds-index-row b {
+
+    padding: 6px 0;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.ck-diagram-raw .ds-value-row strong {
+
+    padding: 7px 0;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.ck-diagram-raw .ds-value-row span {
+
+    color: var(--dg-accent);
+
+    font-weight: 600;
+}
+
+.ck-diagram-raw .negative {
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .negative b,
+.ck-diagram-raw .negative strong {
+
+    border-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .negative span {
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .slice-diagram {
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ck-diagram-raw .slice-expression {
+
+    align-self: center;
+
+    padding: 6px 14px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .slice-boxes,
+.ck-diagram-raw .slice-index {
+
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .slice-boxes span {
+
+    padding: 9px 0;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.ck-diagram-raw .slice-boxes .selected {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-weight: 700;
+}
+
+.ck-diagram-raw .slice-index span {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.ck-diagram-raw .slice-arrow {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    align-self: center;
+
+    padding: 4px 12px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.ck-diagram-raw .slice-arrow::before {
+
+    content: "↑";
+
+    flex: none;
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+}
+
+.ck-diagram-raw .compare-diagram {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .compare-card {
+
+    display: flex;
+    flex: 1 1 130px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+
+    min-width: 0;
+    padding: 12px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .compare-title {
+
+    color: var(--dg-text);
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .compare-symbol {
+
+    align-self: center;
+
+    padding: 1px 10px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.ck-diagram-raw .compare-feature {
+
+    padding: 4px 0;
+
+    border-top: 1px dashed var(--dg-border);
+
+    color: var(--dg-text-soft);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.ck-diagram-raw .compare-symbol + .compare-feature {
+
+    border-top: 0;
+}
+
+.ck-diagram-raw .compare-vs {
+
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid var(--dg-border-strong);
+    border-radius: 50%;
+
+    background: var(--dg-surface);
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ck-diagram-raw .dictionary-diagram {
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ck-diagram-raw .dict-row {
+
+    display: grid;
+    grid-template-columns: minmax(56px, 1fr) auto minmax(0, 2fr);
+    align-items: center;
+    gap: 8px;
+
+    min-width: 0;
+    padding: 6px 10px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .dict-key {
+
+    padding: 3px 8px;
+
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.ck-diagram-raw .dict-arrow {
+
+    flex: none;
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+    line-height: 1;
+    text-align: center;
+}
+
+.ck-diagram-raw .dict-value {
+
+    padding: 3px 8px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface-soft);
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .structures-overview {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--dg-gap);
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .structure-card {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    min-width: 0;
+    padding: 12px 10px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .structure-name {
+
+    color: var(--dg-text);
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .structure-symbol {
+
+    padding: 1px 10px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.ck-diagram-raw .structure-description {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.7;
+}
+
+.ck-diagram-raw .set-diagram {
+
+    position: relative;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+
+    padding: 4px 0;
+}
+
+.ck-diagram-raw .set-circle {
+
+    display: flex;
+    flex: 0 1 108px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1px;
+
+    width: 108px;
+    aspect-ratio: 1 / 1;
+    padding-top: 15px;
+
+    border: 1.5px solid var(--dg-accent);
+    border-radius: 50%;
+
+    background: var(--dg-accent-soft);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .set-circle span {
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.ck-diagram-raw .set-left {
+
+    margin-right: -34px;
+}
+
+.ck-diagram-raw .set-right {
+
+    margin-left: -34px;
+
+    border-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+}
+
+.ck-diagram-raw .set-right span {
+
+    color: var(--dg-green);
+}
+
+.ck-diagram-raw .set-circle small {
+
+    color: var(--dg-text-soft);
+}
+
+.ck-diagram-raw .set-center {
+
+    position: absolute;
+    top: 64%;
+    left: 50%;
+    z-index: 1;
+
+    padding: 3px 7px;
+
+    border: 1px solid var(--dg-orange);
+    border-radius: 999px;
+
+    background: var(--dg-orange-soft);
+
+    color: var(--dg-orange);
+
+    font-size: 10px;
+    line-height: 1.5;
+    white-space: nowrap;
+
+    transform: translate(-50%, -50%);
+}
+
+.ck-diagram-raw .nested-diagram {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .nested-root {
+
+    align-self: center;
+
+    padding: 7px 20px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.ck-diagram-raw .nested-line {
+
+    flex: none;
+
+    width: 2px;
+    height: 20px;
+
+    margin: 0 auto;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .nested-list {
+
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+
+    min-width: 0;
+    padding-top: 12px;
+}
+
+.ck-diagram-raw .nested-list::before {
+
+    content: "";
+
+    position: absolute;
+    top: 0;
+    right: 16%;
+    left: 16%;
+
+    border-top: 2px solid var(--dg-border-strong);
+}
+
+.ck-diagram-raw .nested-item {
+
+    position: relative;
+
+    min-width: 0;
+    padding: 9px 10px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .nested-item::before {
+
+    content: "";
+
+    position: absolute;
+    top: -12px;
+    left: 50%;
+
+    height: 12px;
+
+    border-left: 2px solid var(--dg-border-strong);
+}
+
+.ck-diagram-raw .nested-item strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .nested-fields {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .nested-fields span {
+
+    padding: 2px 8px;
+
+    border-radius: 999px;
+
+    background: var(--dg-surface-soft);
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+}
+
+.ck-diagram-raw .tree-diagram {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    min-width: 0;
+}
+
+.ck-diagram-raw .tree-root {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+    align-self: center;
+
+    padding: 7px 18px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-accent-soft);
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.ck-diagram-raw .tree-root small {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .tree-branch {
+
+    position: relative;
+
+    align-self: center;
+    flex: none;
+
+    width: 2px;
+    height: 22px;
+
+    background: var(--dg-border-strong);
+}
+
+.ck-diagram-raw .tree-branch::after {
+
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    width: 6px;
+    height: 6px;
+
+    border-right: 2px solid var(--dg-border-strong);
+    border-bottom: 2px solid var(--dg-border-strong);
+
+    transform: translate(-50%, -2px) rotate(45deg);
+}
+
+.ck-diagram-raw .tree-node {
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    min-width: 0;
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .tree-node strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .tree-node small {
+
+    align-self: flex-start;
+
+    padding: 1px 7px;
+
+    border-radius: 999px;
+
+    background: var(--dg-surface-soft);
+
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .small-node {
+
+    border-style: dashed;
+    border-left-style: solid;
+    border-left-color: var(--dg-orange);
+
+    background: var(--dg-surface-soft);
+}
+
+.ck-diagram-raw .small-node strong {
+
+    color: var(--dg-text-soft);
+}
+
+.ck-diagram-raw .tree-children {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+    gap: 5px;
+
+    min-width: 0;
+    margin-top: 5px;
+    padding-top: 8px;
+
+    border-top: 1px dashed var(--dg-border-strong);
+}
+
+.ck-diagram-raw .tree-children span {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    min-width: 0;
+    padding: 5px 8px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface-soft);
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .tree-children b {
+
+    color: var(--dg-accent);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .small-node .tree-children span {
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .small-node .tree-children b {
+
+    color: var(--dg-orange);
+}
+
+/* ---------------------------------------------------------
+
+   数据结构组件的公共部分
+
+   （字符串索引图也复用这套 ds-* 结构）
+
+--------------------------------------------------------- */
+
+.ck-diagram-raw .ds-index-row > span,
+.ck-diagram-raw .ds-value-row > span {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    min-width: 0;
+    padding-right: 4px;
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+    line-height: 1.4;
+
+    white-space: nowrap;
+}
+
+.ck-diagram-raw .negative > span {
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .negative b {
+    border-style: dashed;
+    border-color: var(--dg-border-strong);
+
+    background: var(--dg-orange-soft);
+    color: var(--dg-orange);
+}
