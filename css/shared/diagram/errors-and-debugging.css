@@ -1,0 +1,1313 @@
+/* =========================================================
+   SHARED · 图解样式
+   diagram/errors-and-debugging.css
+   ---------------------------------------------------------
+   异常与调试：异常树、traceback、try / except 分支、raise、断言、调试器、日志级别、Bug 冰山。
+
+   所有选择器都限定在 .ck-diagram-raw 之内，
+   不会影响页面其他地方。
+========================================================= */
+
+.ck-diagram-raw .error-source-diagram {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .error-source {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-top: 3px solid var(--dg-orange);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .error-source strong {
+
+    color: var(--dg-text);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .error-source span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .exception-map {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .exception-card {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-orange);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .exception-card strong {
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .exception-card span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .traceback-diagram {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+
+    counter-reset: dg-traceback;
+}
+
+.ck-diagram-raw .traceback-step {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 9px 12px 9px 36px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .traceback-step::before {
+
+    counter-increment: dg-traceback;
+    content: counter(dg-traceback);
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 17px;
+    text-align: center;
+}
+
+.ck-diagram-raw .traceback-step strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .traceback-step span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .traceback-step.highlight {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .traceback-step.highlight strong {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .traceback-step.highlight span {
+
+    color: var(--dg-text-soft);
+}
+
+.ck-diagram-raw .traceback-step.highlight::before {
+
+    background: var(--dg-accent);
+    color: var(--dg-surface);
+}
+
+.ck-diagram-raw .traceback-arrow {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .traceback-error {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--dg-orange);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .traceback-error strong {
+
+    color: var(--dg-orange);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .traceback-error span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+}
+
+.ck-diagram-raw .try-except-diagram {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+}
+
+.ck-diagram-raw .try-block {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-accent-soft);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .try-block strong {
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.ck-diagram-raw .try-block span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .try-arrow {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .try-branch {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .try-success,
+.ck-diagram-raw .try-error {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+    padding: 9px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .try-success {
+
+    border-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+}
+
+.ck-diagram-raw .try-error {
+
+    border-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .try-success strong,
+.ck-diagram-raw .try-error strong {
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .try-success strong {
+
+    color: var(--dg-green);
+}
+
+.ck-diagram-raw .try-error strong {
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .try-success span,
+.ck-diagram-raw .try-error span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+}
+
+.ck-diagram-raw .exception-flow {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+}
+
+.ck-diagram-raw .exception-flow-block {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-accent-soft);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .exception-flow-block strong {
+
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.ck-diagram-raw .exception-flow-block span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .exception-flow-arrow {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .exception-flow-branches {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .exception-flow-branches > div {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+    padding: 9px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .exception-flow-branches > div:first-child {
+
+    border-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .exception-flow-branches > div:last-child {
+
+    border-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+}
+
+.ck-diagram-raw .exception-flow-branches > div strong {
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .exception-flow-branches > div:first-child strong {
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .exception-flow-branches > div:last-child strong {
+
+    color: var(--dg-green);
+}
+
+.ck-diagram-raw .exception-flow-branches > div span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+}
+
+.ck-diagram-raw .exception-flow-finally {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 10px 14px;
+
+    border: 1px dashed var(--dg-border-strong);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface-soft);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .exception-flow-finally strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.ck-diagram-raw .exception-flow-finally span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .raise-flow {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+}
+
+.ck-diagram-raw .raise-function,
+.ck-diagram-raw .raise-error,
+.ck-diagram-raw .raise-caller {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .raise-function {
+
+    border-color: var(--dg-border-strong);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .raise-error {
+
+    border-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .raise-caller {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .raise-function strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .raise-error strong {
+
+    color: var(--dg-orange);
+
+    font-family: var(--dg-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .raise-caller strong {
+
+    color: var(--dg-accent);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .raise-function span,
+.ck-diagram-raw .raise-error span,
+.ck-diagram-raw .raise-caller span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .raise-arrow {
+
+    color: var(--dg-orange);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .custom-exception-tree {
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+}
+
+.ck-diagram-raw .exception-root,
+.ck-diagram-raw .exception-middle,
+.ck-diagram-raw .exception-custom {
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .exception-root {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-weight: 700;
+}
+
+.ck-diagram-raw .exception-middle {
+
+    margin: 0 8%;
+
+    border-color: var(--dg-border-strong);
+
+    background: var(--dg-surface);
+    color: var(--dg-text);
+}
+
+.ck-diagram-raw .exception-custom {
+
+    margin: 0 16%;
+
+    border-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+    color: var(--dg-green);
+
+    font-weight: 700;
+}
+
+.ck-diagram-raw .exception-tree-line {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    line-height: 1.2;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .assert-compare {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .assert-card {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+    padding: 12px 12px 11px;
+
+    border: 1px solid var(--dg-border);
+    border-top: 3px solid var(--dg-orange);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .assert-card strong {
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .assert-card span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .assert-card small {
+
+    color: var(--dg-muted);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.ck-diagram-raw .assert-card.highlight {
+
+    border-color: var(--dg-accent);
+    border-top-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .assert-card.highlight strong {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .debug-workflow {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 6px;
+}
+
+.ck-diagram-raw .debug-step {
+
+    flex: 1 1 96px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+
+    min-width: 0;
+    padding: 10px 9px 11px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .debug-step strong {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ck-diagram-raw .debug-step span {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .debug-step small {
+
+    color: var(--dg-muted);
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.ck-diagram-raw .debug-step.highlight {
+
+    border-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .debug-step.highlight strong {
+
+    background: var(--dg-accent);
+    color: var(--dg-surface);
+}
+
+.ck-diagram-raw .debug-step.highlight span {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .debug-arrow {
+
+    flex: none;
+    align-self: center;
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .debugger-view {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    align-items: start;
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .debugger-code {
+
+    padding: 6px 0;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.ck-diagram-raw .debugger-code > div {
+
+    padding: 0 12px;
+
+    color: var(--dg-muted);
+
+    white-space: nowrap;
+}
+
+.ck-diagram-raw .debugger-code .current-line {
+
+    margin: 2px 0;
+    padding: 0 12px 0 9px;
+
+    border-left: 3px solid var(--dg-green);
+
+    background: var(--dg-green-soft);
+    color: var(--dg-green);
+
+    font-weight: 700;
+}
+
+.ck-diagram-raw .debugger-panel {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface-soft);
+}
+
+.ck-diagram-raw .debugger-panel strong {
+
+    padding-bottom: 4px;
+
+    border-bottom: 1px solid var(--dg-border);
+
+    color: var(--dg-text);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.ck-diagram-raw .debugger-panel span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .logging-levels {
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ck-diagram-raw .log-level {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2px 10px;
+
+    padding: 6px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 4px solid var(--dg-border-strong);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .log-level strong {
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.ck-diagram-raw .log-level span {
+
+    margin-left: auto;
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+
+    text-align: right;
+}
+
+.ck-diagram-raw .log-level:nth-child(1) {
+
+    background: var(--dg-surface-soft);
+}
+
+.ck-diagram-raw .log-level:nth-child(2) {
+
+    border-left-color: var(--dg-accent);
+
+    background: var(--dg-accent-soft);
+}
+
+.ck-diagram-raw .log-level:nth-child(2) strong {
+
+    color: var(--dg-accent);
+}
+
+.ck-diagram-raw .log-level:nth-child(3) {
+
+    border-left-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .log-level:nth-child(3) strong {
+
+    color: var(--dg-orange);
+}
+
+.ck-diagram-raw .log-level:nth-child(4) {
+
+    border-left-color: var(--dg-orange);
+
+    background: var(--dg-orange-soft);
+}
+
+.ck-diagram-raw .log-level:nth-child(4) strong {
+
+    color: var(--dg-orange);
+
+    font-weight: 800;
+}
+
+.ck-diagram-raw .log-level:nth-child(5) {
+
+    border-color: var(--dg-orange);
+    border-left-color: var(--dg-orange);
+
+    background: var(--dg-orange);
+    color: var(--dg-surface);
+}
+
+.ck-diagram-raw .log-level:nth-child(5) strong {
+
+    color: var(--dg-surface);
+
+    font-weight: 800;
+}
+
+.ck-diagram-raw .log-level:nth-child(5) span {
+
+    color: var(--dg-surface);
+}
+
+.ck-diagram-raw .bug-iceberg {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.ck-diagram-raw .bug-visible {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 8px 18px;
+
+    border: 1px solid var(--dg-accent);
+    border-radius: var(--dg-radius) var(--dg-radius) 0 0;
+
+    background: var(--dg-accent-soft);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .bug-visible strong {
+
+    color: var(--dg-accent);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .bug-visible span {
+
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 11px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .bug-hidden {
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    width: 100%;
+    padding: 14px 14px 16px;
+
+    border: 1px dashed var(--dg-orange);
+    border-top: 2px dashed var(--dg-orange);
+    border-radius: 0 0 var(--dg-radius) var(--dg-radius);
+
+    background: var(--dg-orange-soft);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .bug-hidden strong {
+
+    color: var(--dg-orange);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.ck-diagram-raw .bug-hidden span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .testing-debug-loop {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 6px;
+
+    counter-reset: dg-testing;
+}
+
+.ck-diagram-raw .testing-step {
+
+    flex: 1 1 110px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+    min-width: 0;
+    padding: 10px 10px 11px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .testing-step::before {
+
+    counter-increment: dg-testing;
+    content: counter(dg-testing);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    margin-bottom: 2px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ck-diagram-raw .testing-step strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .testing-step.highlight {
+
+    border-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+}
+
+.ck-diagram-raw .testing-step.highlight strong {
+
+    color: var(--dg-green);
+}
+
+.ck-diagram-raw .testing-step.highlight::before {
+
+    background: var(--dg-green);
+    color: var(--dg-surface);
+}
+
+.ck-diagram-raw .testing-arrow {
+
+    flex: none;
+    align-self: center;
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .defensive-programming {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 6px;
+}
+
+.ck-diagram-raw .defensive-stage {
+
+    flex: 1 1 104px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+    padding: 10px 9px;
+
+    border: 1px solid var(--dg-border);
+    border-top: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .defensive-stage strong {
+
+    color: var(--dg-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.ck-diagram-raw .defensive-stage span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.ck-diagram-raw .defensive-stage.highlight {
+
+    border-color: var(--dg-green);
+    border-top-color: var(--dg-green);
+
+    background: var(--dg-green-soft);
+}
+
+.ck-diagram-raw .defensive-stage.highlight strong {
+
+    color: var(--dg-green);
+}
+
+.ck-diagram-raw .defensive-arrow {
+
+    flex: none;
+    align-self: center;
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+    line-height: 1;
+
+    user-select: none;
+}
+
+.ck-diagram-raw .debug-investigation {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .investigation-step {
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+    padding: 10px 12px;
+
+    border: 1px solid var(--dg-border);
+    border-left: 3px solid var(--dg-accent);
+    border-radius: var(--dg-radius-sm);
+
+    background: var(--dg-surface);
+}
+
+.ck-diagram-raw .investigation-step strong {
+
+    color: var(--dg-accent);
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.ck-diagram-raw .investigation-step span {
+
+    color: var(--dg-text-soft);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
