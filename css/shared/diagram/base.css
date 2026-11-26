@@ -1,0 +1,236 @@
+/* =========================================================
+   SHARED · 图解样式（基础）
+   diagram/base.css
+   ---------------------------------------------------------
+   1. 设计变量（颜色、圆角、字体，全部回退到课程主题）
+   2. 通用图元：盒子、箭头、行、列、网格、表格、标签
+
+   各章自己的图解类名在：
+
+       diagram/chapter-XX.css
+
+   新增图解时：内容里写 HTML，
+   样式补在对应章节文件里，
+   然后运行 node scripts/verify_diagrams.mjs
+========================================================= */
+
+
+/* =========================================================
+   设计变量
+========================================================= */
+
+.ck-diagram-raw {
+
+    --dg-accent: var(--ck-accent, #3776ab);
+    --dg-accent-soft: var(--ck-accent-soft, #edf5fb);
+    --dg-accent-line: var(--ck-accent, #3776ab);
+
+    --dg-surface: var(--ck-surface, #ffffff);
+    --dg-surface-soft: var(--ck-surface-soft, #f8fafc);
+
+    --dg-border: var(--ck-border, #e7ebf0);
+    --dg-border-strong: var(--ck-border-strong, #d9e0e8);
+
+    --dg-text: var(--ck-text, #17202b);
+    --dg-text-soft: var(--ck-text-soft, #566273);
+    --dg-muted: var(--ck-muted, #8a95a3);
+
+    --dg-green: var(--ck-green, #15946b);
+    --dg-green-soft: var(--ck-green-soft, #eaf8f3);
+    --dg-orange: var(--ck-orange, #e88924);
+    --dg-orange-soft: var(--ck-orange-soft, #fff5e8);
+
+    --dg-radius: var(--ck-radius, 10px);
+    --dg-radius-sm: 8px;
+    --dg-gap: 10px;
+
+    --dg-mono: var(--ck-mono, ui-monospace, Menlo, Consolas, monospace);
+}
+
+
+/* =========================================================
+   通用图元
+   ---------------------------------------------------------
+   内容里可以自由组合这些类名，或者用自己章节的类名。
+========================================================= */
+
+/* 行 / 列 */
+
+.ck-diagram-raw .diagram-row,
+.ck-diagram-raw .diagram-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .diagram-column,
+.ck-diagram-raw .diagram-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--dg-gap);
+}
+
+/* 网格 */
+
+.ck-diagram-raw .diagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--dg-gap);
+}
+
+/* 盒子 */
+
+.ck-diagram-raw .diagram-box,
+.ck-diagram-raw .diagram-node {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    color: var(--dg-text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.ck-diagram-raw .diagram-box strong,
+.ck-diagram-raw .diagram-node strong {
+    color: var(--dg-text);
+    font-weight: 700;
+}
+
+/* 箭头 */
+
+.ck-diagram-raw .diagram-arrow {
+    flex: none;
+
+    color: var(--dg-accent);
+
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+
+    user-select: none;
+}
+
+/* 强调 */
+
+.ck-diagram-raw .highlight,
+.ck-diagram-raw .is-emphasis {
+    border-color: var(--dg-accent);
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+}
+
+/* 表格 */
+
+.ck-diagram-raw .diagram-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    font-size: 12.5px;
+}
+
+.ck-diagram-raw .diagram-table td,
+.ck-diagram-raw .diagram-table th {
+    padding: 6px 10px;
+
+    border-bottom: 1px solid var(--dg-border);
+
+    text-align: left;
+}
+
+/* 标签 */
+
+.ck-diagram-raw .diagram-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    margin-top: 4px;
+}
+
+.ck-diagram-raw .diagram-tags span {
+    padding: 1px 8px;
+
+    border-radius: 999px;
+
+    background: var(--dg-accent-soft);
+    color: var(--dg-accent);
+
+    font-family: var(--dg-mono);
+    font-size: 10.5px;
+}
+
+/* 说明文字 */
+
+.ck-diagram-raw small {
+    color: var(--dg-muted);
+    font-size: 11.5px;
+}
+
+
+/* 对象图（第 10～12 章共用） */
+
+.ck-diagram-raw .object-diagram {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--dg-gap);
+}
+
+
+/* 前言里的输出流程（第 01 章） */
+
+.ck-diagram-raw .preface-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--dg-gap);
+}
+
+.ck-diagram-raw .preface-flow-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--dg-border);
+    border-radius: var(--dg-radius);
+
+    background: var(--dg-surface);
+
+    text-align: center;
+}
+
+.ck-diagram-raw .preface-flow-item strong {
+    color: var(--dg-text);
+    font-size: 12px;
+}
+
+.ck-diagram-raw .preface-flow-item span {
+    color: var(--dg-text-soft);
+
+    font-family: var(--dg-mono);
+    font-size: 12px;
+}
+
+.ck-diagram-raw .preface-flow-arrow {
+    align-self: center;
+
+    color: var(--dg-muted);
+
+    font-family: var(--dg-mono);
+    font-size: 11.5px;
+}
